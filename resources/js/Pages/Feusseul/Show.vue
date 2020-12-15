@@ -2,13 +2,13 @@
     <div>
         <div class="container">
             <div class="row">
-                <inertia-link class="m-5" href="/Feusseuls">
-                    <button class="btn btn-primary">Voir tout</button>
-                </inertia-link>
-                <div class="col-md-10 offset-1 ml-3 m-5">
-                    <img :src="'/uploads/'+this.feusseul[0].file" alt="" height="500px"
+                <!--                <inertia-link class="m-5" href="/Feusseuls">-->
+                <!--                    <button class="btn btn-primary">Voir tout</button>-->
+                <!--                </inertia-link>-->
+                <div class="col-md-10 offset-1 ml-3 mb-5">
+                    <img :src="'/uploads/'+this.feusseul[0].file" alt="" height="400px"
                          v-if="this.feusseul[0].extension == 'jpeg'" width="1000px">
-                    <video controls height="500px" v-if="this.feusseul[0].extension == 'mp4'" width="1000px">
+                    <video controls height="400px" v-if="this.feusseul[0].extension == 'mp4'" width="1000px">
                         <source :src="'/uploads/videos/' +this.feusseul[0].file" type="video/mp4">
                     </video>
                     <p class="text-center">
@@ -19,13 +19,27 @@
                     </p>
                 </div>
                 <div class="col-md-12">
+                    <div class="form-group offset-5">
+                        <span v-if="this.feusseul[0].like != null">{{ this.feusseul[0].like }}</span>
+                        <span v-if="this.feusseul[0].like == null">0</span>
+                        <inertia-link :href="'/Feusseul/like/'+this.feusseul[0].id">
+                            <i class="btn btn-sm btn-info">J'aime</i>
+                        </inertia-link>
+                        <inertia-link :href="'/Feusseul/dislike/'+this.feusseul[0].id">
+                            <i class="btn btn-sm btn-danger">Je n'aime pas</i>
+                        </inertia-link>
+                        <span v-if="this.feusseul[0].dislike != null">{{ this.feusseul[0].dislike }}</span>
+                        <span v-if="this.feusseul[0].dislike == null">0</span>
+                    </div>
+                    <h5 class="offset-5">Les commentaires recentes</h5>
+                    <div class="col-md-5 offset-3 shadow mb-5" v-for="item in commentaires"  :key="item.id">
+                                <p>{{  item.commentaires }}</p>
+                                <small class="offset-7">
+                                    <small>Poster par : </small>
+                                    <strong>{{ item.user.name }}</strong>
+                                </small>
+                    </div>
                     <form @submit.prevent="handleSubmit">
-                        <div class="form-group offset-4">
-                            <span>{{ this.feusseul[0].commentaires. }}</span>
-                            <input class="btn-outline-primary btn btn-sm" name="like" placeholder="J'aime" v-model="form.like">
-                            <input class="btn-outline-danger btn btn-sm" name="dislike" placeholder="Je n'aime pas"
-                                   v-model="form.dislike">
-                        </div>
                         <div class="form-group">
                     <textarea class="form-control" id="description" name="commentaires" rows="3"
                               v-model="form.commentaires"></textarea>
@@ -43,26 +57,26 @@
 <script>
     export default {
         name: "Show",
-        props: ['feusseul'],
+        props: ['feusseul', 'commentaires'],
         data() {
             return {
                 form: {
                     commentaires: null,
-                    like: null,
-                    dislike: null,
+                    feusseul_id: this.feusseul[0].id,
                 }
             }
         },
         methods: {
             handleSubmit() {
                 const data = new FormData();
-                data.append("like", this.form.commentaires);
-                data.append("dislike", this.form.dislike);
-                data.append("commentaires", this.form.commentaires);
 
-                this.$inertia.post('/comments', data, {
+                data.append("commentaires", this.form.commentaires);
+                data.append("feusseul_id", this.form.feusseul_id);
+
+                this.$inertia.post('/Feusseul/comments', data, {
                     onSuccess: () => {
-                        this.flashMessagfe.info({
+                        this.form.commentaires = '';
+                        this.flashMessage.info({
                             message: ("Commentaire poster avec success")
                         });
                     }

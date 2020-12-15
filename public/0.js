@@ -111,15 +111,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -141,8 +132,8 @@ __webpack_require__.r(__webpack_exports__);
         lien: this.association[0].lien,
         domaineActivites: this.association[0].domaineActivites,
         description: this.association[0].description,
-        avatar: null,
-        email: this.user[0].email // password: this.user[0].password,
+        avatar: null // email: this.user[0].email,
+        // password: this.user[0].password,
 
       }
     };
@@ -158,8 +149,8 @@ __webpack_require__.r(__webpack_exports__);
       data.append("lien", this.form.lien);
       data.append("domaineActivites", this.form.domaineActivites);
       data.append("description", this.form.description);
-      data.append("avatar", this.form.avatar || "");
-      data.append("email", this.form.email);
+      data.append("avatar", this.form.avatar || ""); // data.append("email", this.form.email);
+
       this.$inertia.post('/association/update/' + this.association[0].user_id, data, {
         onSuccess: function onSuccess() {
           _this.flashMessage.info({
@@ -464,34 +455,6 @@ var render = function() {
                         return
                       }
                       _vm.$set(_vm.form, "NomAssociation", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.email,
-                      expression: "form.email"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    placeholder: this.user[0].email,
-                    required: "",
-                    type: "text"
-                  },
-                  domProps: { value: _vm.form.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "email", $event.target.value)
                     }
                   }
                 })

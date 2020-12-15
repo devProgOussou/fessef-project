@@ -15,11 +15,13 @@
                         <inertia-link :href="this.entreprise[0].lien">{{this.entreprise[0].lien}}</inertia-link>
                         <strong>adresse</strong>
                         <p>{{this.entreprise[0].adresse}}</p>
+                        <strong>telephone</strong>
+                        <p>{{this.entreprise[0].telephone}}</p>
                         <div style="margin: 24px 0;">
 
                         </div>
                         <p>
-                            <inertia-link :href="'/association/edit/'+this.entreprise[0].user_id">
+                            <inertia-link :href="'/entreprise/edit/'+this.entreprise[0].user_id">
                                 Modifier profil
                             </inertia-link>
                         </p>

@@ -66,6 +66,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dashboard",
@@ -222,6 +224,10 @@ var render = function() {
               _vm._v(" "),
               _c("p", [_vm._v(_vm._s(this.entreprise[0].adresse))]),
               _vm._v(" "),
+              _c("strong", [_vm._v("telephone")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(this.entreprise[0].telephone))]),
+              _vm._v(" "),
               _c("div", { staticStyle: { margin: "24px 0" } }),
               _vm._v(" "),
               _c(
@@ -231,7 +237,7 @@ var render = function() {
                     "inertia-link",
                     {
                       attrs: {
-                        href: "/association/edit/" + this.entreprise[0].user_id
+                        href: "/entreprise/edit/" + this.entreprise[0].user_id
                       }
                     },
                     [

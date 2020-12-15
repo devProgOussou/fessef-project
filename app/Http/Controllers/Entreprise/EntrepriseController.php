@@ -62,11 +62,16 @@ class EntrepriseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Inertia\Response
      */
     public function edit($id)
     {
-        //
+        $entreprise = Entreprise::where('user_id', $id)->get();
+        $user = User::where('id', $id)->get();
+        return Inertia::render('Entreprise/Edit', [
+            'entreprise' => $entreprise,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -74,11 +79,34 @@ class EntrepriseController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/avatar/', $filename);
+
+            Entreprise::where('user_id', $id)->update([
+                'NomEntreprise' => $request->input('NomEntreprise'),
+                'adresse' => $request->input('adresse'),
+                'telephone' => $request->input('telephone'),
+                'lien' => $request->input('lien'),
+                'domaineActivites' => $request->input('domaineActivites'),
+                'description' => $request->input('description')
+            ]);
+
+            User::where('id', $id)->update([
+                'name' => $request->input('NomEntreprise'),
+                'avatar' => $filename
+            ]);
+            return back();
+        }
+        else {
+            return back();
+        }
     }
 
     /**

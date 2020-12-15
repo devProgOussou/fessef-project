@@ -18,6 +18,8 @@ class CreateFeusseulsTable extends Migration
             $table->string('titre');
             $table->text('contenu');
             $table->string('file');
+            $table->unsignedBigInteger('like')->default(0);
+            $table->unsignedBigInteger('dislike')->default(0);
             $table->string('extension');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

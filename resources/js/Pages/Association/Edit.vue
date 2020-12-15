@@ -39,15 +39,6 @@
                         </div>
                         <div class="form-group">
                             <input
-                                :placeholder="this.user[0].email"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.email"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <input
                                 :placeholder="this.association[0].adresse"
                                 class="form-control"
                                 required
@@ -131,7 +122,7 @@
                     domaineActivites: this.association[0].domaineActivites,
                     description: this.association[0].description,
                     avatar: null,
-                    email: this.user[0].email,
+                    // email: this.user[0].email,
                     // password: this.user[0].password,
                 }
             }
@@ -146,7 +137,7 @@
                 data.append("domaineActivites", this.form.domaineActivites);
                 data.append("description", this.form.description);
                 data.append("avatar", this.form.avatar || "");
-                data.append("email", this.form.email);
+                // data.append("email", this.form.email);
 
                 this.$inertia.post('/association/update/' + this.association[0].user_id, data, {
                     onSuccess: () => {

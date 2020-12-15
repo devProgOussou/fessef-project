@@ -53770,6 +53770,14 @@ var map = {
 		"./resources/js/Pages/Entreprise/Dashboard.vue",
 		2
 	],
+	"./Entreprise/Edit": [
+		"./resources/js/Pages/Entreprise/Edit.vue",
+		34
+	],
+	"./Entreprise/Edit.vue": [
+		"./resources/js/Pages/Entreprise/Edit.vue",
+		34
+	],
 	"./Entreprise/EditAvatar": [
 		"./resources/js/Pages/Entreprise/EditAvatar.vue",
 		3

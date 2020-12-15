@@ -15,8 +15,8 @@ class CreateCommentairesTable extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('likes')->nullable();
-            $table->bigInteger('dislikes')->nullable();
+            $table->bigInteger('like')->nullable();
+            $table->bigInteger('dislike')->nullable();
             $table->text('commentaires')->nullable();
             $table->foreignId('feusseul_id')->constrained();
             $table->foreignId('user_id')->constrained();

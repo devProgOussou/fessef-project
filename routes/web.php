@@ -49,6 +49,8 @@ Route::post('/Association/UpdateAvatar/{id}', [AssociationController::class, 'up
 //ROUTE FOR ENTREPRISE
 Route::get('/Entreprise/editAvatar/{id}',[EntrepriseController::class, 'editAvatar'])->name('Entreprise.EditAvatar');
 Route::post('/Entreprise/updateAvatar/{id}', [EntrepriseController::class, 'updateAvatar'])->name('Entreprise.updateAvatar');
+Route::get('/entreprise/edit/{id}', [EntrepriseController::class, 'edit'])->name('Entreprise.edit');
+Route::post('/entreprise/update/{id}', [EntrepriseController::class, 'update'])->name('Entreprise.update');
 
 
 //ROUTE FOR ALL USERS
@@ -91,3 +93,12 @@ Route::get('/Feusseuls', [FeusseulController::class, 'displayAll'])->name('Feuss
 Route::post('/Feusseul/Update/{id}', [FeusseulController::class, 'update'])->name('Feusseul.update');
 Route::get('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->name('Feusseul.delete');
 Route::post('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->name('Feusseul.deleted');
+
+
+//ROUTE FOR FEUSSEUL LIKE/DISLIKE/COMMENTS
+Route::get('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->name('Feusseul.like');
+Route::post('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->name('Feusseul.liked');
+Route::get('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->name('Feusseul.dislike');
+Route::post('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->name('Feusseul.disliked');
+Route::get('/Feusseul/comments', [FeusseulController::class, 'comments'])->name('Feusseul.comments');
+Route::post('/Feusseul/comments', [FeusseulController::class, 'comments'])->name('Feusseul.comments');

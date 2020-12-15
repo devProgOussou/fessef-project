@@ -92,16 +92,16 @@ class AssociationController extends Controller
             $file->move('uploads/avatar/', $filename);
 
             Association::where('user_id', $id)->update([
-                'NomAssociation' => $request->NomAssociation,
-                'adresse' => $request->adresse,
-                'telephone' => $request->telephone,
-                'lien' => $request->lien,
-                'domaineActivites' => $request->domaineActivites,
-                'description' => $request->description
+                'NomAssociation' => $request->input('NomAssociation'),
+                'adresse' => $request->input('adresse'),
+                'telephone' => $request->input('telephone'),
+                'lien' => $request->input('lien'),
+                'domaineActivites' => $request->input('domaineActivites'),
+                'description' => $request->input('description')
             ]);
 
             User::where('id', $id)->update([
-                'name' => $request->NomAssociation,
+                'name' => $request->input('NomAssociation'),
                 'avatar' => $filename,
 //                'email' => $request->email,
 //                'password' => Hash::make($request->password)

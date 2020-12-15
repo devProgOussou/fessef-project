@@ -10,15 +10,16 @@ class Commentaire extends Model
     use HasFactory;
 
     protected $fillable = [
-        'likes',
-        'dislikes',
         'commentaires',
-        'user_id'
+        'feusseul_id',
+        'user_id',
+        'like',
+        'dislike'
     ];
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function feusseul()

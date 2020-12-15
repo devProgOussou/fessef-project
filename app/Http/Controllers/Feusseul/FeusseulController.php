@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Feusseul;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commentaire;
 use App\Models\Feusseul;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +78,12 @@ class FeusseulController extends Controller
      */
     public function show($id)
     {
+        $commentaires = Commentaire::with('user')->orderByDesc('created_at')->where('feusseul_id', $id)->get();
+//        dd($commentaires);
         $feusseul = Feusseul::with('commentaires')->where('id', $id)->get();
         return Inertia::render('Feusseul/Show', [
-            'feusseul' => $feusseul
+            'feusseul' => $feusseul,
+            'commentaires' => $commentaires
         ]);
     }
 
@@ -146,5 +151,34 @@ class FeusseulController extends Controller
         return Inertia::render('Feusseul/ShowAll', [
             'feusseuls' => $feusseuls
         ]);
+    }
+
+    public function like($id)
+    {
+        $feusseul = Feusseul::find($id);
+        $value = $feusseul->like;
+        $feusseul->like = $value + 1;
+        $feusseul->save();
+
+        return back();
+    }
+
+    public function dislike($id)
+    {
+        $feusseul = Feusseul::find($id);
+        $value = $feusseul->dislike;
+        $feusseul->dislike = $value + 1;
+        $feusseul->save();
+        return back();
+    }
+
+    public function comments(Request $request)
+    {
+        Commentaire::create([
+            'commentaires' =>$request->input('commentaires'),
+            'feusseul_id' =>$request->input('feusseul_id'),
+            'user_id'=>Auth::user()->id,
+        ]);
+        return back();
     }
 }
