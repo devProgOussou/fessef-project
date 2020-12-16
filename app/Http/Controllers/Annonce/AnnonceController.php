@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Annonce;
 
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 use App\Models\Annonce;
 use App\Models\Interesse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Http\RedirectResponse;
 
 class AnnonceController extends Controller
 {
@@ -29,7 +27,7 @@ class AnnonceController extends Controller
     {
         $annonces = Annonce::where('user_id', Auth::user()->id)->get();
         return Inertia::render('Annonces/Index', [
-            'annonces' =>$annonces
+            'annonces' => $annonces,
         ]);
     }
 
@@ -52,19 +50,19 @@ class AnnonceController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $file->move('uploads/', $filename);
-    } else {
-        return back();
-    }
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+        } else {
+            return back();
+        }
         Annonce::create([
-            'titre' =>$request->input('titre'),
-            'description' =>$request->input('description'),
-            'contenu' =>$request->input('contenu'),
-            'user_id'=>Auth::user()->id,
-            'image'=> $filename
+            'titre' => $request->input('titre'),
+            'description' => $request->input('description'),
+            'contenu' => $request->input('contenu'),
+            'user_id' => Auth::user()->id,
+            'image' => $filename,
         ]);
         return back();
     }
@@ -77,10 +75,10 @@ class AnnonceController extends Controller
      */
     public function show($id)
     {
-        $annonce= Annonce::where('id',$id)->get();
+        $annonce = Annonce::where('id', $id)->get();
 
-        return Inertia::render('Annonces/Show',[
-            'annonce'=>$annonce
+        return Inertia::render('Annonces/Show', [
+            'annonce' => $annonce,
         ]);
     }
 
@@ -92,10 +90,15 @@ class AnnonceController extends Controller
      */
     public function showAnnonce($id)
     {
-        $annonce= Annonce::where('id',$id)->get();
+        $nbreDeVus = Annonce::where('id', $id)->first();
+        $value = $nbreDeVus->nbreDeVus;
+        $nbreDeVus->nbreDeVus = $value + 1;
+        $nbreDeVus->save();
 
-        return Inertia::render('Annonces/ShowAnnonce',[
-            'annonce'=>$annonce
+        $annonce = Annonce::where('id', $id)->get();
+
+        return Inertia::render('Annonces/ShowAnnonce', [
+            'annonce' => $annonce,
         ]);
     }
 
@@ -107,10 +110,10 @@ class AnnonceController extends Controller
      */
     public function edit($id)
     {
-        $annonce= Annonce::where('id',$id)->get();
+        $annonce = Annonce::where('id', $id)->get();
 
-        return Inertia::render('Annonces/Edit',[
-            'annonce' => $annonce
+        return Inertia::render('Annonces/Edit', [
+            'annonce' => $annonce,
         ]);
     }
 
@@ -133,7 +136,7 @@ class AnnonceController extends Controller
                 'titre' => $request->titre,
                 'description' => $request->description,
                 'contenu' => $request->contenu,
-                'image' => $filename
+                'image' => $filename,
             ]);
         }
         return back();
@@ -147,7 +150,7 @@ class AnnonceController extends Controller
      */
     public function destroy($id)
     {
-        $annonce= Annonce::find($id);
+        $annonce = Annonce::find($id);
         $annonce->delete();
         return back();
     }
@@ -156,31 +159,14 @@ class AnnonceController extends Controller
     {
         $annonces = Annonce::with('user')->get();
         return Inertia::render('Annonces/ShowAll', [
-            'annonces' => $annonces
+            'annonces' => $annonces,
         ]);
     }
 
-    public function interesses(Request $request,$id)
+    public function interesses(Request $request, $id)
     {
-//        $nbreDeVus = Annonce::where('id', $id)->first()->only('nbreDeVus');
-//        $nbreDeVus = (int)$nbreDeVus;
-//        $nbreDeVus += 1;
-//        Annonce::where('id', $id)->update([
-//            'nbreDeVus' => $nbreDeVus
-//        ]);
+        Interesse::create([
 
-        $user = Interesse::where('user_id', Auth::user()->id)->get();
-        if($user == [])
-        {
-            Interesse::create([
-                'user_id' => Auth::user()->id,
-                'annonce_id' => $id
-            ]);
-        }
-        else {
-            Interesse::where('user_id', Auth::user()->id)->delete();
-            return back();
-        }
-        return back();
+        ]);
     }
 }

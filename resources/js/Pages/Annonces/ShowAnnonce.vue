@@ -32,8 +32,8 @@
             {
                 const data = new FormData();
                 data.append("annonce_id", this.annonce[0].id);
-
-                this.$inertia.post('/Annonce/interesse/'+this.annonce[0].id);
+                console.log(this.annonce[0].id);
+                // this.$inertia.post('/Annonce/interesse/'+this.annonce[0].id);
             }
         }
     }
