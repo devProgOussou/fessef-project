@@ -38,7 +38,7 @@ class HomeController extends Controller
         {
             $entreprise = Entreprise::where('user_id', Auth::user()->id)->get();
             $xamxams = Xamxam::paginate(2)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::paginate(2)->where('user_id', Auth::user()->id);
+            $annonces = Annonce::with('interesses')->paginate(2)->where('user_id', Auth::user()->id);
             $messages = Message::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
 //            dd($user);
@@ -55,7 +55,7 @@ class HomeController extends Controller
             $association = Association::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
             $xamxams = Xamxam::paginate(2)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::paginate(2)->where('user_id', Auth::user()->id);
+            $annonces = Annonce::with('interesses')->paginate(2)->where('user_id', Auth::user()->id);
             $messages = Message::where('user_id', Auth::user()->id)->get();
             return Inertia::render('Association/Dashboard', [
                 'xamxams' => $xamxams,

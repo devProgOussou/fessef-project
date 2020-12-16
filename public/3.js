@@ -68,13 +68,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dashboard",
   components: {
     Logout: _Shared_Logout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['entreprise', 'user', 'xamxams', 'annonces']
+  props: ["entreprise", "user", "xamxams", "annonces"]
 });
 
 /***/ }),
@@ -121,7 +157,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nh1[data-v-b00c97ae] {\n\n    margin-left: 20px;\n}\n.card[data-v-b00c97ae] {\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n    max-width: 300px;\n    margin-left: 20px;\n    text-align: center;\n    font-family: arial, cursive;\n}\n.title[data-v-b00c97ae] {\n    color: grey;\n    font-size: 18px;\n}\nbutton[data-v-b00c97ae] {\n    border: none;\n    outline: 0;\n    display: inline-block;\n    padding: 8px;\n    color: white;\n    background-color: #000;\n    text-align: center;\n    cursor: pointer;\n    width: 100%;\n    font-size: 18px;\n}\na[data-v-b00c97ae] {\n    text-decoration: none;\n    font-size: 22px;\n    color: black;\n}\nbutton[data-v-b00c97ae]:hover, a[data-v-b00c97ae]:hover {\n    opacity: 0.7;\n}\n\n", ""]);
+exports.push([module.i, "\nh1[data-v-b00c97ae] {\n  margin-left: 20px;\n}\n.card[data-v-b00c97ae] {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n  max-width: 300px;\n  margin-left: 20px;\n  text-align: center;\n  font-family: arial, cursive;\n}\n.title[data-v-b00c97ae] {\n  color: grey;\n  font-size: 18px;\n}\nbutton[data-v-b00c97ae] {\n  border: none;\n  outline: 0;\n  display: inline-block;\n  padding: 8px;\n  color: white;\n  background-color: #000;\n  text-align: center;\n  cursor: pointer;\n  width: 100%;\n  font-size: 18px;\n}\na[data-v-b00c97ae] {\n  text-decoration: none;\n  font-size: 22px;\n  color: black;\n}\nbutton[data-v-b00c97ae]:hover,\na[data-v-b00c97ae]:hover {\n  opacity: 0.7;\n}\n", ""]);
 
 // exports
 
@@ -240,11 +276,7 @@ var render = function() {
                         href: "/entreprise/edit/" + this.entreprise[0].user_id
                       }
                     },
-                    [
-                      _vm._v(
-                        "\n                            Modifier profil\n                        "
-                      )
-                    ]
+                    [_vm._v("\n              Modifier profil\n            ")]
                   )
                 ],
                 1
@@ -316,15 +348,33 @@ var render = function() {
                     _vm._v(_vm._s(annonce.titre))
                   ]),
                   _vm._v(" "),
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(annonce.description))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
+                  _c("p", { staticClass: "card-title" }, [
                     _vm._v(_vm._s(_vm._f("truncate")(annonce.contenu, 27)))
                   ]),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c("h5", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm._f("truncate")(annonce.description, 27)) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "card-text" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "text-muted",
+                          attrs: { href: "/Annonce/user/show/" + annonce.id }
+                        },
+                        [_vm._v("Voir...")]
+                      )
+                    ],
+                    1
+                  )
                 ])
               ])
             })
@@ -336,16 +386,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "card-text" }, [
-      _c("small", { staticClass: "text-muted" }, [
-        _vm._v("Last updated 3 mins ago")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

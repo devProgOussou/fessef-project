@@ -74,6 +74,7 @@ Route::get('/Annonce/Delete/{id}', [AnnonceController::class, 'destroy'])->name(
 Route::delete('/Annonce/Delete/{id}', [AnnonceController::class, 'destroy'])->name('Annonce.destroy');
 Route::get('/Annonce/{id}', [AnnonceController::class, 'showAnnonce'])->name('Annonce.showAnnonce');
 Route::post('/Annonce/interesse/{id}', [AnnonceController::class, 'interesses'])->name('Annonce.interesse');
+Route::get('/Annonce/user/show/{id}', [AnnonceController::class, 'displayAnnonce'])->name('Annonce.displayAnnonce');
 
 //ROUTE FOR ETUDIANT PROFILE
 Route::get('/etudiant/edit/{id}', [EtudiantController::class, 'edit'])->name('association.edit');

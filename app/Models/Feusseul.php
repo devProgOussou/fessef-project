@@ -26,4 +26,9 @@ class Feusseul extends Model
     {
         return $this->hasMany(Commentaire::class);
     }
+
+    public function likeDislike()
+    {
+        return $this->belongsTo(LikeDislike::class);
+    }
 }

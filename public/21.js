@@ -51,9 +51,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowAll",
-  props: ['annonces']
+  props: ["annonces"]
 });
 
 /***/ }),
@@ -95,7 +104,11 @@ var render = function() {
                   _c("p", [_c("strong", [_vm._v(_vm._s(annonce.titre))])]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(_vm._f("truncate")(annonce.description, 27)))
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm._f("truncate")(annonce.description, 27)) +
+                        "\n              "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", [
@@ -109,18 +122,32 @@ var render = function() {
                         "d-flex justify-content-between align-items-center"
                     },
                     [
-                      _c("small", { staticStyle: { float: "left" } }, [
-                        _vm._v(
-                          "\n                                    Posté par :\n                                    "
-                        ),
+                      _c("small", [
+                        _vm._v("Nombre de vu(s) :\n                  "),
                         _c("strong", [
                           _vm._v(
-                            "\n                                        " +
-                              _vm._s(annonce.user.name) +
-                              "\n                                    "
+                            "\n                    " +
+                              _vm._s(annonce.nbreDeVus) +
+                              "\n                  "
                           )
                         ])
                       ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("small", { staticStyle: { float: "left" } }, [
+                        _vm._v(
+                          "\n                  Posté par :\n                  "
+                        ),
+                        _c("strong", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(annonce.user.name) +
+                              "\n                  "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
                       _vm._v(" "),
                       _c(
                         "small",
@@ -131,7 +158,7 @@ var render = function() {
                             { attrs: { href: "/Annonce/" + annonce.id } },
                             [
                               _vm._v(
-                                "\n                                        Afficher\n                                    "
+                                "\n                    Afficher\n                  "
                               )
                             ]
                           )

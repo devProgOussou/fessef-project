@@ -28,13 +28,8 @@ class Annonce extends Model
         return $this->belongsTo(Annonce::class);
     }
 
-    public function users()
+    public function interesses()
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function interesse()
-    {
-        return $this->belongsTo(Interesse::class);
+        return $this->hasMany(Interesse::class);
     }
 }

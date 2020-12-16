@@ -39,9 +39,18 @@ __webpack_require__.r(__webpack_exports__);
   props: ['annonce'],
   methods: {
     handleSubmit: function handleSubmit() {
+      var _this = this;
+
       var data = new FormData();
       data.append("annonce_id", this.annonce[0].id);
-      console.log(this.annonce[0].id); // this.$inertia.post('/Annonce/interesse/'+this.annonce[0].id);
+      this.$inertia.post('/Annonce/interesse/' + this.annonce[0].id, data, {
+        onSuccess: function onSuccess() {
+          _this.flashMessage.info({
+            message: "Merci pour l'interet!",
+            time: 10000
+          });
+        }
+      });
     }
   }
 });

@@ -110,8 +110,11 @@ class RegisterController extends Controller
         elseif($data['type'] == 3)
         {
             $isEtudiant = 1;
+            $nomEtudiant = $data['nom'];
+            $prenomEtudiant = $data['prenom'];
+
             $user = User::create([
-                'name' => $data['prenom'],
+                'name' => "$prenomEtudiant"." "."$nomEtudiant",
                 'email' => $data['email'],
                 'isEtudiant' => $isEtudiant,
                 'password' => Hash::make($data['password']),

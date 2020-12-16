@@ -96,4 +96,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Commentaire::class);
     }
+
+    public function likeDislike()
+    {
+        return $this->belongsTo(LikeDislike::class);
+    }
 }

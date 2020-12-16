@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Annonce;
 
 use Inertia\Inertia;
 use App\Models\Annonce;
+use App\Models\Etudiant;
 use App\Models\Interesse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -165,8 +166,30 @@ class AnnonceController extends Controller
 
     public function interesses(Request $request, $id)
     {
-        Interesse::create([
+        $user = Interesse::where('user_id', Auth::user()->id)->first();
 
-        ]);
+        if ($user == null) {
+
+            Interesse::create([
+                'annonce_id' => $request->input('annonce_id'),
+                'user_id' => Auth::user()->id,
+                'user_email' => Auth::user()->email
+            ]);
+            return back();
+
+        } else {
+            return redirect()->route('Annonce.all');
+        }
+
+    }
+
+    public function displayAnnonce($id)
+    {
+        $annonce = Annonce::where('id', $id)->get();
+        $idUser = Interesse::where('annonce_id', $id)->get();
+        dd($idUser);
+        $user = Etudiant::with('user')->where('user_id', $idUser->user_id)->get();
+        $nbreInteresses = Interesse::where('annonce_id', $id)->count();
+        dd($idUser);
     }
 }

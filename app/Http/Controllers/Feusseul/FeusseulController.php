@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Feusseul;
 use App\Http\Controllers\Controller;
 use App\Models\Commentaire;
 use App\Models\Feusseul;
+use App\Models\LikeDislike;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class FeusseulController extends Controller
     {
         $feusseuls = Feusseul::where('user_id', Auth::user()->id)->get();
         return Inertia::render('Feusseul/Index', [
-            'feusseuls' =>$feusseuls
+            'feusseuls' => $feusseuls,
         ]);
     }
 
@@ -49,23 +50,21 @@ class FeusseulController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            if($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg')
-            {
+            if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
                 $file->move('uploads/', $filename);
-            }
-            else {
+            } else {
                 $file->move('uploads/videos/', $filename);
             }
         } else {
             return back();
         }
         Feusseul::create([
-            'titre' =>$request->input('titre'),
-            'description' =>$request->input('description'),
-            'contenu' =>$request->input('contenu'),
+            'titre' => $request->input('titre'),
+            'description' => $request->input('description'),
+            'contenu' => $request->input('contenu'),
             'extension' => $extension,
-            'user_id'=>Auth::user()->id,
-            'file'=> $filename
+            'user_id' => Auth::user()->id,
+            'file' => $filename,
         ]);
         return back();
     }
@@ -83,7 +82,7 @@ class FeusseulController extends Controller
         $feusseul = Feusseul::with('commentaires')->where('id', $id)->get();
         return Inertia::render('Feusseul/Show', [
             'feusseul' => $feusseul,
-            'commentaires' => $commentaires
+            'commentaires' => $commentaires,
         ]);
     }
 
@@ -97,7 +96,7 @@ class FeusseulController extends Controller
     {
         $feusseul = Feusseul::where('id', $id)->get();
         return Inertia::render('Feusseul/Edit', [
-            'feusseul' => $feusseul
+            'feusseul' => $feusseul,
         ]);
     }
 
@@ -114,11 +113,9 @@ class FeusseulController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            if($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg')
-            {
+            if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
                 $file->move('uploads/', $filename);
-            }
-            else {
+            } else {
                 $file->move('uploads/videos/', $filename);
             }
         } else {
@@ -128,7 +125,7 @@ class FeusseulController extends Controller
             'titre' => $request->titre,
             'contenu' => $request->contenu,
             'extension' => $extension,
-            'file' => $filename
+            'file' => $filename,
         ]);
         return back();
     }
@@ -149,35 +146,93 @@ class FeusseulController extends Controller
     {
         $feusseuls = Feusseul::with('user')->get();
         return Inertia::render('Feusseul/ShowAll', [
-            'feusseuls' => $feusseuls
+            'feusseuls' => $feusseuls,
         ]);
     }
 
     public function like($id)
     {
-        $feusseul = Feusseul::find($id);
-        $value = $feusseul->like;
-        $feusseul->like = $value + 1;
-        $feusseul->save();
+        $userID = LikeDislike::where('user_id', '=', Auth::user()->id)->first();
 
-        return back();
+        if ($userID === null) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->like;
+            $feusseul->like = $value + 1;
+            LikeDislike::create([
+                'like' => $feusseul->like,
+                'user_id' => Auth::user()->id,
+                'feusseul_id' => $id,
+            ]);
+            $feusseul->save();
+            return back();
+
+        } elseif (Auth::user()->id != $userID->user_id) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->like;
+            $feusseul->like = $value + 1;
+            LikeDislike::create([
+                'like' => $feusseul->like,
+                'user_id' => Auth::user()->id,
+                'feusseul_id' => $id,
+            ]);
+            $feusseul->save();
+            return back();
+        } elseif (Auth::user()->id === $userID->user_id) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->like;
+            $feusseul->like = $value - 1;
+            LikeDislike::where('feusseul_id', $id)->delete();
+            $feusseul->save();
+
+            return back();
+        }
     }
 
     public function dislike($id)
     {
-        $feusseul = Feusseul::find($id);
-        $value = $feusseul->dislike;
-        $feusseul->dislike = $value + 1;
-        $feusseul->save();
-        return back();
+        $userID = LikeDislike::where('user_id', '=', Auth::user()->id)->first();
+
+        if ($userID === null) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->dislike;
+            $feusseul->dislike = $value + 1;
+            LikeDislike::create([
+                'dislike' => $feusseul->dislike,
+                'user_id' => Auth::user()->id,
+                'feusseul_id' => $id,
+            ]);
+            $feusseul->save();
+            return back();
+
+        } elseif (Auth::user()->id != $userID->user_id) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->dislike;
+            $feusseul->dislike = $value + 1;
+            LikeDislike::create([
+                'dislike' => $feusseul->dislike,
+                'user_id' => Auth::user()->id,
+                'feusseul_id' => $id,
+            ]);
+            $feusseul->save();
+            return back();
+        } elseif (Auth::user()->id === $userID->user_id) {
+            $feusseul = Feusseul::find($id);
+            $value = $feusseul->dislike;
+            $feusseul->dislike = $value - 1;
+            LikeDislike::where('feusseul_id', $id)->delete();
+            $feusseul->save();
+
+            return back();
+        }
+
     }
 
     public function comments(Request $request)
     {
         Commentaire::create([
-            'commentaires' =>$request->input('commentaires'),
-            'feusseul_id' =>$request->input('feusseul_id'),
-            'user_id'=>Auth::user()->id,
+            'commentaires' => $request->input('commentaires'),
+            'feusseul_id' => $request->input('feusseul_id'),
+            'user_id' => Auth::user()->id,
         ]);
         return back();
     }
