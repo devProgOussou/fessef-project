@@ -12,7 +12,8 @@ class Interesse extends Model
     protected $fillable = [
         'user_id',
         'annonce_id',
-        'user_email'
+        'user_email',
+        'user_name'
     ];
 
     public function user()

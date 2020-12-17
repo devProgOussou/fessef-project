@@ -180,8 +180,13 @@ class FeusseulController extends Controller
         } elseif (Auth::user()->id === $userID->user_id) {
             $feusseul = Feusseul::find($id);
             $value = $feusseul->like;
-            $feusseul->like = $value - 1;
-            LikeDislike::where('feusseul_id', $id)->delete();
+            if($value != 0)
+            {
+                $feusseul->like = $value - 1;
+            }
+            else{
+                LikeDislike::where('feusseul_id', $id)->delete();
+            }
             $feusseul->save();
 
             return back();
@@ -218,8 +223,13 @@ class FeusseulController extends Controller
         } elseif (Auth::user()->id === $userID->user_id) {
             $feusseul = Feusseul::find($id);
             $value = $feusseul->dislike;
-            $feusseul->dislike = $value - 1;
-            LikeDislike::where('feusseul_id', $id)->delete();
+            if($value != 0)
+            {
+                $feusseul->dislike = $value - 1;
+            }
+            else{
+                LikeDislike::where('feusseul_id', $id)->delete();
+            }
             $feusseul->save();
 
             return back();

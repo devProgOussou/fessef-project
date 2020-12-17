@@ -18,6 +18,7 @@ class CreateInteressesTable extends Migration
             $table->foreignId('annonce_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('user_email');
+            $table->string('user_name');
             $table->timestamps();
         });
     }

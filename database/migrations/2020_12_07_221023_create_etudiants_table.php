@@ -19,6 +19,7 @@ class CreateEtudiantsTable extends Migration
             $table->string('prenom');
             $table->string('telephone');
             $table->string('adresse');
+            $table->string('genre');
             $table->string('competences');
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained();

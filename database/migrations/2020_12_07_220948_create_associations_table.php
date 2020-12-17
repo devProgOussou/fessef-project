@@ -19,6 +19,7 @@ class CreateAssociationsTable extends Migration
             $table->string('adresse');
             $table->string('telephone');
             $table->string('lien');
+            $table->string('genre');
             $table->string('domaineActivites')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained();

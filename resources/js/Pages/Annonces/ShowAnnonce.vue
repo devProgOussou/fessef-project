@@ -1,5 +1,6 @@
 <template>
     <div>
+        <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">
                 <div class="col-md-10 offset-1 ml-3 m-5">
@@ -36,7 +37,7 @@
                 this.$inertia.post('/Annonce/interesse/'+this.annonce[0].id,data,
                     {
                         onSuccess: () => {
-                            this.flashMessage.info({
+                            this.flashMessage.success({
                                 message: "Merci pour l'interet!",
                                 time: 10000,
                             });

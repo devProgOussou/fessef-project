@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Annonce;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Annonce;
 use App\Models\Etudiant;
@@ -168,11 +169,12 @@ class AnnonceController extends Controller
     {
         $user = Interesse::where('user_id', Auth::user()->id)->first();
 
-        if ($user == null) {
+        if ($user === null && Auth::user()->isEtudiant == 1) {
 
             Interesse::create([
                 'annonce_id' => $request->input('annonce_id'),
                 'user_id' => Auth::user()->id,
+                'user_name' => Auth::user()->name,
                 'user_email' => Auth::user()->email
             ]);
             return back();
@@ -186,10 +188,22 @@ class AnnonceController extends Controller
     public function displayAnnonce($id)
     {
         $annonce = Annonce::where('id', $id)->get();
-        $idUser = Interesse::where('annonce_id', $id)->get();
-        dd($idUser);
-        $user = Etudiant::with('user')->where('user_id', $idUser->user_id)->get();
+        $userInteresse = Interesse::where('annonce_id', $id)->get();
         $nbreInteresses = Interesse::where('annonce_id', $id)->count();
-        dd($idUser);
+
+        return Inertia::render('Annonces/Interet', [
+            'annonce' => $annonce,
+            'userInteresse' => $userInteresse,
+            'nbreInteresses' => $nbreInteresses
+        ]);
+    }
+
+    public function Profile($id)
+    {
+        $user = Etudiant::with('user')->where('user_id', $id)->get();
+        // dd($user);
+        return Inertia::render('Annonces/User/Profile', [
+            'user' => $user
+        ]);
     }
 }

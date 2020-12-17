@@ -103,3 +103,6 @@ Route::get('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->na
 Route::post('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->name('Feusseul.disliked');
 Route::get('/Feusseul/comments', [FeusseulController::class, 'comments'])->name('Feusseul.comments');
 Route::post('/Feusseul/comments', [FeusseulController::class, 'comments'])->name('Feusseul.comments');
+
+
+Route::get('/User/Profile/{id}', [AnnonceController::class, 'Profile'])->name('User.Profile');
