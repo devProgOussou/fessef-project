@@ -19,7 +19,7 @@ class CreateEntreprisesTable extends Migration
             $table->string('adresse');
             $table->string('telephone');
             $table->string('lien');
-            $table->string('genre');
+            $table->string('genre')->nullable();
             $table->text('description')->nullable();
             $table->string('domaineActivites')->nullable();
             $table->foreignId('user_id')->constrained();

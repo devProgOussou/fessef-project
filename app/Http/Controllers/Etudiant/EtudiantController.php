@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Etudiant;
 
-use App\Http\Controllers\Controller;
-use App\Models\Etudiant;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use App\Models\Etudiant;
+use Illuminate\Http\Request;
+use App\Models\UploadingFile;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class EtudiantController extends Controller
 {
@@ -33,7 +35,12 @@ class EtudiantController extends Controller
      */
     public function create()
     {
-        //
+        $etudiant = Etudiant::where('user_id', Auth::user()->id)->get();
+        $user = User::where('id', Auth::user()->id)->get();
+        return Inertia::render('Etudiant/File/UploadFile', [
+            'etudiant' => $etudiant,
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -44,7 +51,59 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cv' => 'required|mimes:docx,pdf|max:2048',
+            'lm' => 'required|mimes:docx,pdf|max:2048',
+        ]);
+
+        $userExist = UploadingFile::where('user_id', Auth::user()->id)->first();
+        // dd($userExist);
+        if ($userExist === null) {
+            if ($request->hasFile('cv')) {
+                $fileCV = $request->file('cv');
+                $extension = $fileCV->getClientOriginalExtension();
+                $filenameCV = time() . '.' . $extension;
+                $fileCV->move('uploads/files/CV', $filenameCV);
+            } else {
+                return back();
+            }
+
+            if ($request->hasFile('lm')) {
+                $fileLM = $request->file('lm');
+                $extension = $fileLM->getClientOriginalExtension();
+                $filenameLM = time() . '.' . $extension;
+                $fileLM->move('uploads/files/LM', $filenameLM);
+            } else {
+                return back();
+            }
+            UploadingFile::create([
+                'CV' => $filenameCV,
+                'LM' => $filenameLM,
+                'user_id' => Auth::user()->id,
+            ]);
+            return back();
+
+        }
+        else {
+            // return redirect()->route('update.file');
+            return \Redirect::route('update.file', Auth::user()->id);
+        }
+    }
+
+    public function editFile($id)
+    {
+        $etudiant = Etudiant::where('id', $id)->get();
+        $userID = Etudiant::where('id', $id)->first();
+        $user = User::where('id', $userID->user_id)->get();
+        return Inertia::render('Etudiant/File/EditFile',[
+            'etudiant' => $etudiant,
+            'user' => $user,
+        ]);
+    }
+
+    public function updateFile($id)
+    {
+        return "HELLO";
     }
 
     /**
@@ -70,7 +129,7 @@ class EtudiantController extends Controller
         $user = User::where('id', $id)->get();
         return Inertia::render('Etudiant/Edit', [
             'etudiant' => $etudiant,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -96,14 +155,14 @@ class EtudiantController extends Controller
                 'telephone' => $request->telephone,
                 'adresse' => $request->adresse,
                 'competences' => $request->competences,
-                'description' => $request->description
+                'description' => $request->description,
             ]);
 
             User::where('id', $id)->update([
                 'name' => $request->prenom,
                 'avatar' => $filename,
 //                'email' => $request->email,
-//                'password' => Hash::make($request->password)
+                //                'password' => Hash::make($request->password)
             ]);
             return back();
         } else {
@@ -128,7 +187,7 @@ class EtudiantController extends Controller
         $etudiant = Etudiant::where('user_id', $id)->get();
         return Inertia::render('Etudiant/EditAvatar', [
             'user' => $user,
-            'etudiant' => $etudiant
+            'etudiant' => $etudiant,
         ]);
     }
 
@@ -143,8 +202,7 @@ class EtudiantController extends Controller
             ]);
             $file->move('uploads/avatar/', $filename);
             return back();
-        }
-        else {
+        } else {
             return back();
         }
     }

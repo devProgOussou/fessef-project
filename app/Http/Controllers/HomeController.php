@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Annonce;
-use App\Models\Association;
-use App\Models\Entreprise;
-use App\Models\Etudiant;
-use App\Models\Message;
 use App\Models\User;
-use App\Models\Xamxam;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Xamxam;
+use App\Models\Annonce;
+use App\Models\Message;
+use App\Models\Etudiant;
+use App\Models\Entreprise;
+use App\Models\Association;
+use Illuminate\Http\Request;
+use App\Models\UploadingFile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class HomeController extends Controller
 {
@@ -67,11 +68,13 @@ class HomeController extends Controller
         }
         elseif(Auth::user()->isEtudiant == 1 && Auth::user()->isActive == 1)
         {
+            $files = UploadingFile::where('user_id', Auth::user()->id)->get();
             $etudiant = Etudiant::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
             return Inertia::render('Etudiant/Dashboard', [
                 'etudiant' => $etudiant,
-                'user' => $user
+                'user' => $user,
+                'files' => $files
             ]);
         }
         elseif(Auth::user()->isState == 1)

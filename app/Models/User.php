@@ -101,4 +101,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(LikeDislike::class);
     }
+
+    public function UploadingFile()
+    {
+        return $this->belongsTo(UploadingFile::class);
+    }
 }

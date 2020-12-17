@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssociationsTable extends Migration
+class CreateUploadingFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateAssociationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('associations', function (Blueprint $table) {
+        Schema::create('uploading_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('NomAssociation');
-            $table->string('adresse');
-            $table->string('telephone');
-            $table->string('lien');
-            $table->string('genre')->nullable();
-            $table->string('domaineActivites')->nullable();
-            $table->text('description')->nullable();
+            $table->string('CV')->nullable();
+            $table->string('LM')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ class CreateAssociationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associations');
+        Schema::dropIfExists('uploading_files');
     }
 }

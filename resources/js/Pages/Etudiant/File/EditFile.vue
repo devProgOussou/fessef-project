@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FlashMessage :position="'right bottom'"></FlashMessage>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -21,9 +22,6 @@
             >
               <button class="btn btn-sm btn-dark">modifier avatar</button>
             </inertia-link>
-            <inertia-link :href="'/uploadingFile'">
-                Ajouter Cv et LM
-            </inertia-link>
             <h1>{{ this.etudiant[0].nom }} {{ this.etudiant[0].prenom }}</h1>
             <strong>Adresse</strong>
             <p>{{ this.etudiant[0].adresse }}</p>
@@ -42,8 +40,22 @@
           </div>
         </div>
         <div class="col-md-8">
-            <embed :src="'/uploads/files/CV/'+this.files[2].CV" width="500" height="375"
- type="application/pdf">
+            <h1 class="text-center">Modifier le CV et le LM</h1>
+          <form @submit.prevent="handleSubmit" class="mb-5">
+            <div class="form-group">
+              <file-input label="nouveau curriculum vitae" v-model="form.cv" />
+            </div>
+            <div class="form-group">
+              <file-input label="nouvelle lettre de motivation" v-model="form.lm" />
+            </div>
+            <button
+              class="btn btn-round btn-outline-primary col-md-5 offset-4"
+              type="submit"
+            >
+              Submit
+            </button>
+            <br />
+          </form>
         </div>
       </div>
     </div>
@@ -51,9 +63,40 @@
 </template>
 
 <script>
+import FileInput from "../../../Shared/FileInput";
+
 export default {
   name: "Dashboard",
-  props: ["etudiant", "user", "files"],
+  components: {
+    FileInput,
+  },
+  props: ["etudiant", "user"],
+
+  data() {
+    return {
+      form: {
+        cv: null,
+        lm: null,
+      },
+    };
+  },
+  methods: {
+    handleSubmit() {
+      const data = new FormData();
+
+      data.append("cv", this.form.cv);
+      data.append("lm", this.form.lm);
+
+      this.$inertia.post('/updateFile/'+this.etudiant[0].id, data, {
+        onSuccess: () => {
+          this.flashMessage.info({
+            message: "Vos fichiers ont ete ajouter avec success!",
+            time: 5000,
+          });
+        },
+      });
+    },
+  },
 };
 </script>
 
