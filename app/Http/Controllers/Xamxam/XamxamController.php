@@ -137,7 +137,7 @@ class XamxamController extends Controller
 
     public function xamxamAll()
     {
-        $xamxams = Xamxam::with('user')->get();
+        $xamxams = Xamxam::with('user')->orderByDesc("created_at")->get();
         return Inertia::render('Xamxam/DisplayAll', [
             'xamxams' => $xamxams
         ]);

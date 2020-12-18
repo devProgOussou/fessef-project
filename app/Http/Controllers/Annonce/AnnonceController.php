@@ -8,6 +8,7 @@ use App\Models\Annonce;
 use App\Models\Etudiant;
 use App\Models\Interesse;
 use Illuminate\Http\Request;
+use App\Models\UploadingFile;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -159,7 +160,7 @@ class AnnonceController extends Controller
 
     public function displayAll()
     {
-        $annonces = Annonce::with('user')->get();
+        $annonces = Annonce::with('user')->orderByDesc("created_at")->get();
         return Inertia::render('Annonces/ShowAll', [
             'annonces' => $annonces,
         ]);
@@ -169,7 +170,7 @@ class AnnonceController extends Controller
     {
         $user = Interesse::where('user_id', Auth::user()->id)->first();
 
-        if ($user === null && Auth::user()->isEtudiant == 1) {
+        if ($user !== null && Auth::user()->isEtudiant == 1) {
 
             Interesse::create([
                 'annonce_id' => $request->input('annonce_id'),
@@ -201,9 +202,11 @@ class AnnonceController extends Controller
     public function Profile($id)
     {
         $user = Etudiant::with('user')->where('user_id', $id)->get();
-        // dd($user);
+        $files = UploadingFile::where('user_id', $id)->get();
+
         return Inertia::render('Annonces/User/Profile', [
-            'user' => $user
+            'user' => $user,
+            'files' => $files
         ]);
     }
 }

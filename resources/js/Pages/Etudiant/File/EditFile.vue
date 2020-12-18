@@ -41,6 +41,7 @@
         </div>
         <div class="col-md-8">
             <h1 class="text-center">Modifier le CV et le LM</h1>
+            <p class="display-5 text-center">Vous avez un CV et une lettre de motivation</p>
           <form @submit.prevent="handleSubmit" class="mb-5">
             <div class="form-group">
               <file-input label="nouveau curriculum vitae" v-model="form.cv" />

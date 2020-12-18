@@ -38,11 +38,11 @@ class HomeController extends Controller
         if(Auth::user()->isCompany == 1 && Auth::user()->isActive == 1)
         {
             $entreprise = Entreprise::where('user_id', Auth::user()->id)->get();
-            $xamxams = Xamxam::paginate(2)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::with('interesses')->paginate(2)->where('user_id', Auth::user()->id);
+            $xamxams = Xamxam::paginate(5)->where('user_id', Auth::user()->id);
+            $annonces = Annonce::with('interesses')->paginate(5)->orderByDesc("created_at")->where('user_id', Auth::user()->id);
             $messages = Message::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
-//            dd($user);
+
             return Inertia::render('Entreprise/Dashboard', [
                 'xamxams' => $xamxams,
                 'annonces' => $annonces,
@@ -55,8 +55,8 @@ class HomeController extends Controller
         {
             $association = Association::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
-            $xamxams = Xamxam::paginate(2)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::with('interesses')->paginate(2)->where('user_id', Auth::user()->id);
+            $xamxams = Xamxam::paginate(5)->orderByDesc("created_at")->where('user_id', Auth::user()->id);
+            $annonces = Annonce::with('interesses')->paginate(5)->orderByDesc("created_at")->where('user_id', Auth::user()->id);
             $messages = Message::where('user_id', Auth::user()->id)->get();
             return Inertia::render('Association/Dashboard', [
                 'xamxams' => $xamxams,

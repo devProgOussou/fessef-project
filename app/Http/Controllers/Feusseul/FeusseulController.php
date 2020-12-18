@@ -144,7 +144,7 @@ class FeusseulController extends Controller
 
     public function displayAll()
     {
-        $feusseuls = Feusseul::with('user')->get();
+        $feusseuls = Feusseul::with('user')->orderByDesc("created_at")->get();
         return Inertia::render('Feusseul/ShowAll', [
             'feusseuls' => $feusseuls,
         ]);

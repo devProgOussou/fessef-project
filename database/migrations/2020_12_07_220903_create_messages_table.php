@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->bigInteger('sender_id');
             $table->bigInteger('receiver_id');
             $table->text('messages');
+            $table->boolean('isRead')->default(0);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

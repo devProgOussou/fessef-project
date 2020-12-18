@@ -13,7 +13,8 @@ class Message extends Model
         'sender_id',
         'receiver_id',
         'messages',
-        'user_id'
+        'user_id',
+        'isRead'
     ];
 
     public function user()

@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Xamxam\XamxamController;
 use App\Http\Controllers\Annonce\AnnonceController;
-use App\Http\Controllers\Association\AssociationController;
-use App\Http\Controllers\Entreprise\EntrepriseController;
+use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Etudiant\EtudiantController;
 use App\Http\Controllers\Feusseul\FeusseulController;
-use App\Http\Controllers\Xamxam\XamxamController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Entreprise\EntrepriseController;
+use App\Http\Controllers\Association\AssociationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,3 +111,12 @@ Route::get('/uploadingFile', [EtudiantController::class, 'create'])->middleware(
 Route::post('/uploadingFile', [EtudiantController::class, 'store'])->middleware('auth')->name('Etudiant.storeFile');
 Route::get('/updateFile/{id}', [EtudiantController::class, 'editFile'])->middleware('auth')->name('update.file');
 Route::post('/updateFile/{id}', [EtudiantController::class, 'updateFile'])->middleware('auth')->name('updateFile');
+
+
+// ROUTE FOR MESSAGERIE
+
+Route::get('/Messages', [MessageController::class, 'index'])->middleware('auth')->name('Messages.index');
+Route::get('/Message/{id}', [MessageController::class, 'read'])->middleware('auth')->name('Message.read');
+Route::get('/Message/Show/{id}', [MessageController::class, 'show'])->middleware('auth')->name('Message.show');
+Route::post('/Message/Send', [MessageController::class, 'store'])->middleware('auth')->name('Message.store');
+Route::post('/Message/SendUser', [MessageController::class, 'contact'])->middleware('auth')->name('Message.contact');

@@ -22,7 +22,7 @@
               <button class="btn btn-sm btn-dark">modifier avatar</button>
             </inertia-link>
             <inertia-link :href="'/uploadingFile'">
-                Ajouter Cv et LM
+              Ajouter Cv et LM
             </inertia-link>
             <h1>{{ this.etudiant[0].nom }} {{ this.etudiant[0].prenom }}</h1>
             <strong>Adresse</strong>
@@ -41,9 +41,13 @@
             </p>
           </div>
         </div>
-        <div class="col-md-8">
-            <embed :src="'/uploads/files/CV/'+this.files[2].CV" width="500" height="375"
- type="application/pdf">
+        <div class="col-md-8" v-if="this.files[0] != null">
+          <embed
+            :src="'/uploads/files/CV/' + this.files[0].CV"
+            width="500"
+            height="500"
+            type="application/pdf"
+          />
         </div>
       </div>
     </div>

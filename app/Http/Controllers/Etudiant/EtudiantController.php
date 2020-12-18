@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Etudiant;
 
-use App\Models\User;
-use Inertia\Inertia;
-use App\Models\Etudiant;
-use Illuminate\Http\Request;
-use App\Models\UploadingFile;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Etudiant;
+use App\Models\UploadingFile;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class EtudiantController extends Controller
 {
@@ -83,8 +83,7 @@ class EtudiantController extends Controller
             ]);
             return back();
 
-        }
-        else {
+        } else {
             // return redirect()->route('update.file');
             return \Redirect::route('update.file', Auth::user()->id);
         }
@@ -92,10 +91,12 @@ class EtudiantController extends Controller
 
     public function editFile($id)
     {
-        $etudiant = Etudiant::where('id', $id)->get();
-        $userID = Etudiant::where('id', $id)->first();
+        $etudiant = Etudiant::where('user_id', $id)->get();
+        $userID = Etudiant::where('user_id', $id)->first();
+        // dd($userID);
         $user = User::where('id', $userID->user_id)->get();
-        return Inertia::render('Etudiant/File/EditFile',[
+
+        return Inertia::render('Etudiant/File/EditFile', [
             'etudiant' => $etudiant,
             'user' => $user,
         ]);
@@ -103,7 +104,29 @@ class EtudiantController extends Controller
 
     public function updateFile($id)
     {
-        return "HELLO";
+            if ($request->hasFile('cv')) {
+                $fileCV = $request->file('cv');
+                $extension = $fileCV->getClientOriginalExtension();
+                $filenameCV = time() . '.' . $extension;
+                $fileCV->move('uploads/files/CV', $filenameCV);
+            } else {
+                return back();
+            }
+
+            if ($request->hasFile('lm')) {
+                $fileLM = $request->file('lm');
+                $extension = $fileLM->getClientOriginalExtension();
+                $filenameLM = time() . '.' . $extension;
+                $fileLM->move('uploads/files/LM', $filenameLM);
+            } else {
+                return back();
+            }
+            UploadingFile::where('id', $id)->update([
+                'CV' => $filenameCV,
+                'LM' => $filenameLM,
+            ]);
+            return back();
+
     }
 
     /**
