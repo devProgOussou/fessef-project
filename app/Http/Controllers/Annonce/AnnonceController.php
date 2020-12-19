@@ -28,7 +28,7 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        $annonces = Annonce::where('user_id', Auth::user()->id)->get();
+        $annonces = Annonce::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return Inertia::render('Annonces/Index', [
             'annonces' => $annonces,
         ]);
@@ -160,7 +160,7 @@ class AnnonceController extends Controller
 
     public function displayAll()
     {
-        $annonces = Annonce::with('user')->orderByDesc("created_at")->get();
+        $annonces = Annonce::with('user')->orderBy('created_at', 'desc')->get();
         return Inertia::render('Annonces/ShowAll', [
             'annonces' => $annonces,
         ]);
