@@ -180,61 +180,15 @@ class FeusseulController extends Controller
         } elseif (Auth::user()->id === $userID->user_id) {
             $feusseul = Feusseul::find($id);
             $value = $feusseul->like;
-            if($value != 0)
-            {
+            if ($value != 0) {
                 $feusseul->like = $value - 1;
-            }
-            else{
+            } else {
                 LikeDislike::where('feusseul_id', $id)->delete();
             }
             $feusseul->save();
 
             return back();
         }
-    }
-
-    public function dislike($id)
-    {
-        $userID = LikeDislike::where('user_id', '=', Auth::user()->id)->first();
-
-        if ($userID === null) {
-            $feusseul = Feusseul::find($id);
-            $value = $feusseul->dislike;
-            $feusseul->dislike = $value + 1;
-            LikeDislike::create([
-                'dislike' => $feusseul->dislike,
-                'user_id' => Auth::user()->id,
-                'feusseul_id' => $id,
-            ]);
-            $feusseul->save();
-            return back();
-
-        } elseif (Auth::user()->id != $userID->user_id) {
-            $feusseul = Feusseul::find($id);
-            $value = $feusseul->dislike;
-            $feusseul->dislike = $value + 1;
-            LikeDislike::create([
-                'dislike' => $feusseul->dislike,
-                'user_id' => Auth::user()->id,
-                'feusseul_id' => $id,
-            ]);
-            $feusseul->save();
-            return back();
-        } elseif (Auth::user()->id === $userID->user_id) {
-            $feusseul = Feusseul::find($id);
-            $value = $feusseul->dislike;
-            if($value != 0)
-            {
-                $feusseul->dislike = $value - 1;
-            }
-            else{
-                LikeDislike::where('feusseul_id', $id)->delete();
-            }
-            $feusseul->save();
-
-            return back();
-        }
-
     }
 
     public function comments(Request $request)
