@@ -14,15 +14,46 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/logo.jpg">
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--Script FontAwesome free-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <title>FESSEF</title>
+    <style>
+        body {
+            background-color: lightgrey;
+            padding: 0;
+            margin: 0;
+        }
+
+        .col-mb-3 {
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            min-height: 100vh;
+        }
+
+        h3 {
+            text-align: justify;
+        }
+
+        .shadow {
+            display: flex;
+
+        }
+
+    </style>
 </head>
 
 <body>
     <div id="no-app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #3563a9;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'FESSEF') }}
+                <a {{ url('/home') }}>
+                    <img src="/images/logo.jpg" alt="" height="40" width="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -52,32 +83,32 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
-                            <li class="nav-item active">
-                                <a href="{{ url('/home') }}" class="nav-link">Home</a>
-                            </li>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/Annonce/Create">Feusseul</a><br>
                                 <a class="dropdown-item" href="/Annonce">mes feusseuls</a><br>
-                            </div>
+                            </div> --}}
 
                             <li class="nav-item">
                                 @php
-                                    $messages = App\Models\Message::where('receiver_id', Auth::user()->id)->where('isRead', 0)->count();
+                                $messages = App\Models\Message::where('receiver_id', Auth::user()->id)->where('isRead',
+                                0)->count();
                                 @endphp
-                                <a class="nav-link" href="/Messages">
-                                    Message({{$messages}})
+                                <a class="nav-link text-white" href="/Messages">
+                                    <i class="fas fa-envelope"></i>
+                                    Message({{ $messages }})
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-eye"></i>
                                     Annonce
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -90,9 +121,10 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Xam Xam
+                                    <i class="fas fa-school"></i>
+                                    Xamxam
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->isCompany == 1 || Auth::user()->isAssociation == 1)
@@ -103,27 +135,33 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <li class="nav-item dropdown text-white">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Feusseul
+                                    <i class="fas fa-plus"></i>
+                                    Actualites
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Feusseul/create"> Poster feusseul</a>
-                                    <a class="dropdown-item" href="/Feusseul">mes feusseuls</a>
-                                    <a class="dropdown-item" href="/Feusseuls">Tous les feusseuls</a>
+                                    <a class="dropdown-item" href="/Feusseul/create"> Poster actualites</a>
+                                    <a class="dropdown-item" href="/Feusseul">mes actualites</a>
+                                    <a class="dropdown-item" href="/Feusseuls">Tous les actualites</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown text-white" class="nav-link dropdown-toggle text-white" href="#"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                                        {{ Auth::user()->name }}
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/home') }}">
+                                        Profil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                             document.getElementById('logout-form').submit();">
+                                        Deconnexion
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -136,10 +174,6 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
     @inertia
 </body>

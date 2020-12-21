@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Feusseul;
 
-use App\Http\Controllers\Controller;
-use App\Models\Commentaire;
-use App\Models\Feusseul;
-use App\Models\LikeDislike;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Etudiant;
+use App\Models\Feusseul;
+use App\Models\Entreprise;
+use App\Models\Association;
+use App\Models\Commentaire;
+use App\Models\LikeDislike;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class FeusseulController extends Controller
 {
@@ -145,14 +148,21 @@ class FeusseulController extends Controller
     public function displayAll()
     {
         $feusseuls = Feusseul::with('user')->orderByDesc("created_at")->get();
+        $etudiant = Etudiant::with('user')->where('user_id', Auth::user()->id)->get();
+        $association = Association::with('user')->where('user_id', Auth::user()->id)->get();
+        $entreprise = Entreprise::with('user')->where('user_id', Auth::user()->id)->get();
         return Inertia::render('Feusseul/ShowAll', [
             'feusseuls' => $feusseuls,
+            'etudiant' => $etudiant,
+            'entreprise' => $entreprise,
+            'association' => $association,
+            'user' => Auth::user(),
         ]);
     }
 
     public function like($id)
     {
-        $userID = LikeDislike::where('user_id', '=', Auth::user()->id)->first();
+        $userID = LikeDislike::where('user_id', Auth::user()->id)->first();
 
         if ($userID === null) {
             $feusseul = Feusseul::find($id);
@@ -182,6 +192,7 @@ class FeusseulController extends Controller
             $value = $feusseul->like;
             if ($value != 0) {
                 $feusseul->like = $value - 1;
+                LikeDislike::where('feusseul_id', $id)->delete();
             } else {
                 LikeDislike::where('feusseul_id', $id)->delete();
             }

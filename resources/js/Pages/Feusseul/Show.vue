@@ -25,11 +25,6 @@
                         <inertia-link :href="'/Feusseul/like/'+this.feusseul[0].id">
                             <i class="btn btn-sm btn-info">J'aime</i>
                         </inertia-link>
-                        <inertia-link :href="'/Feusseul/dislike/'+this.feusseul[0].id">
-                            <i class="btn btn-sm btn-danger">Je n'aime pas</i>
-                        </inertia-link>
-                        <span v-if="this.feusseul[0].dislike != null">{{ this.feusseul[0].dislike }}</span>
-                        <span v-if="this.feusseul[0].dislike == null">0</span>
                     </div>
                     <h5 class="offset-5">Les commentaires recentes</h5>
                     <div class="col-md-5 offset-3 shadow mb-5" v-for="item in commentaires"  :key="item.id">

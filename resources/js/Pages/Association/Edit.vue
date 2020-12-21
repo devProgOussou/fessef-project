@@ -26,7 +26,6 @@
                     <form @submit.prevent="handleSubmit" class="mb-5">
                         <div class="form-group">
                             <file-input label="avatar *" v-model="form.avatar"/>
-                            <img :src="get_avatar" alt="" height="100px" width="100px">
                         </div>
                         <div class="form-group">
                             <input
@@ -99,13 +98,11 @@
 </template>
 
 <script>
-    import Logout from '../../Shared/Logout'
     import FileInput from "../../Shared/FileInput";
 
     export default {
         name: "Edit",
         components: {
-            Logout,
             FileInput
         },
         props: {

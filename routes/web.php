@@ -100,8 +100,8 @@ Route::post('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->mi
 //ROUTE FOR FEUSSEUL LIKE/DISLIKE/COMMENTS
 Route::get('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->middleware('auth')->name('Feusseul.like');
 Route::post('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->middleware('auth')->name('Feusseul.liked');
-Route::get('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.dislike');
-Route::post('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.disliked');
+// Route::get('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.dislike');
+// Route::post('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.disliked');
 Route::get('/Feusseul/comments', [FeusseulController::class, 'comments'])->middleware('auth')->name('Feusseul.comments');
 Route::post('/Feusseul/comments', [FeusseulController::class, 'comments'])->middleware('auth')->name('Feusseul.comments');
 

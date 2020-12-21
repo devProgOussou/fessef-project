@@ -35,6 +35,7 @@ import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import FlashMessage from '@smartweb/vue-flash-message';
 import Dashboard from '../js/Pages/Association/Dashboard';
+import ShowAll from '../js/Pages/Feusseul/ShowAll';
 
 var VueTruncate = require('vue-truncate-filter')
 

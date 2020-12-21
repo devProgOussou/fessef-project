@@ -9,6 +9,7 @@ use App\Models\Xamxam;
 use App\Models\Annonce;
 use App\Models\Message;
 use App\Models\Etudiant;
+use App\Models\Feusseul;
 use App\Models\Entreprise;
 use App\Models\Association;
 use Illuminate\Http\Request;
@@ -71,10 +72,15 @@ class HomeController extends Controller
             $files = UploadingFile::where('user_id', Auth::user()->id)->get();
             $etudiant = Etudiant::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
+            $feusseuls = Feusseul::where('user_id', Auth::user()->id)->get();
+
+            $annonces = Annonce::paginate(3)->sortByDesc('created_at');
             return Inertia::render('Etudiant/Dashboard', [
                 'etudiant' => $etudiant,
                 'user' => $user,
-                'files' => $files
+                'files' => $files,
+                'feusseuls' => $feusseuls,
+                'annonces' => $annonces,
             ]);
         }
         elseif(Auth::user()->isState == 1)
