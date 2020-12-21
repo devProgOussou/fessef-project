@@ -28,9 +28,9 @@
                     <h5>
                       {{ item.user.name }} <span class="chat_date">Dec 18</span>
                     </h5>
-                    <p>
+                    <!-- <p>
                       {{ item.messages }}
-                    </p>
+                    </p> -->
                   </div>
                 </inertia-link>
               </div>
@@ -38,6 +38,7 @@
           </div>
         </div>
       </div>
+      {{this.messageReceive}}
     </div>
   </div>
 </template>

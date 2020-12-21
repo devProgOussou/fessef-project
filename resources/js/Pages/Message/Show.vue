@@ -93,10 +93,7 @@ export default {
 
       this.$inertia.post("/Message/Send", data, {
         onSuccess: () => {
-          this.flashMessage.info({
-            message: "Reponse sent!",
-            time: 5000,
-          });
+          this.form.messages = null;
         },
       });
     },

@@ -170,7 +170,7 @@ class AnnonceController extends Controller
     {
         $user = Interesse::where('user_id', Auth::user()->id)->first();
 
-        if ($user !== null && Auth::user()->isEtudiant == 1) {
+        if ($user === null && Auth::user()->isEtudiant == 1) {
 
             Interesse::create([
                 'annonce_id' => $request->input('annonce_id'),

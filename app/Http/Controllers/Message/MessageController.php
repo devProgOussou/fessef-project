@@ -17,8 +17,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messageSend = Message::with('user')->where('sender_id', Auth::user()->id)->orderBy('created_at', 'asc')->distinct()->get();
-        $messageReceive = Message::with('user')->where('receiver_id', Auth::user()->id)->orderBy('created_at', 'asc')->distinct()->get();
+        $messageSend = Message::with('user')->where('sender_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
+        $messageReceive = Message::with('user')->where('receiver_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
 
         return Inertia::render('Message/Index', [
             'messageSend' => $messageSend,
