@@ -20,7 +20,7 @@
                         <tr :key="annonce.id" v-for="annonce in annonces">
 
                             <td>{{annonce.titre}}</td>
-                            <td>{{annonce.description}}</td>
+                            <td>{{annonce.description | truncate(27)}}</td>
 
                             <td>{{ annonce.contenu | truncate(27) }}</td>
                             <td>

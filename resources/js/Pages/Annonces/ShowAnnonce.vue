@@ -33,6 +33,9 @@
             {
                 const data = new FormData();
                 data.append("annonce_id", this.annonce[0].id);
+                data.append("annonce_image", this.annonce[0].image);
+                data.append("annonce_titre", this.annonce[0].titre);
+                data.append("post_id", this.annonce[0].user_id);
 
                 this.$inertia.post('/Annonce/interesse/'+this.annonce[0].id,data,
                     {

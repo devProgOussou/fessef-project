@@ -16,10 +16,10 @@ class CreateEntreprisesTable extends Migration
         Schema::create('entreprises', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('NomEntreprise');
-            $table->string('adresse');
-            $table->string('telephone');
-            $table->string('lien');
-            $table->string('genre')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('lien')->nullable();
+            $table->date('dateDeCreation')->nullable();
             $table->text('description')->nullable();
             $table->string('domaineActivites')->nullable();
             $table->foreignId('user_id')->constrained();

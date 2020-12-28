@@ -1,45 +1,101 @@
 <template>
     <div>
-        <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img v-if="this.user[0].avatar != null" :src="'/uploads/avatar/'+this.user[0].avatar" alt="" style="width:100%">
-                        <img v-else src="/uploads/avatar/avatar.png" alt="" style="width:100%">
-                        <inertia-link :href="'/Entreprise/editAvatar/'+this.association[0].user_id">
-                            <button class="btn btn-sm btn-dark">modifier avatar</button>
-                        </inertia-link>
-                        <h1>{{ this.association[0].NomAssociation }}</h1>
-                        <strong>secteur</strong>
-                        <p class="title">{{this.association[0].domaineActivites}}</p>
-                        <inertia-link :href="this.association[0].lien">{{this.association[0].lien}}</inertia-link>
-                        <strong>adresse</strong>
-                        <p>{{this.association[0].adresse}}</p>
-                        <div style="margin: 24px 0;">
+                <div class="col-md-12 m-auto">
+                    <div class="card shadow-sm mb-4" style="height: 90px">
+                        <div class="ml-4">
+                            <img
+                                    :src="'/uploads/avatar/' + this.user[0].avatar"
+                                    alt="image"
+                                    class="img-thumbnail shadow-sm text-left ml-4"
+                                    height="25"
+                                    style="margin-top: 40px; border: solid 5px #fff"
+                                    v-if="this.user[0].avatar != null"
+                                    width="50"
+                            />
 
+                            <img
+                                    alt="image"
+                                    class="img-thumbnail shadow-sm text-left ml-4"
+                                    height="25"
+                                    src="/uploads/avatar/avatar.png"
+                                    style="margin-top: 40px; border: solid 5px #fff"
+                                    v-else
+                                    width="50"
+                            />
+                            <inertia-link
+                                    :href="'/Association/editAvatar/' + this.association[0].user_id"
+                                    class="btn btn-sm mt-4"
+                                    style="
+                  margin-right: 50px;
+                  float: right;
+                  background-color: #3563a9;
+                  color: #fff;
+                "
+                            >Mise à jour
+                            </inertia-link
+                            >
                         </div>
-                        <p>
-                            <inertia-link :href="'/association/edit/'+this.association[0].user_id">
-                                Modifier profil
-                            </inertia-link>
-                        </p>
+
+                        <div class="text-center ml-4"></div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <h3 style="text-align:center">Modification du profil</h3>
-                    <form @submit.prevent="handleSubmit">
-                        <div class="form-group">
-                            <label for="from.avatar">Image du profil</label>
-                            <div class="col-md-6">
-                                <file-input id="form.avatar" label="avatar" v-model="form.avatar"/>
 
-                                <div class="avatar img-fluid img-circle" style="margin-top:10px">
-                                    <!--                        <img :src="get_avatar()" height="50" width="50"/>-->
-                                </div>
+                <div class="col-md-4 mt-4">
+                    <div class="card mr-2 ml-4 mb-3 mt-4 shadow-sm">
+                        <h6 class="card-header" style="color: blue">PROFIL INFOS</h6>
+                        <div class="card-body mt-4">
+                            <h5 class="card-title"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+
+                            <p class="card-text">
+                                Nom de l'association :
+                                <strong
+                                >
+                                    {{ this.association[0].NomAssociation }}</strong
+                                >
+                            </p>
+                            <p class="card-text">
+                                <strong>E-mail: </strong>{{ this.user[0].email }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Phone: </strong>{{ this.association[0].telephone }}
+                            </p>
+                            <p class="card-text"><strong>Date de creation: </strong>{{
+                                this.association[0].dateDeCreation
+                                }}</p>
+                            <p class="card-text">
+                                <strong>description: </strong>{{ this.association[0].description }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Domaine d'activite: </strong>{{ this.association[0].domaineActivites }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Adresse web : </strong>{{ this.association[0].lien }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mt-5">
+                    <form @submit.prevent="handleSubmit" class="mb-5">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <file-input
+                                        id="form.avatar"
+                                        label="avatar"
+                                        v-model="form.avatar"
+                                />
                             </div>
                         </div>
-                        <button class="btn btn-success btn-sm">Modifier</button>
+                        <button
+                                class="btn btn-round btn-outline-primary col-md-5 offset-4"
+                                type="submit"
+                        >
+                            Submit
+                        </button>
+                        <br/>
                     </form>
                 </div>
             </div>
@@ -51,11 +107,14 @@
     import FileInput from "../../Shared/FileInput";
 
     export default {
-        name: 'EditAvatar',
+        name: "Edit",
         components: {
             FileInput
         },
-        props: ['user', 'association'],
+        props: {
+            association: Array,
+            user: Array
+        },
         data() {
             return {
                 form: {
@@ -65,105 +124,45 @@
         },
         methods: {
             handleSubmit() {
-
                 const data = new FormData();
-                data.append("avatar", this.form.avatar);
-                this.$inertia.post('/Association/UpdateAvatar/' + this.user[0].id, data, {
+                data.append("avatar", this.form.avatar || "");
+
+                this.$inertia.post('/Association/UpdateAvatar/' + this.association[0].user_id, data, {
                     onSuccess: () => {
                         this.flashMessage.info({
-                            message: "Votre photo profil a ete modifier avec success!",
+                            message: "Votre profil a ete modifier avec success!",
                             time: 5000,
                         });
                     },
                 })
             },
-            //For getting Instant Uploaded Photo
-            // get_avatar() {
-            //     let photo = (this.form.avatar.length > 100) ? this.form.avatar : "uploads/" + this.form.avatar;
-            //     return photo;
-            //
-            // },
+            get_avatar() {
+                let photo = (this.form.avatar.length > 100) ? this.form.avatar : "uploads/" + this.form.avatar;
+                return photo;
+            },
         }
     }
 </script>
 
 <style scoped>
     body {
-        font-family: Arial, Helvetica, sans-serif;
+        background-color: lightgrey;
+        padding: 0;
+        margin: 0;
     }
 
-    * {
-        box-sizing: border-box;
+    .col-mb-3 {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        min-height: 100vh;
     }
 
-    input[type=text], select, textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
+    h3 {
+        text-align: justify;
     }
 
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+    .shadow {
+        display: flex;
     }
-
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    .container {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px;
-    }
-    h1 {
-
-        margin-left: 20px;
-    }
-
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        margin-left: 20px;
-        text-align: center;
-        font-family: arial, cursive;
-    }
-
-    .title {
-        color: grey;
-        font-size: 18px;
-    }
-
-    button {
-        border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: #000;
-        text-align: center;
-        cursor: pointer;
-        width: 100%;
-        font-size: 18px;
-    }
-
-    a {
-        text-decoration: none;
-        font-size: 22px;
-        color: black;
-    }
-
-    button:hover, a:hover {
-        opacity: 0.7;
-    }
-
 </style>

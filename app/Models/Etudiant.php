@@ -16,6 +16,10 @@ class Etudiant extends Model
         'adresse',
         'competences',
         'description',
+        'genre',
+        'dateDeNaissance',
+        'CV',
+        'LM',
         'user_id'
     ];
 

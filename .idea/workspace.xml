@@ -20,7 +20,93 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="790fd539-0f61-471a-a1f7-94f0c93b806e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/brouillon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/Logo defarsci.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/avatar1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/books.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/fessef1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/fessef2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/fessef3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/fessef4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/figure2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/logo fessef.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/monitor (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/monitor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/pexels-christina-morillo-1181421.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/share (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/share.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/smartphone.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/th.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/umbrella (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/umbrella.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatar/1608644814.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatar/1608645144.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatar/1608650138.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608644144.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608644156.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608644779.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608644786.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608645411.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608645889.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608653879.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/CV/1608653893.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608644144.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608644156.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608644779.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608644786.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608645411.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608645889.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608653879.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/files/LM/1608653893.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/registerAssociation.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/registerCompany.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/registerStudent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Annonce/AnnonceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Annonce/AnnonceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Association/AssociationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Association/AssociationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Etudiant/EtudiantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Etudiant/EtudiantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Feusseul/FeusseulController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Feusseul/FeusseulController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Message/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Message/MessageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Annonce.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Annonce.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Association.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Association.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Entreprise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Entreprise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Etudiant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Interesse.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Interesse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LikeDislike.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LikeDislike.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_07_220836_create_entreprises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_07_220836_create_entreprises_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_07_220948_create_associations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_07_220948_create_associations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_07_221023_create_etudiants_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_07_221023_create_etudiants_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_14_084337_create_interesses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_14_084337_create_interesses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_16_151150_create_like_dislikes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_16_151150_create_like_dislikes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/Interet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/Interet.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/ShowAll.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/ShowAll.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Annonces/ShowAnnonce.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Annonces/ShowAnnonce.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Association/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Association/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Association/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Association/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Association/EditAvatar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Association/EditAvatar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Etudiant/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Etudiant/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Etudiant/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Etudiant/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Etudiant/EditAvatar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Etudiant/EditAvatar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Feusseul/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Feusseul/ShowAll.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Feusseul/ShowAll.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +279,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../samba-store/app/Http/Controllers/Admin/AdminController.php" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="/media/ousmane/841d8e90-307a-45cc-80bb-5d22cb0f3b11/opt/lampp/htdocs/fessef-project/resources/js/Pages/Association/Dashboard.vue" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -201,7 +288,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -278,6 +365,14 @@
       <workItem from="1607876319311" duration="3597000" />
       <workItem from="1607933456058" duration="26855000" />
       <workItem from="1608020201100" duration="19936000" />
+      <workItem from="1608625846841" duration="13598000" />
+      <workItem from="1608767750665" duration="296000" />
+      <workItem from="1608823199464" duration="1743000" />
+      <workItem from="1608864495085" duration="425000" />
+      <workItem from="1608902270033" duration="6421000" />
+      <workItem from="1608992648385" duration="579000" />
+      <workItem from="1609025705401" duration="15499000" />
+      <workItem from="1609100695185" duration="10852000" />
     </task>
     <servers />
   </component>
@@ -294,6 +389,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -323,33 +419,48 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="452" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1294.741@72.27.1294.741" timestamp="1607964855341" />
-    <state x="502" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1608053210985">
+    <state x="454" y="155" width="424" height="483" key="FileChooserDialogImpl" timestamp="1609027536933">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="454" y="155" width="424" height="483" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1609027536933" />
+    <state x="502" y="155" width="424" height="491" key="FileChooserDialogImpl/72.27.1294.741@72.27.1294.741" timestamp="1608626028038" />
+    <state width="1322" height="132" key="GridCell.Tab.0.bottom" timestamp="1609116193628">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1322" height="132" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1609116193628" />
+    <state width="1248" height="163" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1608828985727" />
+    <state width="1322" height="132" key="GridCell.Tab.0.center" timestamp="1609116193627">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1322" height="132" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1609116193627" />
+    <state width="1248" height="163" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1608828985726" />
+    <state width="1322" height="132" key="GridCell.Tab.0.left" timestamp="1609116193626">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1322" height="132" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1609116193626" />
+    <state width="1248" height="163" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1608828985725" />
+    <state width="1322" height="132" key="GridCell.Tab.0.right" timestamp="1609116193627">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1322" height="132" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1609116193627" />
+    <state width="1248" height="163" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1608828985727" />
+    <state x="514" y="319" width="399" height="164" key="NewPhpFileDialog" timestamp="1608626468265">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="502" y="155" width="424" height="491" key="FileChooserDialogImpl/72.27.1294.741@72.27.1294.741" timestamp="1608053210985" />
-    <state width="1248" height="163" key="GridCell.Tab.0.bottom" timestamp="1608053541404">
-      <screen x="72" y="27" width="1294" height="741" />
+    <state x="514" y="319" width="399" height="164" key="NewPhpFileDialog/72.27.1294.741@72.27.1294.741" timestamp="1608626468265" />
+    <state x="73" y="38" width="1022" height="737" key="SettingsEditor" timestamp="1609102542551">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1248" height="163" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1608053541404" />
-    <state width="1248" height="163" key="GridCell.Tab.0.center" timestamp="1608053541400">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
-    <state width="1248" height="163" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1608053541400" />
-    <state width="1248" height="163" key="GridCell.Tab.0.left" timestamp="1608053541397">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
-    <state width="1248" height="163" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1608053541397" />
-    <state width="1248" height="163" key="GridCell.Tab.0.right" timestamp="1608053541401">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
-    <state width="1248" height="163" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1608053541401" />
-    <state x="190" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1608053532923">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
+    <state x="73" y="38" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1609102542551" />
     <state x="190" y="31" width="1022" height="737" key="SettingsEditor/72.27.1294.741@72.27.1294.741" timestamp="1608053532923" />
-    <state x="382" y="89" key="search.everywhere.popup" timestamp="1607680885209">
+    <state width="605" height="446" key="SwitcherDM" timestamp="1608654575841">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
+    <state width="605" height="446" key="SwitcherDM/72.27.1294.741@72.27.1294.741" timestamp="1608654575841" />
+    <state x="327" y="89" key="search.everywhere.popup" timestamp="1609036097961">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="327" y="89" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1609036097961" />
     <state x="382" y="89" key="search.everywhere.popup/72.27.1294.741@72.27.1294.741" timestamp="1607680885209" />
   </component>
 </project>

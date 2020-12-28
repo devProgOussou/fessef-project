@@ -85,11 +85,6 @@ class AssociationController extends Controller
     public function update(Request $request, $id)
     {
 //        dd($request->all());
-        if ($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/avatar/', $filename);
 
             Association::where('user_id', $id)->update([
                 'NomAssociation' => $request->input('NomAssociation'),
@@ -97,20 +92,11 @@ class AssociationController extends Controller
                 'telephone' => $request->input('telephone'),
                 'lien' => $request->input('lien'),
                 'domaineActivites' => $request->input('domaineActivites'),
-                'description' => $request->input('description')
+                'description' => $request->input('description'),
+                'dateDeCreation' => $request->input('dateDeCreation')
             ]);
 
-            User::where('id', $id)->update([
-                'name' => $request->input('NomAssociation'),
-                'avatar' => $filename,
-//                'email' => $request->email,
-//                'password' => Hash::make($request->password)
-            ]);
             return back();
-        }
-        else {
-            return back();
-        }
     }
 
     /**

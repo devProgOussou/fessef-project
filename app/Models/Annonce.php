@@ -23,11 +23,6 @@ class Annonce extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function annonce()
-    {
-        return $this->belongsTo(Annonce::class);
-    }
-
     public function interesses()
     {
         return $this->hasMany(Interesse::class);

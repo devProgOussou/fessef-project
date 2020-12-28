@@ -16,6 +16,7 @@ class Entreprise extends Model
         'lien',
         'description',
         'domaineActivites',
+        'dateDeCreation',
         'user_id'
     ];
 

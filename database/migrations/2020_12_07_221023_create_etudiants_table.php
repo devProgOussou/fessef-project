@@ -17,10 +17,13 @@ class CreateEtudiantsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('telephone');
-            $table->string('adresse');
+            $table->string('telephone')->nullable();
+            $table->string('adresse')->nullable();
             $table->string('genre')->nullable();
-            $table->string('competences');
+            $table->date('dateDeNaissance')->nullable();
+            $table->string('competences')->nullable();
+            $table->string('CV')->nullable();
+            $table->string('LM')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

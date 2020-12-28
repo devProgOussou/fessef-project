@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Etudiant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Etudiant;
+use App\Models\Interesse;
 use App\Models\UploadingFile;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class EtudiantController extends Controller
@@ -18,10 +19,11 @@ class EtudiantController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -31,7 +33,7 @@ class EtudiantController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
@@ -47,46 +49,46 @@ class EtudiantController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'cv' => 'required|mimes:docx,pdf|max:2048',
-            'lm' => 'required|mimes:docx,pdf|max:2048',
-        ]);
-
-        $userExist = UploadingFile::where('user_id', Auth::user()->id)->first();
-        // dd($userExist);
-        if ($userExist === null) {
-            if ($request->hasFile('cv')) {
-                $fileCV = $request->file('cv');
-                $extension = $fileCV->getClientOriginalExtension();
-                $filenameCV = time() . '.' . $extension;
-                $fileCV->move('uploads/files/CV', $filenameCV);
-            } else {
-                return back();
-            }
-
-            if ($request->hasFile('lm')) {
-                $fileLM = $request->file('lm');
-                $extension = $fileLM->getClientOriginalExtension();
-                $filenameLM = time() . '.' . $extension;
-                $fileLM->move('uploads/files/LM', $filenameLM);
-            } else {
-                return back();
-            }
-            UploadingFile::create([
-                'CV' => $filenameCV,
-                'LM' => $filenameLM,
-                'user_id' => Auth::user()->id,
-            ]);
-            return back();
-
-        } else {
-            // return redirect()->route('update.file');
-            return \Redirect::route('update.file', Auth::user()->id);
-        }
+//        $request->validate([
+//            'cv' => 'required|mimes:docx,pdf|max:2048',
+//            'lm' => 'required|mimes:docx,pdf|max:2048',
+//        ]);
+//
+//        $userExist = UploadingFile::where('user_id', Auth::user()->id)->first();
+//        // dd($userExist);
+//        if ($userExist === null) {
+//            if ($request->hasFile('cv')) {
+//                $fileCV = $request->file('cv');
+//                $extension = $fileCV->getClientOriginalExtension();
+//                $filenameCV = time() . '.' . $extension;
+//                $fileCV->move('uploads/files/CV', $filenameCV);
+//            } else {
+//                return back();
+//            }
+//
+//            if ($request->hasFile('lm')) {
+//                $fileLM = $request->file('lm');
+//                $extension = $fileLM->getClientOriginalExtension();
+//                $filenameLM = time() . '.' . $extension;
+//                $fileLM->move('uploads/files/LM', $filenameLM);
+//            } else {
+//                return back();
+//            }
+//            UploadingFile::create([
+//                'CV' => $filenameCV,
+//                'LM' => $filenameLM,
+//                'user_id' => Auth::user()->id,
+//            ]);
+//            return back();
+//
+//        } else {
+//            // return redirect()->route('update.file');
+//            return \Redirect::route('update.file', Auth::user()->id);
+//        }
     }
 
     public function editFile($id)
@@ -102,7 +104,7 @@ class EtudiantController extends Controller
         ]);
     }
 
-    public function updateFile($id)
+    public function updateFile(Request $request, $id)
     {
         if ($request->hasFile('cv')) {
             $fileCV = $request->file('cv');
@@ -132,8 +134,8 @@ class EtudiantController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -143,7 +145,7 @@ class EtudiantController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Inertia\Response
      */
     public function edit($id)
@@ -160,100 +162,72 @@ class EtudiantController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'CV' => 'required|mimes:docx,pdf|max:2048',
             'LM' => 'required|mimes:docx,pdf|max:2048',
         ]);
-        $userExist = UploadingFile::where('user_id', $id)->first();
 
-        if ($userExist === null) {
-            if ($request->hasFile('CV')) {
-                $fileCV = $request->file('CV');
-                $extension = $fileCV->getClientOriginalExtension();
-                $filenameCV = time() . '.' . $extension;
-                $fileCV->move('uploads/files/CV', $filenameCV);
-            } else {
-                return back();
-            }
+        $interesses = Interesse::where('user_id', Auth::user()->id)->first();
 
-            if ($request->hasFile('LM')) {
-                $fileLM = $request->file('LM');
-                $extension = $fileLM->getClientOriginalExtension();
-                $filenameLM = time() . '.' . $extension;
-                $fileLM->move('uploads/files/LM', $filenameLM);
-            } else {
-                return back();
-            }
-            UploadingFile::create([
-                'CV' => $filenameCV,
-                'LM' => $filenameLM,
-                'user_id' => Auth::user()->id,
-            ]);
-
-            Etudiant::where('user_id', $id)->update([
-                'nom' => $request->input('nom'),
-                'prenom' => $request->input('prenom'),
-                'telephone' => $request->input('telephone'),
-                'adresse' => $request->input('adresse'),
-                'competences' => $request->input('competences'),
-                'description' => $request->input('description'),
-            ]);
-
-            User::where('id', $id)->update([
-                'name' => $request->input('prenom'),
-            ]);
-            return back();
+        if ($request->hasFile('CV')) {
+            $fileCV = $request->file('CV');
+            $extension = $fileCV->getClientOriginalExtension();
+            $filenameCV = time() . '.' . $extension;
+            $fileCV->move('uploads/files/CV', $filenameCV);
         } else {
-            if ($request->hasFile('CV')) {
-                $fileCV = $request->file('CV');
-                $extension = $fileCV->getClientOriginalExtension();
-                $filenameCV = time() . '.' . $extension;
-                $fileCV->move('uploads/files/CV', $filenameCV);
-            } else {
-                return back();
-            }
-
-            if ($request->hasFile('LM')) {
-                $fileLM = $request->file('LM');
-                $extension = $fileLM->getClientOriginalExtension();
-                $filenameLM = time() . '.' . $extension;
-                $fileLM->move('uploads/files/LM', $filenameLM);
-            } else {
-                return back();
-            }
-            UploadingFile::where('user_id', $id)->update([
-                'CV' => $filenameCV,
-                'LM' => $filenameLM,
-            ]);
-
-            Etudiant::where('user_id', $id)->update([
-                'nom' => $request->input('nom'),
-                'prenom' => $request->input('prenom'),
-                'telephone' => $request->input('telephone'),
-                'adresse' => $request->input('adresse'),
-                'competences' => $request->input('competences'),
-                'description' => $request->input('description'),
-            ]);
-
-            User::where('id', $id)->update([
-                'name' => $request->input('prenom'),
-            ]);
             return back();
-
         }
 
+        if ($request->hasFile('LM')) {
+            $fileLM = $request->file('LM');
+            $extension = $fileLM->getClientOriginalExtension();
+            $filenameLM = time() . '.' . $extension;
+            $fileLM->move('uploads/files/LM', $filenameLM);
+        } else {
+            return back();
+        }
+
+        Etudiant::where('user_id', $id)->update([
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'telephone' => $request->input('telephone'),
+            'adresse' => $request->input('adresse'),
+            'dateDeNaissance' => $request->input('dateDeNaissance'),
+            'genre' => $request->input('genre'),
+            'competences' => $request->input('competences'),
+            'description' => $request->input('description'),
+            'CV' => $filenameCV,
+            'LM' => $filenameLM,
+        ]);
+
+        $prenom = $request->input('prenom');
+        $nom = $request->input('nom');
+        $nomComplet = $prenom.' '.$nom;
+        if ($interesses !== null) {
+            Interesse::where('user_id', Auth::user()->id)->update([
+                'user_name' => $nomComplet,
+                'CV' => $filenameCV,
+                'LM' => $filenameLM
+            ]);
+        }
+
+        User::where('id', $id)->update([
+            'name' => $nomComplet,
+        ]);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
@@ -279,6 +253,12 @@ class EtudiantController extends Controller
             User::where('id', $id)->update([
                 'avatar' => $filename,
             ]);
+            $interesses = Interesse::where('user_id', Auth::user()->id)->first();
+            if ($interesses !== null) {
+            Interesse::where('user_id', Auth::user()->id)->update([
+                'avatar' => $filename
+            ]);
+        }
             $file->move('uploads/avatar/', $filename);
             return back();
         } else {

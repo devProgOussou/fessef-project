@@ -1,0 +1,10 @@
+<p>
+                                        <inertia-link :href="'/Annonce/user/show/'+annonce.id" class="text-dark">
+                                            <button class="btn btn-round" style="background: #3563a9; color: white" v-if="annonce.interet != null">
+                                                Voir <i class="fa fa-book"></i> : {{ annonce.interet }}
+                                            </button>
+                                            <button class="btn btn-round" style="background: #3563a9; color: white" v-else>
+                                                Rien à voir <i class="fa fa-book"></i>
+                                            </button>
+                                        </inertia-link>
+                                    </p>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Xamxam\XamxamController;
 use App\Http\Controllers\Annonce\AnnonceController;
@@ -23,10 +25,12 @@ use App\Http\Controllers\Association\AssociationController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/registerstudent', [RegisterController::class, 'registerStudent'])->name('registerStudent');
+Route::get('/registercompany', [RegisterController::class, 'registerCompany'])->name('registerCompany');
+Route::get('/registerassociation', [RegisterController::class, 'registerAssociation'])->name('registerAssociation');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 //ROUTES FOR XAM XAM CRUD
 Route::get('/xamxam', [XamxamController::class, 'index'])->middleware('auth')->name('xamxam.index');
@@ -58,11 +62,6 @@ Route::post('/entreprise/update/{id}', [EntrepriseController::class, 'update'])-
 //ROUTE FOR XAMXAM
 Route::get('/xamxams', [XamxamController::class, 'xamxamAll'])->middleware('auth')->name('xamxam.All');
 
-
-Route::get('/Etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('Etudiant.edit');
-Route::post('/Etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('Etudiant.update');
-
-
 //ROUTE FOR CREATING ANNONCES
 Route::get('/Annonce', [AnnonceController::class, 'index'])->middleware('auth')->name('Annonce.user');
 Route::get('/Annonces', [AnnonceController::class, 'displayAll'])->middleware('auth')->name('Annonce.all');
@@ -78,12 +77,13 @@ Route::post('/Annonce/interesse/{id}', [AnnonceController::class, 'interesses'])
 Route::get('/Annonce/user/show/{id}', [AnnonceController::class, 'displayAnnonce'])->middleware('auth')->name('Annonce.displayAnnonce');
 
 //ROUTE FOR ETUDIANT PROFILE
-Route::get('/etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('association.edit');
-Route::get('/etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('association.update');
-Route::post('/etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('association.updated');
+Route::get('/etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('etudiant.edit');
+Route::get('/etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('etudiant.update');
+Route::post('/etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('etudiant.updated');
 Route::get('/Etudiant/editAvatar/{id}', [EtudiantController::class, 'editAvatar'])->middleware('auth')->name('Etudiant.editAvatar');
 Route::post('/Etudiant/UpdateAvatar/{id}', [EtudiantController::class, 'updateAvatar'])->middleware('auth')->name('Etudiant.updateAvatar');
-
+//Route::get('/Etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('Etudiant.edit');
+//Route::post('/Etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('Etudiant.update');
 
 //ROUTE FRO FEUSSEUL
 Route::get('/Feusseul', [FeusseulController::class, 'index'])->middleware('auth')->name('Feusseul.index');
@@ -100,8 +100,6 @@ Route::post('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->mi
 //ROUTE FOR FEUSSEUL LIKE/DISLIKE/COMMENTS
 Route::get('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->middleware('auth')->name('Feusseul.like');
 Route::post('/Feusseul/like/{id}', [FeusseulController::class, 'like'])->middleware('auth')->name('Feusseul.liked');
-// Route::get('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.dislike');
-// Route::post('/Feusseul/dislike/{id}', [FeusseulController::class, 'dislike'])->middleware('auth')->name('Feusseul.disliked');
 Route::get('/Feusseul/comments', [FeusseulController::class, 'comments'])->middleware('auth')->name('Feusseul.comments');
 Route::post('/Feusseul/comments', [FeusseulController::class, 'comments'])->middleware('auth')->name('Feusseul.comments');
 

@@ -16,6 +16,7 @@ class Association extends Model
         'lien',
         'domaineActivites',
         'description',
+        'dateDeCreation',
         'user_id'
     ];
 

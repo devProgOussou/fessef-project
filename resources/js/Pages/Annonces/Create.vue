@@ -3,13 +3,8 @@
         <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi asperiores aut earum eligendi ex
-                    minima modi, omnis porro quisquam rem repellat sapiente sequi totam voluptatem voluptatum? Maiores
-                    natus repudiandae veritatis?
-                </div>
-
-                <div class="col-md-8">
+                <h2 class="offset-5 mt-3" style="color: #3563a9;">Creer une annone</h2>
+                <div class="col-md-10 offset-1 mt-2 mb-5">
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">
                             <label for="titre">titre</label>
@@ -26,10 +21,9 @@
                                       v-model="form.description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="image">Image en avant</label>
                             <file-input id="image" label="image" v-model="form.image"/>
                         </div>
-                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                        <button type="submit" class="btn btn-outline-primary offset-4 btn-round col-md-5">Submit</button>
                     </form>
                 </div>
             </div>

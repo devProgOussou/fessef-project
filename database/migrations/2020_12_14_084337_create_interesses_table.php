@@ -15,10 +15,16 @@ class CreateInteressesTable extends Migration
     {
         Schema::create('interesses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('annonce_id')->constrained();
-            $table->foreignId('user_id')->constrained();
             $table->string('user_email');
             $table->string('user_name');
+            $table->string('annonce_image');
+            $table->string('annonce_titre');
+            $table->bigInteger('post_id');
+            $table->string('avatar')->nullable();
+            $table->string('CV')->nullable();
+            $table->string('LM')->nullable();
+            $table->foreignId('annonce_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

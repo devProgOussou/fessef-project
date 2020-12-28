@@ -1,5 +1,4 @@
 <template>
-    <div>
         <div class="container">
             <div class="row">
                 <inertia-link class="m-5" href="/Annonce">
@@ -19,13 +18,14 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
     export default {
         name: "Show",
-        props:['annonce'],
+        props:{
+            annonce: Array
+        },
     }
 </script>
 

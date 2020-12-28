@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Interesse;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -57,14 +58,19 @@ class HomeController extends Controller
             $association = Association::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
             $xamxams = Xamxam::paginate(5)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::with('interesses')->paginate(5)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
+            $annonces = Annonce::with('user')->with('interesses')->paginate(15)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
+            $interesses = Interesse::paginate(15)->where('post_id', Auth::user()->id)->sortByDesc('created_at');
+            $annonceAll = Annonce::with('user')->get();
             $messages = Message::where('user_id', Auth::user()->id)->get();
+//            dd($interesses);
             return Inertia::render('Association/Dashboard', [
                 'xamxams' => $xamxams,
+                'annonceAll' => $annonceAll,
                 'annonces' => $annonces,
                 'messages' => $messages,
                 'association' => $association,
-                'user' => $user
+                'user' => $user,
+                'interesses' => $interesses
             ]);
         }
         elseif(Auth::user()->isEtudiant == 1 && Auth::user()->isActive == 1)

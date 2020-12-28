@@ -3,7 +3,7 @@
         <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 mt-5">
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">
                             <label for="titre">titre</label>
@@ -17,7 +17,12 @@
                         <div class="form-group">
                             <file-input id="Image/Video" label="Image/Video" v-model="form.file"/>
                         </div>
-                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                        <button
+                            class="btn btn-round btn-outline-success col-md-5 offset-4"
+                            type="submit"
+                        >
+                            Creer
+                        </button>
                     </form>
                 </div>
             </div>

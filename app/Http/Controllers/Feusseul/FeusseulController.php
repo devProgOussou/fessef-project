@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Feusseul;
 
+use App\Models\Annonce;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -81,11 +82,13 @@ class FeusseulController extends Controller
     public function show($id)
     {
         $commentaires = Commentaire::with('user')->orderByDesc('created_at')->where('feusseul_id', $id)->get();
-//        dd($commentaires);
+        $userID = Feusseul::where('id', $id)->first();
+        $userFeusseul = User::where('id', $userID->user_id)->first();
         $feusseul = Feusseul::with('commentaires')->where('id', $id)->get();
         return Inertia::render('Feusseul/Show', [
             'feusseul' => $feusseul,
             'commentaires' => $commentaires,
+            'userFeusseul' => $userFeusseul
         ]);
     }
 
@@ -141,6 +144,7 @@ class FeusseulController extends Controller
      */
     public function destroy($id)
     {
+        LikeDislike::where('feusseul_id', $id)->delete();
         Feusseul::find($id)->delete();
         return back();
     }
@@ -148,6 +152,7 @@ class FeusseulController extends Controller
     public function displayAll()
     {
         $feusseuls = Feusseul::with('user')->orderByDesc("created_at")->get();
+        $annonces = Annonce::paginate(3)->sortByDesc("created_at");
         $etudiant = Etudiant::with('user')->where('user_id', Auth::user()->id)->get();
         $association = Association::with('user')->where('user_id', Auth::user()->id)->get();
         $entreprise = Entreprise::with('user')->where('user_id', Auth::user()->id)->get();
@@ -156,6 +161,7 @@ class FeusseulController extends Controller
             'etudiant' => $etudiant,
             'entreprise' => $entreprise,
             'association' => $association,
+            'annonces' => $annonces,
             'user' => Auth::user(),
         ]);
     }

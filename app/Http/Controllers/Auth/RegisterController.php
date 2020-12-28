@@ -45,6 +45,18 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function registerStudent(){
+        return view('auth.registerStudent');
+    }
+
+    public function registerCompany(){
+        return view('auth.registerCompany');
+    }
+
+    public function registerAssociation(){
+        return view('auth.registerAssociation');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -77,11 +89,11 @@ class RegisterController extends Controller
             ]);
             Entreprise::create([
                 'NomEntreprise' => $data['NomEntreprise'],
-                'adresse' => $data['adresse'],
-                'telephone' => $data['adresse'],
-                'lien' => $data['lien'],
-                'description' => $data['description'],
-                'domaineActivites' => $data['domaineActivites'],
+//                'adresse' => $data['adresse'],
+//                'telephone' => $data['adresse'],
+//                'lien' => $data['lien'],
+//                'description' => $data['description'],
+//                'domaineActivites' => $data['domaineActivites'],
                 'user_id' =>$user->id,
             ]);
             return $user;
@@ -98,11 +110,11 @@ class RegisterController extends Controller
 
             Association::create([
                 'NomAssociation' => $data['NomAssociation'],
-                'adresse' => $data['adresse'],
-                'telephone' => $data['telephone'],
-                'lien' => $data['lien'],
-                'domaineActivites' => $data['domaineActivites'],
-                'description' => $data['description'],
+//                'adresse' => $data['adresse'],
+//                'telephone' => $data['telephone'],
+//                'lien' => $data['lien'],
+//                'domaineActivites' => $data['domaineActivites'],
+//                'description' => $data['description'],
                 'user_id' =>$user->id,
             ]);
             return $user;
@@ -123,10 +135,12 @@ class RegisterController extends Controller
             Etudiant::create([
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
-                'telephone' => $data['telephone'],
-                'adresse' => $data['adresse'],
-                'competences' => $data['competences'],
-                'description' => $data['description'],
+//                'telephone' => $data['telephone'],
+//                'adresse' => $data['adresse'],
+//                'genre' => $data['genre'],
+//                'dateDeNaissance' => $data['dateDeNaissance'],
+//                'competences' => $data['competences'],
+//                'description' => $data['description'],
                 'user_id' =>$user->id,
             ]);
             return $user;

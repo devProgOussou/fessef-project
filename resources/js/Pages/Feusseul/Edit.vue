@@ -10,32 +10,32 @@
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">
                             <input
-                                type="text"
-                                class="form-control"
                                 :placeholder="this.feusseul[0].titre"
-                                v-model="form.titre"
+                                class="form-control"
                                 required
+                                type="text"
+                                v-model="form.titre"
                             />
                         </div>
                         <div class="form-group">
-                            <file-input v-model="form.file" label="fichier *" />
+                            <file-input label="fichier *" v-model="form.file"/>
                         </div>
                         <div class="form-group">
               <textarea
+                  :placeholder='this.feusseul[0].contenu'
                   class="form-control col-md-12"
+                  required
                   rows="5"
                   v-model="form.contenu"
-                  :placeholder='this.feusseul[0].contenu'
-                  required
               ></textarea>
                         </div>
                         <button
-                            type="submit"
                             class="btn btn-round btn-outline-primary col-md-5 offset-4"
+                            type="submit"
                         >
                             Submit
                         </button>
-                        <br />
+                        <br/>
                     </form>
                 </div>
             </div>
@@ -48,14 +48,13 @@
 
     export default {
         name: "Index",
-        components:{
+        components: {
             FileInput
         },
-        props:{
+        props: {
             feusseul: Array
         },
-        data()
-        {
+        data() {
             return {
                 form: {
                     titre: this.feusseul[0].titre,
@@ -65,14 +64,13 @@
             }
         },
         methods: {
-            handleSubmit()
-            {
+            handleSubmit() {
                 const data = new FormData();
                 data.append("titre", this.form.titre);
                 data.append("file", this.form.file);
                 data.append("contenu", this.form.contenu);
 
-                this.$inertia.post('/Feusseul/Update/'+this.feusseul[0].id, data,
+                this.$inertia.post('/Feusseul/Update/' + this.feusseul[0].id, data,
                     {
                         onSuccess: () => {
                             this.flashMessage.info({

@@ -168,19 +168,37 @@ class AnnonceController extends Controller
 
     public function interesses(Request $request, $id)
     {
-        $user = Interesse::where('user_id', Auth::user()->id)->first();
+        $user = Interesse::where('user_id', Auth::user()->id)->where('annonce_id', $id)->first();
+        $userID = Auth::user()->id;
+        $etudiantID = Etudiant::where('user_id', $userID)->first();
+        $etudiantInfo = Etudiant::find($etudiantID->user_id);
 
-        if ($user === null && Auth::user()->isEtudiant == 1) {
-
+        if ($user === null && Auth::user()->isEtudiant === 1) {
             Interesse::create([
                 'annonce_id' => $request->input('annonce_id'),
+                'post_id' => $request->input('post_id'),
+                'annonce_image' => $request->input('annonce_image'),
+                'annonce_titre' => $request->input('annonce_titre'),
                 'user_id' => Auth::user()->id,
                 'user_name' => Auth::user()->name,
-                'user_email' => Auth::user()->email
+                'user_email' => Auth::user()->email,
+                'avatar' => Auth::user()->avatar,
             ]);
-            return back();
+            if($etudiantID->CV === null)
+            {
+                Interesse::where('user_id', Auth::user()->id)->update([
+                    'CV' => $etudiantID->CV,
+                    'LM' => $etudiantID->LM
+                ]);
+            }
 
-        } else {
+            $annonce = Annonce::find($id);
+            $value = $annonce->interet ;
+            $annonce->interet = $value + 1;
+            $annonce->save();
+            return back();
+        }
+        else {
             return redirect()->route('Annonce.all');
         }
 

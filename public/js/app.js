@@ -4377,120 +4377,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dashboard",
   components: {},
-  props: ["association", "user", "xamxams", "annonces", "messages"]
+  props: ['association', 'user', 'xamxams', 'annonces', 'annonceAll', 'interesses']
 });
 
 /***/ }),
@@ -4677,9 +4567,154 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "showAll",
-  props: ["feusseuls", "etudiant", "association", "entreprise", "user"]
+  props: ["feusseuls", "etudiant", "association", "entreprise", "user", "annonces"]
 });
 
 /***/ }),
@@ -9124,7 +9159,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nbody[data-v-134549e4] {\n  background-color: lightgrey;\n  padding: 0;\n  margin: 0;\n}\n.col-mb-3[data-v-134549e4] {\n  display: grid;\n  justify-content: center;\n  align-content: center;\n  min-height: 100vh;\n}\nh3[data-v-134549e4] {\n  text-align: justify;\n}\n.shadow[data-v-134549e4] {\n  display: flex;\n}\n", ""]);
+exports.push([module.i, "\nbody[data-v-134549e4] {\n    background-color: lightgrey;\n    padding: 0;\n    margin: 0;\n}\n.col-mb-3[data-v-134549e4] {\n    display: grid;\n    justify-content: center;\n    align-content: center;\n    min-height: 100vh;\n}\nh3[data-v-134549e4] {\n    text-align: justify;\n}\n.shadow[data-v-134549e4] {\n    display: flex;\n}\n", ""]);
 
 // exports
 
@@ -41950,31 +41985,41 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "text-center" }, [
-              _c("img", {
-                staticClass: "shadow-sm img-rounded",
-                attrs: {
-                  src: "uploads/avatar/" + this.user[0].avatar,
-                  alt: "image",
-                  width: "100",
-                  height: "100"
-                }
-              })
+              this.user[0].avatar != null
+                ? _c("img", {
+                    staticClass: "shadow-sm img-rounded",
+                    attrs: {
+                      src: "uploads/avatar/" + this.user[0].avatar,
+                      alt: "image",
+                      height: "100",
+                      width: "100"
+                    }
+                  })
+                : _c("img", {
+                    staticClass: "shadow-sm img-rounded",
+                    attrs: {
+                      alt: "image",
+                      height: "100",
+                      src: "uploads/avatar/avatar.png",
+                      width: "100"
+                    }
+                  })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body body-card" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v(
-                  "\n              " +
+                  "\n                            " +
                     _vm._s(this.association[0].NomAssociation) +
-                    "\n            "
+                    "\n                        "
                 )
               ]),
               _vm._v(" "),
               _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
                 _vm._v(
-                  "\n              " +
+                  "\n                            " +
                     _vm._s(this.user[0].email) +
-                    "\n            "
+                    "\n                        "
                 )
               ])
             ]),
@@ -41999,12 +42044,12 @@ var render = function() {
                         {
                           staticClass: "nav-link text-primary active",
                           attrs: {
-                            id: "pills-home-tab",
-                            "data-toggle": "pill",
                             href: "#pills-home",
-                            role: "tab",
                             "aria-controls": "pills-home",
-                            "aria-selected": "true"
+                            "aria-selected": "true",
+                            "data-toggle": "pill",
+                            id: "pills-home-tab",
+                            role: "tab"
                           }
                         },
                         [
@@ -42013,19 +42058,19 @@ var render = function() {
                             {
                               staticClass: "bi bi-binoculars",
                               attrs: {
-                                width: "2em",
+                                fill: "currentColor",
                                 height: "2em",
                                 viewBox: "0 0 16 16",
-                                fill: "currentColor",
+                                width: "2em",
                                 xmlns: "http://www.w3.org/2000/svg"
                               }
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "fill-rule": "evenodd",
                                   d:
-                                    "M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"
+                                    "M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z",
+                                  "fill-rule": "evenodd"
                                 }
                               })
                             ]
@@ -42047,12 +42092,12 @@ var render = function() {
                         {
                           staticClass: "nav-link text-primary",
                           attrs: {
-                            id: "pills-contact-tab",
-                            "data-toggle": "pill",
                             href: "#pills-contact",
-                            role: "tab",
                             "aria-controls": "pills-contact",
-                            "aria-selected": "false"
+                            "aria-selected": "false",
+                            "data-toggle": "pill",
+                            id: "pills-contact-tab",
+                            role: "tab"
                           }
                         },
                         [
@@ -42061,19 +42106,19 @@ var render = function() {
                             {
                               staticClass: "bi bi-book",
                               attrs: {
-                                width: "2em",
+                                fill: "currentColor",
                                 height: "2em",
                                 viewBox: "0 0 16 16",
-                                fill: "currentColor",
+                                width: "2em",
                                 xmlns: "http://www.w3.org/2000/svg"
                               }
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "fill-rule": "evenodd",
                                   d:
-                                    "M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+                                    "M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z",
+                                  "fill-rule": "evenodd"
                                 }
                               })
                             ]
@@ -42095,12 +42140,12 @@ var render = function() {
                         {
                           staticClass: "nav-link text-primary",
                           attrs: {
-                            id: "pills-profile-tab",
-                            "data-toggle": "pill",
                             href: "#pills-profile",
-                            role: "tab",
                             "aria-controls": "pills-profile",
-                            "aria-selected": "false"
+                            "aria-selected": "false",
+                            "data-toggle": "pill",
+                            id: "pills-profile-tab",
+                            role: "tab"
                           }
                         },
                         [
@@ -42109,27 +42154,27 @@ var render = function() {
                             {
                               staticClass: "bi bi-bookmark-check",
                               attrs: {
-                                width: "2em",
+                                fill: "currentColor",
                                 height: "2em",
                                 viewBox: "0 0 16 16",
-                                fill: "currentColor",
+                                width: "2em",
                                 xmlns: "http://www.w3.org/2000/svg"
                               }
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "fill-rule": "evenodd",
                                   d:
-                                    "M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                                    "M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z",
+                                  "fill-rule": "evenodd"
                                 }
                               }),
                               _vm._v(" "),
                               _c("path", {
                                 attrs: {
-                                  "fill-rule": "evenodd",
                                   d:
-                                    "M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+                                    "M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z",
+                                  "fill-rule": "evenodd"
                                 }
                               })
                             ]
@@ -42152,15 +42197,15 @@ var render = function() {
                 {
                   staticClass: "tab-pane fade show active",
                   attrs: {
+                    "aria-labelledby": "pills-home-tab",
                     id: "pills-home",
-                    role: "tabpanel",
-                    "aria-labelledby": "pills-home-tab"
+                    role: "tabpanel"
                   }
                 },
-                [
-                  _c(
+                _vm._l(_vm.annonceAll, function(annonce) {
+                  return _c(
                     "div",
-                    { staticClass: "card mb-3 mt-4", attrs: { id: "" } },
+                    { key: annonce.id, staticClass: "card mb-3 mt-4" },
                     [
                       _c(
                         "div",
@@ -42176,9 +42221,28 @@ var render = function() {
                                 "text-muted font-weight-bold dropdown d-inline ml-2 text-center"
                             },
                             [
-                              _vm._v(
-                                "\n                  Profils\n                "
-                              )
+                              annonce.user.avatar != null
+                                ? _c("img", {
+                                    staticClass: "rounded-circle img-thumbnail",
+                                    attrs: {
+                                      src:
+                                        "uploads/avatar/" + annonce.user.avatar,
+                                      alt: "",
+                                      height: "40",
+                                      width: "40"
+                                    }
+                                  })
+                                : _c("img", {
+                                    staticClass: "rounded-circle img-thumbnail",
+                                    attrs: {
+                                      src: "uploads/avatar/avatar.png",
+                                      alt: "",
+                                      height: "40",
+                                      width: "40"
+                                    }
+                                  }),
+                              _vm._v(" "),
+                              _c("small", [_vm._v(_vm._s(annonce.user.name))])
                             ]
                           ),
                           _vm._v(" "),
@@ -42188,11 +42252,11 @@ var render = function() {
                               staticClass: "float-right mr-2",
                               attrs: {
                                 href: "",
-                                type: "button",
-                                id: "dropdownMenuButton",
-                                "data-toggle": "dropdown",
+                                "aria-expanded": "false",
                                 "aria-haspopup": "true",
-                                "aria-expanded": "false"
+                                "data-toggle": "dropdown",
+                                id: "dropdownMenuButton",
+                                type: "button"
                               }
                             },
                             [
@@ -42211,18 +42275,25 @@ var render = function() {
                             },
                             [
                               _c(
-                                "a",
+                                "inertia-link",
                                 {
                                   staticClass:
                                     "dropdown-item text-danger delete",
-                                  attrs: { href: "", id: "" }
+                                  attrs: {
+                                    href: "/Annonce/Delete/" + annonce.id
+                                  }
                                 },
-                                [_vm._v("Delete")]
+                                [
+                                  _vm._v(
+                                    "Delete\n                                    "
+                                  )
+                                ]
                               )
-                            ]
+                            ],
+                            1
                           ),
                           _vm._v(" "),
-                          _vm._m(0)
+                          _vm._m(0, true)
                         ]
                       ),
                       _vm._v(" "),
@@ -42230,66 +42301,27 @@ var render = function() {
                         _c("img", {
                           staticClass: "card-img-top",
                           attrs: {
-                            src: "images/fessef.jpg",
+                            src: "uploads/" + annonce.image,
                             alt: "...",
-                            width: "1000",
-                            height: "300"
+                            height: "300",
+                            width: "1000"
                           }
                         }),
                         _vm._v(" "),
-                        _c("h5", [_vm._v("Titre : Ingenieur IA")]),
+                        _c("h5", [_vm._v("Titre : " + _vm._s(annonce.titre))]),
                         _vm._v(" "),
                         _c("p", [
-                          _c(
-                            "a",
-                            { staticClass: "text-dark", attrs: { href: "" } },
-                            [
-                              _vm._v(
-                                "\n                    Nombre de d'interet : 1\n                  "
-                              )
-                            ]
-                          )
+                          _vm._v("Description : " + _vm._s(annonce.description))
                         ]),
                         _vm._v(" "),
-                        _c("img", {
-                          staticClass:
-                            "rounded-circle border border-primary d-inline",
-                          attrs: {
-                            src: "images/fessef.jpg",
-                            alt: "user",
-                            width: "40px",
-                            height: "40px"
-                          }
-                        }),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn",
-                            staticStyle: {
-                              background: "#3563a9",
-                              color: "white"
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              { staticClass: "float-left d-inline ml-2" },
-                              [
-                                _vm._v(
-                                  _vm._s(this.association[0].NomAssociation)
-                                )
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(1)
+                        _c("p", [
+                          _vm._v("Contenu : " + _vm._s(annonce.contenu))
+                        ])
                       ])
                     ]
                   )
-                ]
+                }),
+                0
               ),
               _vm._v(" "),
               _c(
@@ -42297,15 +42329,15 @@ var render = function() {
                 {
                   staticClass: "tab-pane fade show active",
                   attrs: {
-                    id: "pills-home",
-                    role: "tabpanel",
-                    "aria-labelledby": "pills-home-tab"
+                    "aria-labelledby": "pills-contact-tab",
+                    id: "pills-contact",
+                    role: "tabpanel"
                   }
                 },
-                [
-                  _c(
+                _vm._l(_vm.annonces, function(annonce) {
+                  return _c(
                     "div",
-                    { staticClass: "card mb-3 mt-4", attrs: { id: "" } },
+                    { key: annonce.id, staticClass: "card mb-3 mt-4" },
                     [
                       _c(
                         "div",
@@ -42314,21 +42346,37 @@ var render = function() {
                           staticStyle: { height: "55px", padding: "5px" }
                         },
                         [
-                          _c("img", {
-                            staticClass:
-                              "rounded-circle border border-primary d-inline",
-                            attrs: {
-                              src: "images/fessef.jpg ",
-                              alt: "user",
-                              width: "40px",
-                              height: "40px"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass:
-                              "text-muted font-weight-bold dropdown d-inline ml-2"
-                          }),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "text-muted font-weight-bold dropdown d-inline ml-2 text-center"
+                            },
+                            [
+                              annonce.user.avatar != null
+                                ? _c("img", {
+                                    staticClass: "rounded-circle img-thumbnail",
+                                    attrs: {
+                                      src:
+                                        "uploads/avatar/" + annonce.user.avatar,
+                                      alt: "",
+                                      height: "40",
+                                      width: "40"
+                                    }
+                                  })
+                                : _c("img", {
+                                    staticClass: "rounded-circle img-thumbnail",
+                                    attrs: {
+                                      src: "uploads/avatar/avatar.png",
+                                      alt: "",
+                                      height: "40",
+                                      width: "40"
+                                    }
+                                  }),
+                              _vm._v(" "),
+                              _c("small", [_vm._v(_vm._s(annonce.user.name))])
+                            ]
+                          ),
                           _vm._v(" "),
                           _c(
                             "a",
@@ -42336,11 +42384,11 @@ var render = function() {
                               staticClass: "float-right mr-2",
                               attrs: {
                                 href: "",
-                                type: "button",
-                                id: "dropdownMenuButton",
-                                "data-toggle": "dropdown",
+                                "aria-expanded": "false",
                                 "aria-haspopup": "true",
-                                "aria-expanded": "false"
+                                "data-toggle": "dropdown",
+                                id: "dropdownMenuButton",
+                                type: "button"
                               }
                             },
                             [
@@ -42351,9 +42399,33 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(2),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "dropdownMenuButton" }
+                            },
+                            [
+                              _c(
+                                "inertia-link",
+                                {
+                                  staticClass:
+                                    "dropdown-item text-danger delete",
+                                  attrs: {
+                                    href: "/Annonce/Delete/" + annonce.id
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "Delete\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _vm._m(3)
+                          _vm._m(1, true)
                         ]
                       ),
                       _vm._v(" "),
@@ -42361,208 +42433,271 @@ var render = function() {
                         _c("img", {
                           staticClass: "card-img-top",
                           attrs: {
-                            src: "images/fessef.jpg",
+                            src: "uploads/" + annonce.image,
                             alt: "...",
-                            width: "1000",
-                            height: "500"
+                            height: "300",
+                            width: "1000"
                           }
                         }),
                         _vm._v(" "),
-                        _c("h5", { staticClass: "card-title float-left" }, [
-                          _vm._v("Ingenieur IA")
+                        _c("h5", [_vm._v("Titre : " + _vm._s(annonce.titre))]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v("Description : " + _vm._s(annonce.description))
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "card-text" })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "card-footer text-muted text-center" },
-                        [
-                          _c("p", { staticClass: "float-left d-inline ml-2" }, [
-                            _vm._v("3 Novembre 2020")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-center d-inline ml-2" }),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "text-primary",
-                              attrs: { href: "" }
-                            },
-                            [_vm._v(" Voir plus... ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            { staticClass: "float-right d-inline mr-2" },
-                            [_vm._v("0")]
-                          )
-                        ]
-                      )
+                        _c("p", [
+                          _vm._v("Contenu : " + _vm._s(annonce.contenu))
+                        ])
+                      ])
                     ]
                   )
-                ]
+                }),
+                0
               ),
               _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass: "tab-pane fade",
+                  staticClass: "tab-pane fade show active",
                   attrs: {
-                    id: "pills-contact",
-                    role: "tabpanel",
-                    "aria-labelledby": "pills-contact-tab"
+                    "aria-labelledby": "pills-profile-tab",
+                    id: "pills-profile",
+                    role: "tabpanel"
                   }
                 },
-                [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card mb-3" }, [
-                    _c("div", { staticClass: "row no-gutters" }, [
-                      _c("div", { staticClass: "col-md-5" }, [
-                        _c("img", {
-                          staticClass: "card-img",
-                          staticStyle: { width: "100%", height: "100%" },
-                          attrs: {
-                            src: "images/fessef.jpg",
-                            alt: "annonce-job"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-7" }, [
-                        _c("div", { staticClass: "card-body" }, [
+                _vm._l(_vm.interesses, function(annonce) {
+                  return _c(
+                    "div",
+                    { key: annonce.id, staticClass: "card mb-3 mt-4" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-header",
+                          staticStyle: { height: "55px", padding: "5px" }
+                        },
+                        [
+                          _c("div", {
+                            staticClass:
+                              "text-muted font-weight-bold dropdown d-inline ml-2 text-center"
+                          }),
+                          _vm._v(" "),
                           _c(
                             "a",
                             {
-                              staticClass: "text-primary",
-                              attrs: { href: "" }
+                              staticClass: "float-right mr-2",
+                              attrs: {
+                                href: "",
+                                "aria-expanded": "false",
+                                "aria-haspopup": "true",
+                                "data-toggle": "dropdown",
+                                id: "dropdownMenuButton",
+                                type: "button"
+                              }
                             },
                             [
-                              _c(
-                                "h5",
-                                { staticClass: "card-title text-dark" },
-                                [_vm._v("Developpeur Web")]
-                              )
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-ellipsis-h mt-3 text-secondary"
+                              })
                             ]
                           ),
                           _vm._v(" "),
-                          _c("p", { staticClass: "card-text" }, [
-                            _c(
-                              "a",
-                              { staticClass: "text-dark", attrs: { href: "" } },
-                              [_vm._v("...")]
-                            )
-                          ]),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "dropdownMenuButton" }
+                            },
+                            [
+                              _c(
+                                "inertia-link",
+                                {
+                                  staticClass:
+                                    "dropdown-item text-danger delete",
+                                  attrs: {
+                                    href: "/Annonce/Delete/" + annonce.id
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "Delete\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _vm._m(5)
-                        ])
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "tab-pane fade",
-                  attrs: {
-                    id: "pills-profile",
-                    role: "tabpanel",
-                    "aria-labelledby": "pills-profile-tab"
-                  }
-                },
-                [
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card m-2" }, [
-                    _c("img", {
-                      staticClass: "card-img img-fluid pimg",
-                      staticStyle: { width: "100%", height: "150px" },
-                      attrs: { src: "images/fessef.jpg", alt: "annonce-job" }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h5", [_vm._v("Titre : Ingenieur IA")]),
+                          _vm._m(2, true)
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("p", [
-                        _c(
-                          "a",
-                          { staticClass: "text-dark", attrs: { href: "" } },
-                          [
-                            _vm._v(
-                              "\n                    Nombre de d'interet : 1\n                  "
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-2 ml-2 text-center" },
-                          [
-                            _c("img", {
-                              staticClass: "card-img img-fluid shadow-sm",
-                              staticStyle: {
-                                width: "50px",
-                                height: "50px",
-                                "border-radius": "50%",
-                                border: "2px solid #3563a9",
-                                "margin-bottom": "3px"
-                              },
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("img", {
+                          staticClass: "card-img-top",
+                          attrs: {
+                            src: "uploads/" + annonce.annonce_image,
+                            alt: "...",
+                            height: "200",
+                            width: "1000"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "text-center mt-2" }, [
+                          _vm._v("Titre : " + _vm._s(annonce.annonce_titre))
+                        ]),
+                        _vm._v(" "),
+                        annonce.avatar != null
+                          ? _c("img", {
+                              staticClass: "rounded-circle img-thumbnail",
+                              attrs: {
+                                src: "uploads/avatar/" + annonce.avatar,
+                                alt: "",
+                                height: "40",
+                                width: "40"
+                              }
+                            })
+                          : _c("img", {
+                              staticClass: "rounded-circle img-thumbnail",
                               attrs: {
                                 src: "uploads/avatar/avatar.png",
-                                alt: "annonce-job"
+                                alt: "",
+                                height: "40",
+                                width: "40"
                               }
                             }),
-                            _vm._v(" "),
-                            _vm._m(7)
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-round",
+                            staticStyle: {
+                              background: "#3563a9",
+                              color: "white"
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-book" }),
+                            _vm._v(
+                              " " +
+                                _vm._s(annonce.user_name) +
+                                "\n                                "
+                            )
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(8),
-                        _vm._v(" "),
-                        _vm._m(9)
+                        _vm._m(3, true)
                       ])
-                    ])
-                  ])
-                ]
+                    ]
+                  )
+                }),
+                0
               )
             ]
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
-          _vm._m(10),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "card mb-1" }, [
-            _vm._m(11),
+            _vm._m(5),
             _vm._v(" "),
-            _c("ul", { staticClass: "list-group list-group-flush text-left" }, [
-              _vm._m(12),
-              _vm._v(" "),
-              _vm._m(13),
-              _vm._v(" "),
-              _c("li", { staticClass: "list-group-item" }, [
-                _vm._v("Veillez remplir Votre adresse")
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "list-group-item" }, [
-                _c("b"),
-                _vm._v(" "),
-                _c("a", { attrs: { href: "", target: "_blank" } }),
-                _vm._v(
-                  "\n\n              Veillez remplir l'adresse de votre site web\n            "
+            this.association[0].telephone == null
+              ? _c(
+                  "ul",
+                  { staticClass: "list-group list-group-flush text-left" },
+                  [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v("Veillez remplir Votre adresse")
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _c("b"),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "", target: "_blank" } }),
+                      _vm._v(
+                        "\n\n                            Veillez remplir l'adresse de votre site web\n                        "
+                      )
+                    ])
+                  ]
                 )
-              ])
-            ]),
+              : _c(
+                  "ul",
+                  { staticClass: "list-group list-group-flush text-left" },
+                  [
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _c("b"),
+                      _vm._v(
+                        "\n\n                            date de creation : " +
+                          _vm._s(this.association[0].dateDeCreation) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _c("b"),
+                      _vm._v(
+                        "\n\n                            Telephone : " +
+                          _vm._s(this.association[0].telephone) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _c("b"),
+                      _vm._v(
+                        "\n\n                            Domaine d'activite : " +
+                          _vm._s(this.association[0].domaineActivites) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _c("b"),
+                      _vm._v(
+                        "\n                            Adresse : " +
+                          _vm._s(this.association[0].adresse) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "list-group-item" },
+                      [
+                        _c("b"),
+                        _vm._v(" "),
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: this.association[0].lien,
+                              target: "_blank"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(this.association[0].lien) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v("Veillez decrire votre association")
+              _vm._v(_vm._s(this.association[0].description))
             ]),
             _vm._v(" "),
             _c(
@@ -42581,7 +42716,11 @@ var render = function() {
                       href: "/association/edit/" + this.association[0].user_id
                     }
                   },
-                  [_vm._v("\n              Mise à jour\n            ")]
+                  [
+                    _vm._v(
+                      "\n                            Mise à jour\n                        "
+                    )
+                  ]
                 )
               ],
               1
@@ -42605,7 +42744,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                Ajoutez une annonce\n              "
+                          "\n                                Ajoutez une annonce\n                            "
                         )
                       ]
                     )
@@ -42623,7 +42762,11 @@ var render = function() {
                         staticClass: "text-dark",
                         attrs: { href: "/xamxam/create" }
                       },
-                      [_vm._v("\n                Xamlel\n              ")]
+                      [
+                        _vm._v(
+                          "\n                                Xamlel\n                            "
+                        )
+                      ]
                     )
                   ],
                   1
@@ -42649,36 +42792,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn",
-        staticStyle: { background: "#3563a9", color: "white" }
-      },
-      [_c("i", { staticClass: "fa fa-book" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "dropdown-menu",
-        attrs: { "aria-labelledby": "dropdownMenuButton" }
-      },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "dropdown-item text-danger delete",
-            attrs: { href: "''", id: "" }
-          },
-          [_vm._v("Delete")]
-        )
-      ]
-    )
+    return _c("p", { staticStyle: { "margin-top": "-20px" } }, [
+      _c("small", { staticClass: "text-muted ml-5" })
+    ])
   },
   function() {
     var _vm = this
@@ -42692,259 +42808,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card my-2" }, [
-      _c("div", { staticClass: "card-body text-center" }, [
-        _c("h3", [_vm._v("Mes Annonces")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "card-text" }, [
-      _c("small", { staticClass: "text-muted" }, [_vm._v("Depuis ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h3", { staticClass: "card-title text-center" }, [_vm._v("Profils")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "btn-group" }, [
-      _c("a", {
-        staticClass: "btn btn-sm diall mr-1",
-        staticStyle: { "background-color": "#3563a9", color: "#fff" },
-        attrs: {
-          id: "",
-          "data-toggle": "modal",
-          "data-target": "#exampleModal"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          staticStyle: {
-            "background-color": "#3563a9",
-            color: "#fff",
-            border: "none"
-          },
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#exampleModaldesc"
-          }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-book",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
-        staticClass: "modal fade",
-        attrs: {
-          id: "exampleModal",
-          tabindex: "-1",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
+        staticClass: "btn btn-round",
+        staticStyle: { background: "#3563a9", color: "white" }
       },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c(
-                "h5",
-                {
-                  staticClass: "modal-title",
-                  attrs: { id: "exampleModalLabel" }
-                },
-                [
-                  _vm._v(
-                    "\n                            Message\n                          "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: {
-                    type: "button",
-                    "data-dismiss": "modal",
-                    "aria-label": "Close"
-                  }
-                },
-                [
-                  _c("span", { attrs: { "aria-hidden": "true" } }, [
-                    _vm._v("×")
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c("input", {
-                attrs: { type: "hidden", name: "receiver_id", value: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("textarea", {
-                  staticClass: "form-control form-control",
-                  attrs: {
-                    name: "message",
-                    id: "textarea",
-                    cols: "30",
-                    rows: "3",
-                    placeholder: "Message...."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [
-                  _vm._v(
-                    "\n                            Close\n                          "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-success", attrs: { type: "submit" } },
-                [
-                  _vm._v(
-                    "\n                            Envoyez\n                          "
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "exampleModaldesc",
-          tabindex: "-1",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c(
-                "h5",
-                {
-                  staticClass: "modal-title",
-                  attrs: { id: "exampleModalLabel" }
-                },
-                [_vm._v("\n                            @"), _c("strong")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: {
-                    type: "button",
-                    "data-dismiss": "modal",
-                    "aria-label": "Close"
-                  }
-                },
-                [
-                  _c("span", { attrs: { "aria-hidden": "true" } }, [
-                    _vm._v("×")
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c(
-                "div",
-                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-                [
-                  _c("h4", { staticClass: "alert-heading" }, [
-                    _vm._v("Desolé !!")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [_c("strong"), _vm._v(" ne s'est pas décrit...")])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-warning mr-2",
-                  attrs: {
-                    "data-toggle": "modal",
-                    "data-target": "asset/img/LM/listeexperiencesetudiant1.docx"
-                  }
-                },
-                [_vm._v("Lettre Motivation")]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-warning margin-d",
-                  attrs: {
-                    "data-toggle": "modal",
-                    "data-target":
-                      "asset/img/CV/evaluationdegredemaitrise1.docx"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                            Cv\n                          "
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v("CV et LM\n                                ")
       ]
     )
   },
@@ -42958,10 +42830,10 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-control",
             attrs: {
-              type: "search",
-              name: "search",
               id: "",
-              placeholder: "Recherche Profiles"
+              name: "search",
+              placeholder: "Recherche Profiles",
+              type: "search"
             }
           })
         ]),
@@ -42974,7 +42846,11 @@ var staticRenderFns = [
               staticStyle: { "background-color": "#3563a9", color: "#fff" },
               attrs: { type: "submit" }
             },
-            [_vm._v("\n                Recherche\n              ")]
+            [
+              _vm._v(
+                "\n                                Recherche\n                            "
+              )
+            ]
           )
         ])
       ])
@@ -42997,7 +42873,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "list-group-item" }, [
       _c("b"),
       _vm._v(
-        "\n\n              Veillez remplir votre numero de telephone\n            "
+        "\n\n                            Veillez remplir votre numero de telephone\n                        "
       )
     ])
   },
@@ -43008,7 +42884,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "list-group-item" }, [
       _c("b"),
       _vm._v(
-        "\n\n              Veillez remplir votre domaine d'activite\n            "
+        "\n\n                            Veillez remplir votre domaine d'activite\n                        "
       )
     ])
   }
@@ -43059,8 +42935,8 @@ var render = function() {
                         attrs: {
                           src: "/uploads/avatar/" + this.user.avatar,
                           alt: "image",
-                          width: "50",
-                          height: "25"
+                          height: "25",
+                          width: "50"
                         }
                       })
                     : _c("img", {
@@ -43070,10 +42946,10 @@ var render = function() {
                           border: "solid 5px #fff"
                         },
                         attrs: {
-                          src: "/uploads/avatar/avatar.png",
                           alt: "image",
-                          width: "50",
-                          height: "25"
+                          height: "25",
+                          src: "/uploads/avatar/avatar.png",
+                          width: "50"
                         }
                       }),
                   _vm._v(" "),
@@ -43089,7 +42965,7 @@ var render = function() {
                       },
                       attrs: { href: "/Entreprise/editAvatar/" + this.user.id }
                     },
-                    [_vm._v("Mise à jour")]
+                    [_vm._v("Mise à jour\n                        ")]
                   )
                 ],
                 1
@@ -43121,7 +42997,7 @@ var render = function() {
                     _c("strong", [
                       _vm._v(
                         _vm._s(this.etudiant[0].nom) +
-                          "\n                " +
+                          "\n                                " +
                           _vm._s(this.etudiant[0].prenom)
                       )
                     ])
@@ -43129,13 +43005,16 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("E-mail: ")]),
-                    _vm._v(_vm._s(this.user.email) + "\n            ")
+                    _vm._v(
+                      _vm._s(this.user.email) + "\n                        "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Phone: ")]),
                     _vm._v(
-                      _vm._s(this.etudiant[0].telephone) + "\n            "
+                      _vm._s(this.etudiant[0].telephone) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43146,7 +43025,8 @@ var render = function() {
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Bio: ")]),
                     _vm._v(
-                      _vm._s(this.etudiant[0].description) + "\n            "
+                      _vm._s(this.etudiant[0].description) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43168,7 +43048,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                Mise à jour\n              "
+                            "\n                                Mise à jour\n                            "
                           )
                         ]
                       )
@@ -43205,25 +43085,32 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("E-mail: ")]),
-                    _vm._v(_vm._s(this.user.email) + "\n            ")
+                    _vm._v(
+                      _vm._s(this.user.email) + "\n                        "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Lien: ")]),
-                    _vm._v(_vm._s(this.entreprise[0].lien) + "\n            ")
+                    _vm._v(
+                      _vm._s(this.entreprise[0].lien) +
+                        "\n                        "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Adresse: ")]),
                     _vm._v(
-                      _vm._s(this.entreprise[0].adresse) + "\n            "
+                      _vm._s(this.entreprise[0].adresse) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Phone: ")]),
                     _vm._v(
-                      _vm._s(this.entreprise[0].telephone) + "\n            "
+                      _vm._s(this.entreprise[0].telephone) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43231,14 +43118,15 @@ var render = function() {
                     _c("strong", [_vm._v("Domaine: ")]),
                     _vm._v(
                       _vm._s(this.entreprise[0].domaineActivites) +
-                        "\n            "
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Description: ")]),
                     _vm._v(
-                      _vm._s(this.entreprise[0].description) + "\n            "
+                      _vm._s(this.entreprise[0].description) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43261,7 +43149,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                Mise à jour\n              "
+                            "\n                                Mise à jour\n                            "
                           )
                         ]
                       )
@@ -43285,25 +43173,32 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("E-mail: ")]),
-                    _vm._v(_vm._s(this.user.email) + "\n            ")
+                    _vm._v(
+                      _vm._s(this.user.email) + "\n                        "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Lien: ")]),
-                    _vm._v(_vm._s(this.association[0].lien) + "\n            ")
+                    _vm._v(
+                      _vm._s(this.association[0].lien) +
+                        "\n                        "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Adresse: ")]),
                     _vm._v(
-                      _vm._s(this.association[0].adresse) + "\n            "
+                      _vm._s(this.association[0].adresse) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Phone: ")]),
                     _vm._v(
-                      _vm._s(this.association[0].telephone) + "\n            "
+                      _vm._s(this.association[0].telephone) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43311,14 +43206,15 @@ var render = function() {
                     _c("strong", [_vm._v("Domaine: ")]),
                     _vm._v(
                       _vm._s(this.association[0].domaineActivites) +
-                        "\n            "
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _c("strong", [_vm._v("Description: ")]),
                     _vm._v(
-                      _vm._s(this.association[0].description) + "\n            "
+                      _vm._s(this.association[0].description) +
+                        "\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43341,7 +43237,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                Mise à jour\n              "
+                            "\n                                Mise à jour\n                            "
                           )
                         ]
                       )
@@ -43351,6 +43247,252 @@ var render = function() {
                 ])
               ])
             : _vm._e()
+        ]),
+        _vm._v(" "),
+        this.feusseuls[0] != null
+          ? _c("div", { staticClass: "col-md-5 mt-4" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "card mb-3 mt-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card-header",
+                        staticStyle: { height: "55px", padding: "5px" }
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "rounded-circle border border-warning d-inline",
+                          attrs: {
+                            alt: "user",
+                            height: "40px",
+                            src: "/uploads/avatar/avatar.png",
+                            width: "40px"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "inertia-link",
+                          {
+                            staticClass: "float-right mr-2",
+                            attrs: {
+                              "aria-expanded": "false",
+                              "aria-haspopup": "true",
+                              "data-toggle": "dropdown",
+                              href: "",
+                              id: "dropdownMenuButton",
+                              type: "button"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-ellipsis-h mt-3 text-secondary"
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu",
+                            attrs: { "aria-labelledby": "dropdownMenuButton" }
+                          },
+                          [
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass: "dropdown-item text-danger delete",
+                                attrs: { href: "POST_ETUDIANT" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Delete\n                                    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "#" }
+                              },
+                              [
+                                _vm._v(
+                                  "Signalez\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticStyle: { "margin-top": "-35px" } }),
+                        _vm._v(" "),
+                        _c("small", { staticClass: "text-muted ml-5" }, [
+                          _vm._v(_vm._s(this.feusseuls[0].titre))
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    this.feusseuls[0].extension == "jpeg" ||
+                    this.feusseuls[0].extension == "jpg" ||
+                    this.feusseuls[0].extension == "png"
+                      ? _c("img", {
+                          staticClass: "card-img-top card-infoImg",
+                          attrs: {
+                            src: "uploads/" + this.feusseuls[0].file,
+                            alt: "",
+                            height: "500",
+                            width: "1000"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    this.feusseuls[0].extension == "mp4"
+                      ? _c(
+                          "video",
+                          {
+                            attrs: { controls: "", height: "400", width: "445" }
+                          },
+                          [
+                            _c("source", {
+                              staticClass: "card-img-top card-infoImg",
+                              attrs: {
+                                src:
+                                  "/uploads/videos/" + this.feusseuls[0].file,
+                                type: "video/mp4"
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("truncate")(this.feusseuls[0].contenu, 27)
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted ml-5" }, [
+                        _vm._v(
+                          "\n                                    Nombre de likes : " +
+                            _vm._s(this.feusseuls[0].like) +
+                            "\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "card-footer text-muted text-center" },
+                      [
+                        _c("h6", { staticClass: "card-header" }, [
+                          _vm._v("4 Novembre 2020")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "text-left ml-2" },
+                          [
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass: "float-right mr-2 text-primary",
+                                attrs: {
+                                  href: "/Feusseul/Show/" + this.feusseuls[0].id
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Voir plus...\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _c("div", { staticClass: "col-md-5 mt-4" }, [_vm._m(2)]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3 mt-5" }, [
+          _c(
+            "div",
+            { staticClass: "card ml-2 mr-4 mb-3" },
+            _vm._l(_vm.annonces, function(annonce) {
+              return _c(
+                "div",
+                { key: annonce.id, staticClass: "row no-gutters" },
+                [
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c("img", {
+                      staticClass: "card-img img-fluid pimg",
+                      attrs: {
+                        src: "uploads/" + annonce.image,
+                        alt: "",
+                        height: "300",
+                        width: "100"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c(
+                      "div",
+                      { staticClass: "card-body" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            staticClass: "text-dark",
+                            attrs: { href: "/Annonce/" + annonce.id }
+                          },
+                          [
+                            _c("h5", { staticClass: "card-title" }, [
+                              _vm._v(_vm._s(annonce.titre))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }),
+                        _vm._v(" "),
+                        _c("h6", { staticClass: "card-text" }, [
+                          _c("small", { staticClass: "text-muted" }, [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(
+                                  _vm._f("truncate")(annonce.description, 27)
+                                ) +
+                                "\n                                    "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            _vm._s(_vm._f("truncate")(annonce.contenu, 27))
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              )
+            }),
+            0
+          )
         ])
       ])
     ])
@@ -43373,6 +43515,20 @@ var staticRenderFns = [
     return _c("p", { staticClass: "card-text" }, [
       _c("strong", [_vm._v("Genre: ")]),
       _vm._v("Homme")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card mb-3 mt-4" }, [
+          _vm._v(
+            "\n                            Rien a affcher\n                        "
+          )
+        ])
+      ])
     ])
   }
 ]
@@ -55605,11 +55761,11 @@ module.exports = function(module) {
 var map = {
 	"./Admin/Dashboard": [
 		"./resources/js/Pages/Admin/Dashboard.vue",
-		9
+		10
 	],
 	"./Admin/Dashboard.vue": [
 		"./resources/js/Pages/Admin/Dashboard.vue",
-		9
+		10
 	],
 	"./Admin/Index": [
 		"./resources/js/Pages/Admin/Index.vue",
@@ -55621,19 +55777,19 @@ var map = {
 	],
 	"./Annonces/Create": [
 		"./resources/js/Pages/Annonces/Create.vue",
-		10
+		11
 	],
 	"./Annonces/Create.vue": [
 		"./resources/js/Pages/Annonces/Create.vue",
-		10
+		11
 	],
 	"./Annonces/Edit": [
 		"./resources/js/Pages/Annonces/Edit.vue",
-		11
+		12
 	],
 	"./Annonces/Edit.vue": [
 		"./resources/js/Pages/Annonces/Edit.vue",
-		11
+		12
 	],
 	"./Annonces/Index": [
 		"./resources/js/Pages/Annonces/Index.vue",
@@ -55677,11 +55833,11 @@ var map = {
 	],
 	"./Annonces/User/Profile": [
 		"./resources/js/Pages/Annonces/User/Profile.vue",
-		19
+		20
 	],
 	"./Annonces/User/Profile.vue": [
 		"./resources/js/Pages/Annonces/User/Profile.vue",
-		19
+		20
 	],
 	"./Association/Dashboard": [
 		"./resources/js/Pages/Association/Dashboard.vue"
@@ -55691,11 +55847,11 @@ var map = {
 	],
 	"./Association/Edit": [
 		"./resources/js/Pages/Association/Edit.vue",
-		0
+		1
 	],
 	"./Association/Edit.vue": [
 		"./resources/js/Pages/Association/Edit.vue",
-		0
+		1
 	],
 	"./Association/EditAvatar": [
 		"./resources/js/Pages/Association/EditAvatar.vue",
@@ -55715,19 +55871,19 @@ var map = {
 	],
 	"./Entreprise/Annonces/Create": [
 		"./resources/js/Pages/Entreprise/Annonces/Create.vue",
-		12
+		13
 	],
 	"./Entreprise/Annonces/Create.vue": [
 		"./resources/js/Pages/Entreprise/Annonces/Create.vue",
-		12
+		13
 	],
 	"./Entreprise/Annonces/Edit": [
 		"./resources/js/Pages/Entreprise/Annonces/Edit.vue",
-		13
+		14
 	],
 	"./Entreprise/Annonces/Edit.vue": [
 		"./resources/js/Pages/Entreprise/Annonces/Edit.vue",
-		13
+		14
 	],
 	"./Entreprise/Annonces/Index": [
 		"./resources/js/Pages/Entreprise/Annonces/Index.vue",
@@ -55763,11 +55919,11 @@ var map = {
 	],
 	"./Entreprise/Edit": [
 		"./resources/js/Pages/Entreprise/Edit.vue",
-		1
+		0
 	],
 	"./Entreprise/Edit.vue": [
 		"./resources/js/Pages/Entreprise/Edit.vue",
-		1
+		0
 	],
 	"./Entreprise/EditAvatar": [
 		"./resources/js/Pages/Entreprise/EditAvatar.vue",
@@ -55779,11 +55935,11 @@ var map = {
 	],
 	"./Etat/Dashboard": [
 		"./resources/js/Pages/Etat/Dashboard.vue",
-		14
+		15
 	],
 	"./Etat/Dashboard.vue": [
 		"./resources/js/Pages/Etat/Dashboard.vue",
-		14
+		15
 	],
 	"./Etat/Index": [
 		"./resources/js/Pages/Etat/Index.vue",
@@ -55795,43 +55951,43 @@ var map = {
 	],
 	"./Etudiant/Dashboard": [
 		"./resources/js/Pages/Etudiant/Dashboard.vue",
-		20
+		5
 	],
 	"./Etudiant/Dashboard.vue": [
 		"./resources/js/Pages/Etudiant/Dashboard.vue",
-		20
+		5
 	],
 	"./Etudiant/Edit": [
 		"./resources/js/Pages/Etudiant/Edit.vue",
-		5
+		6
 	],
 	"./Etudiant/Edit.vue": [
 		"./resources/js/Pages/Etudiant/Edit.vue",
-		5
+		6
 	],
 	"./Etudiant/EditAvatar": [
 		"./resources/js/Pages/Etudiant/EditAvatar.vue",
-		6
+		7
 	],
 	"./Etudiant/EditAvatar.vue": [
 		"./resources/js/Pages/Etudiant/EditAvatar.vue",
-		6
+		7
 	],
 	"./Etudiant/File/EditFile": [
 		"./resources/js/Pages/Etudiant/File/EditFile.vue",
-		7
+		8
 	],
 	"./Etudiant/File/EditFile.vue": [
 		"./resources/js/Pages/Etudiant/File/EditFile.vue",
-		7
+		8
 	],
 	"./Etudiant/File/UploadFile": [
 		"./resources/js/Pages/Etudiant/File/UploadFile.vue",
-		8
+		9
 	],
 	"./Etudiant/File/UploadFile.vue": [
 		"./resources/js/Pages/Etudiant/File/UploadFile.vue",
-		8
+		9
 	],
 	"./Etudiant/Index": [
 		"./resources/js/Pages/Etudiant/Index.vue",
@@ -55843,19 +55999,19 @@ var map = {
 	],
 	"./Feusseul/Create": [
 		"./resources/js/Pages/Feusseul/Create.vue",
-		15
+		16
 	],
 	"./Feusseul/Create.vue": [
 		"./resources/js/Pages/Feusseul/Create.vue",
-		15
+		16
 	],
 	"./Feusseul/Edit": [
 		"./resources/js/Pages/Feusseul/Edit.vue",
-		16
+		17
 	],
 	"./Feusseul/Edit.vue": [
 		"./resources/js/Pages/Feusseul/Edit.vue",
-		16
+		17
 	],
 	"./Feusseul/Index": [
 		"./resources/js/Pages/Feusseul/Index.vue",
@@ -55881,11 +56037,11 @@ var map = {
 	],
 	"./Message/Create": [
 		"./resources/js/Pages/Message/Create.vue",
-		41
+		40
 	],
 	"./Message/Create.vue": [
 		"./resources/js/Pages/Message/Create.vue",
-		41
+		40
 	],
 	"./Message/Index": [
 		"./resources/js/Pages/Message/Index.vue",
@@ -55905,43 +56061,43 @@ var map = {
 	],
 	"./Xamxam/Display": [
 		"./resources/js/Pages/Xamxam/Display.vue",
-		38
+		37
 	],
 	"./Xamxam/Display.vue": [
 		"./resources/js/Pages/Xamxam/Display.vue",
-		38
+		37
 	],
 	"./Xamxam/DisplayAll": [
 		"./resources/js/Pages/Xamxam/DisplayAll.vue",
-		39
+		38
 	],
 	"./Xamxam/DisplayAll.vue": [
 		"./resources/js/Pages/Xamxam/DisplayAll.vue",
-		39
+		38
 	],
 	"./Xamxam/Edit": [
 		"./resources/js/Pages/Xamxam/Edit.vue",
-		17
+		18
 	],
 	"./Xamxam/Edit.vue": [
 		"./resources/js/Pages/Xamxam/Edit.vue",
-		17
+		18
 	],
 	"./Xamxam/Index": [
 		"./resources/js/Pages/Xamxam/Index.vue",
-		18
+		19
 	],
 	"./Xamxam/Index.vue": [
 		"./resources/js/Pages/Xamxam/Index.vue",
-		18
+		19
 	],
 	"./Xamxam/Show": [
 		"./resources/js/Pages/Xamxam/Show.vue",
-		40
+		39
 	],
 	"./Xamxam/Show.vue": [
 		"./resources/js/Pages/Xamxam/Show.vue",
-		40
+		39
 	]
 };
 function webpackAsyncContext(req) {
@@ -56257,8 +56413,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/fessef-project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/fessef-project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/www/fessef-project/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/www/fessef-project/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

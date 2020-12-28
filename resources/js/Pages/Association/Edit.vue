@@ -2,90 +2,151 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img v-if="this.user[0].avatar != null" :src="'/uploads/avatar/'+this.user[0].avatar" alt="" style="width:100%">
-                        <img v-else src="/uploads/avatar/avatar.png" alt="" style="width:100%">
-                        <h1>{{ this.association[0].NomAssociation }}</h1>
-                        <strong>secteur</strong>
-                        <p class="title">{{this.association[0].domaineActivites}}</p>
-                        <inertia-link :href="this.association[0].lien">{{this.association[0].lien}}</inertia-link>
-                        <strong>adresse</strong>
-                        <p>{{this.association[0].adresse}}</p>
-                        <div style="margin: 24px 0;">
+                <div class="col-md-12 m-auto">
+                    <div class="card shadow-sm mb-4" style="height: 90px">
+                        <div class="ml-4">
+                            <img
+                                    :src="'/uploads/avatar/' + this.user[0].avatar"
+                                    alt="image"
+                                    class="img-thumbnail shadow-sm text-left ml-4"
+                                    height="25"
+                                    style="margin-top: 40px; border: solid 5px #fff"
+                                    v-if="this.user[0].avatar != null"
+                                    width="50"
+                            />
 
+                            <img
+                                    alt="image"
+                                    class="img-thumbnail shadow-sm text-left ml-4"
+                                    height="25"
+                                    src="/uploads/avatar/avatar.png"
+                                    style="margin-top: 40px; border: solid 5px #fff"
+                                    v-else
+                                    width="50"
+                            />
+                            <inertia-link
+                                    :href="'/Association/editAvatar/' + this.association[0].user_id"
+                                    class="btn btn-sm mt-4"
+                                    style="
+                  margin-right: 50px;
+                  float: right;
+                  background-color: #3563a9;
+                  color: #fff;
+                "
+                            >Mise à jour
+                            </inertia-link
+                            >
                         </div>
-                        <p>
-                            <inertia-link :href="'/association/edit/'+this.association[0].user_id">Modifier profil
-                            </inertia-link>
-                        </p>
+
+                        <div class="text-center ml-4"></div>
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-4 mt-4">
+                    <div class="card mr-2 ml-4 mb-3 mt-4 shadow-sm">
+                        <h6 class="card-header" style="color: blue">PROFIL INFOS</h6>
+                        <div class="card-body mt-4">
+                            <h5 class="card-title"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+
+                            <p class="card-text">
+                                Nom de l'association :
+                                <strong
+                                >
+                                    {{ this.association[0].NomAssociation }}</strong
+                                >
+                            </p>
+                            <p class="card-text">
+                                <strong>E-mail: </strong>{{ this.user[0].email }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Phone: </strong>{{ this.association[0].telephone }}
+                            </p>
+                            <p class="card-text"><strong>Date de creation: </strong>{{
+                                this.association[0].dateDeCreation
+                                }}</p>
+                            <p class="card-text">
+                                <strong>description: </strong>{{ this.association[0].description }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Domaine d'activite: </strong>{{ this.association[0].domaineActivites }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Adresse web : </strong>{{ this.association[0].lien }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mt-5">
                     <form @submit.prevent="handleSubmit" class="mb-5">
                         <div class="form-group">
-                            <file-input label="avatar *" v-model="form.avatar"/>
-                        </div>
-                        <div class="form-group">
                             <input
-                                :placeholder="this.association[0].NomAssociation"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.NomAssociation"
+                                    class="form-control"
+                                    placeholder="Nom association"
+                                    required
+                                    type="text"
+                                    v-model="form.NomAssociation"
                             />
                         </div>
                         <div class="form-group">
                             <input
-                                :placeholder="this.association[0].adresse"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.adresse"
+                                    class="form-control"
+                                    placeholder="adresse"
+                                    required
+                                    type="text"
+                                    v-model="form.adresse"
                             />
                         </div>
                         <div class="form-group">
                             <input
-                                :placeholder="this.association[0].telephone"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.telephone"
+                                    class="form-control"
+                                    placeholder="telephone"
+                                    required
+                                    type="text"
+                                    v-model="form.telephone"
                             />
                         </div>
                         <div class="form-group">
                             <input
-                                :placeholder="this.association[0].lien"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.lien"
+                                    class="form-control"
+                                    placeholder="lien web"
+                                    required
+                                    type="text"
+                                    v-model="form.lien"
                             />
                         </div>
                         <div class="form-group">
                             <input
-                                :placeholder="this.association[0].NomAssociation"
-                                class="form-control"
-                                required
-                                type="text"
-                                v-model="form.domaineActivites"
+                                    class="form-control"
+                                    placeholder="domaine d'activite"
+                                    required
+                                    type="text"
+                                    v-model="form.domaineActivites"
                             />
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input autofocus class="form-control" id="dateDeNaissance"
+                                       name="dateDeNaissance"
+                                       required
+                                       type="date"
+                                       v-model="form.dateDeCreation">
+                            </div>
+                        </div>
                         <div class="form-group">
-                    <textarea
+                <textarea
                         class="form-control col-md-12"
-                        placeholder=""
+                        placeholder="Description"
                         required
                         rows="5"
                         v-model="form.description"
-                    >
-
-                    </textarea>
+                >
+                </textarea>
                         </div>
                         <button
-                            class="btn btn-round btn-outline-primary col-md-5 offset-4"
-                            type="submit"
+                                class="btn btn-round btn-outline-primary col-md-5 offset-4"
+                                type="submit"
                         >
                             Submit
                         </button>
@@ -119,7 +180,7 @@
                     domaineActivites: this.association[0].domaineActivites,
                     description: this.association[0].description,
                     avatar: null,
-                    // email: this.user[0].email,
+                    dateDeCreation: this.association[0].dateDeCreation,
                     // password: this.user[0].password,
                 }
             }
@@ -134,7 +195,7 @@
                 data.append("domaineActivites", this.form.domaineActivites);
                 data.append("description", this.form.description);
                 data.append("avatar", this.form.avatar || "");
-                // data.append("email", this.form.email);
+                data.append("dateDeCreation", this.form.dateDeCreation);
 
                 this.$inertia.post('/association/update/' + this.association[0].user_id, data, {
                     onSuccess: () => {
@@ -154,45 +215,24 @@
 </script>
 
 <style scoped>
-    h1 {
-
-        margin-left: 20px;
+    body {
+        background-color: lightgrey;
+        padding: 0;
+        margin: 0;
     }
 
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        margin-left: 20px;
-        text-align: center;
-        font-family: arial, cursive;
+    .col-mb-3 {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        min-height: 100vh;
     }
 
-    .title {
-        color: grey;
-        font-size: 18px;
+    h3 {
+        text-align: justify;
     }
 
-    button {
-        border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: #000;
-        text-align: center;
-        cursor: pointer;
-        width: 100%;
-        font-size: 18px;
+    .shadow {
+        display: flex;
     }
-
-    a {
-        text-decoration: none;
-        font-size: 22px;
-        color: black;
-    }
-
-    button:hover, a:hover {
-        opacity: 0.7;
-    }
-
 </style>
