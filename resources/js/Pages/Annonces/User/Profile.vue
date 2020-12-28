@@ -2,61 +2,156 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-7">
-          <div class="card ml-5">
-            <img
-              v-if="this.user[0].user.avatar != null"
-              :src="'/uploads/avatar/' + this.user[0].user.avatar"
-              alt=""
-            />
-            <img v-else src="/uploads/avatar/avatar.png" alt="" />
-            <h1>{{ this.user[0].nom }} {{ this.user[0].prenom }}</h1>
-            <strong>Adresse</strong>
-            <p>{{ this.user[0].adresse }}</p>
-            <strong>Telephone</strong>
-            <p>{{ this.user[0].telephone }}</p>
-            <strong>Competences</strong>
-            <p>{{ this.user[0].competences }}</p>
-            <strong>Description</strong>
-            <p>{{ this.user[0].description }}</p>
-            <div style="margin: 24px 0">
-              <button
-                class="btn btn-info btn-round mb-4"
-                data-target="#modalLoginForm"
-                data-toggle="modal"
+        <div class="col-md-4 mt-4">
+          <div class="card mr-2 ml-4 mb-3 mt-4 shadow-sm">
+            <h6 class="card-header" style="color: blue">PROFIL INFOS</h6>
+            <div class="card-body mt-1">
+              <img
+                v-if="this.user[0].user.avatar != null"
+                :src="'/uploads/avatar/' + this.user[0].user.avatar"
+                alt=""
+                height="190"
+                width="190"
+              />
+              <p class="card-text">
+                Prénom et nom :
+                <strong
+                  >{{ this.user[0].nom }} {{ this.user[0].prenom }}</strong
+                >
+              </p>
+              <p class="card-text">
+                <strong>E-mail: </strong>{{ this.user[0].user.email }}
+              </p>
+              <p class="card-text">
+                <strong>Phone: </strong>{{ this.user[0].telephone }}
+              </p>
+              <p class="card-text">
+                <strong>Date de naissance: </strong
+                >{{ this.user[0].dateDeNaissance }}
+              </p>
+              <p class="card-text">
+                <strong>Genre: </strong>{{ this.user[0].genre }}
+              </p>
+              <p class="card-text">
+                <strong>Bio: </strong>{{ this.user[0].description }}
+              </p>
+            </div>
+            <h6 class="card-header" style="color: blue">COMPETENCES</h6>
+            <p class="text-center">{{ this.user[0].competences }}</p>
+            <button
+              class="btn btn-round mb-5"
+              style="background: #3563a9; color: white"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              <i class="fa fa-envelope"></i> Contacter moi
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-8 mt-5">
+          <ul class="nav nav-tabs bg-white" id="pills-tab" role="tablist">
+            <li class="offset-4 nav-item" role="presentation">
+              <a
+                :href="'#pills-cv'"
+                aria-controls="pills-cv"
+                aria-selected="false"
+                class="nav-link text-primary"
+                data-toggle="pill"
+                id="pills-cv-tab"
+                role="tab"
               >
-                Contactez moi
-              </button>
+                <svg
+                  class="bi bi-book"
+                  fill="currentColor"
+                  height="2em"
+                  viewBox="0 0 16 16"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                :href="'#pills-lm'"
+                aria-controls="pills-lm"
+                aria-selected="false"
+                class="nav-link text-primary"
+                data-toggle="pill"
+                id="pills-lm-tab"
+                role="tab"
+              >
+                <svg
+                  class="bi bi-bookmark-check"
+                  fill="currentColor"
+                  height="2em"
+                  viewBox="0 0 16 16"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <!--Debut  affichage cv -->
+            <div
+              aria-labelledby="pills-cv-tab"
+              class="tab-pane fade show active"
+              id="pills-cv"
+              role="tabpanel"
+            >
+              <span class="alert alert-danger" v-if="this.user[0].CV == null">
+                Oops aucun cv
+              </span>
+              <embed
+                v-else
+                :src="'/uploads/files/CV/' + this.user[0].CV"
+                width="729"
+                height="500"
+                type="application/pdf"
+              />
+            </div>
+            <!--Debut  affichage lm -->
+            <div
+              aria-labelledby="pills-lm-tab"
+              class="tab-pane fade show active"
+              id="pills-lm"
+              role="tabpanel"
+            >
+              <span class="alert alert-danger" v-if="this.user[0].LM == null">
+                Oops aucune lm
+              </span>
+              <embed
+                v-else
+                :src="'/uploads/files/LM/' + this.user[0].LM"
+                width="729"
+                height="500"
+                type="application/pdf"
+              />
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <p v-if="this.files[0] == undefined" class="m-5 alert alert-danger">
-            Oops aucun CV ou LM disponible
-          </p>
-          <div v-else>
-              <h2 class="text-center">Curriculum vitae</h2>
-            <embed
-              :src="'/uploads/files/CV/' + this.files[0].CV"
-              width="500"
-              height="500"
-              type="application/pdf"
-            />
-            <h2 class="text-center">Lettre de motivation</h2>
-            <embed
-              :src="'/uploads/files/LM/' + this.files[0].LM"
-              width="500"
-              height="500"
-              type="application/pdf"
-            />
-          </div>
-        </div>
+
         <form @submit.prevent="handleSubmit">
           <div
             aria-hidden="true"
             aria-labelledby="myModalLabel"
             class="modal fade"
-            id="modalLoginForm"
+            id="exampleModal"
             role="dialog"
             tabindex="-1"
           >

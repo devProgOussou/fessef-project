@@ -175,23 +175,16 @@ class EtudiantController extends Controller
 
         $interesses = Interesse::where('user_id', Auth::user()->id)->first();
 
-        if ($request->hasFile('CV')) {
+
             $fileCV = $request->file('CV');
             $extension = $fileCV->getClientOriginalExtension();
             $filenameCV = time() . '.' . $extension;
             $fileCV->move('uploads/files/CV', $filenameCV);
-        } else {
-            return back();
-        }
 
-        if ($request->hasFile('LM')) {
             $fileLM = $request->file('LM');
             $extension = $fileLM->getClientOriginalExtension();
             $filenameLM = time() . '.' . $extension;
             $fileLM->move('uploads/files/LM', $filenameLM);
-        } else {
-            return back();
-        }
 
         Etudiant::where('user_id', $id)->update([
             'nom' => $request->input('nom'),
@@ -209,7 +202,7 @@ class EtudiantController extends Controller
         $prenom = $request->input('prenom');
         $nom = $request->input('nom');
         $nomComplet = $prenom.' '.$nom;
-        if ($interesses !== null) {
+        if ($interesses != null) {
             Interesse::where('user_id', Auth::user()->id)->update([
                 'user_name' => $nomComplet,
                 'CV' => $filenameCV,

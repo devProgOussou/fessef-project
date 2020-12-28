@@ -4377,10 +4377,168 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dashboard",
   components: {},
-  props: ['association', 'user', 'xamxams', 'annonces', 'annonceAll', 'interesses']
+  props: ["association", "user", "xamxams", "annonces", "annonceAll", "interesses"]
 });
 
 /***/ }),
@@ -42009,17 +42167,17 @@ var render = function() {
             _c("div", { staticClass: "card-body body-card" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v(
-                  "\n                            " +
+                  "\n              " +
                     _vm._s(this.association[0].NomAssociation) +
-                    "\n                        "
+                    "\n            "
                 )
               ]),
               _vm._v(" "),
               _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
                 _vm._v(
-                  "\n                            " +
+                  "\n              " +
                     _vm._s(this.user[0].email) +
-                    "\n                        "
+                    "\n            "
                 )
               ])
             ]),
@@ -42283,11 +42441,7 @@ var render = function() {
                                     href: "/Annonce/Delete/" + annonce.id
                                   }
                                 },
-                                [
-                                  _vm._v(
-                                    "Delete\n                                    "
-                                  )
-                                ]
+                                [_vm._v("Delete\n                  ")]
                               )
                             ],
                             1
@@ -42415,11 +42569,7 @@ var render = function() {
                                     href: "/Annonce/Delete/" + annonce.id
                                   }
                                 },
-                                [
-                                  _vm._v(
-                                    "Delete\n                                    "
-                                  )
-                                ]
+                                [_vm._v("Delete\n                  ")]
                               )
                             ],
                             1
@@ -42520,11 +42670,7 @@ var render = function() {
                                     href: "/Annonce/Delete/" + annonce.id
                                   }
                                 },
-                                [
-                                  _vm._v(
-                                    "Delete\n                                    "
-                                  )
-                                ]
+                                [_vm._v("Delete\n                  ")]
                               )
                             ],
                             1
@@ -42534,62 +42680,89 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-body" }, [
-                        _c("img", {
-                          staticClass: "card-img-top",
-                          attrs: {
-                            src: "uploads/" + annonce.annonce_image,
-                            alt: "...",
-                            height: "200",
-                            width: "1000"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("h5", { staticClass: "text-center mt-2" }, [
-                          _vm._v("Titre : " + _vm._s(annonce.annonce_titre))
-                        ]),
-                        _vm._v(" "),
-                        annonce.avatar != null
-                          ? _c("img", {
-                              staticClass: "rounded-circle img-thumbnail",
-                              attrs: {
-                                src: "uploads/avatar/" + annonce.avatar,
-                                alt: "",
-                                height: "40",
-                                width: "40"
-                              }
-                            })
-                          : _c("img", {
-                              staticClass: "rounded-circle img-thumbnail",
-                              attrs: {
-                                src: "uploads/avatar/avatar.png",
-                                alt: "",
-                                height: "40",
-                                width: "40"
-                              }
-                            }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-round",
-                            staticStyle: {
-                              background: "#3563a9",
-                              color: "white"
+                      _c(
+                        "div",
+                        { staticClass: "card-body" },
+                        [
+                          _c("img", {
+                            staticClass: "card-img-top",
+                            attrs: {
+                              src: "uploads/" + annonce.annonce_image,
+                              alt: "...",
+                              height: "200",
+                              width: "1000"
                             }
-                          },
-                          [
-                            _c("i", { staticClass: "fa fa-book" }),
+                          }),
+                          _vm._v(" "),
+                          _c("h5", { staticClass: "text-center mt-2" }, [
                             _vm._v(
-                              " " +
-                                _vm._s(annonce.user_name) +
-                                "\n                                "
+                              "\n                  Titre : " +
+                                _vm._s(annonce.annonce_titre) +
+                                "\n                "
                             )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(3, true)
-                      ])
+                          ]),
+                          _vm._v(" "),
+                          annonce.avatar != null
+                            ? _c("img", {
+                                staticClass: "rounded-circle img-thumbnail",
+                                attrs: {
+                                  src: "uploads/avatar/" + annonce.avatar,
+                                  alt: "",
+                                  height: "40",
+                                  width: "40"
+                                }
+                              })
+                            : _c("img", {
+                                staticClass: "rounded-circle img-thumbnail",
+                                attrs: {
+                                  src: "uploads/avatar/avatar.png",
+                                  alt: "",
+                                  height: "40",
+                                  width: "40"
+                                }
+                              }),
+                          _vm._v(" "),
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "btn btn-round",
+                              staticStyle: {
+                                background: "#3563a9",
+                                color: "white"
+                              },
+                              attrs: {
+                                href: "/User/Profile/" + annonce.user_id
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(annonce.user_name) +
+                                  "\n                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "btn btn-round",
+                              staticStyle: {
+                                background: "#3563a9",
+                                color: "white"
+                              },
+                              attrs: {
+                                href: "/User/Profile/" + annonce.user_id
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fa fa-user" }),
+                              _vm._v(" Voir le profil\n                ")
+                            ]
+                          )
+                        ],
+                        1
+                      )
                     ]
                   )
                 }),
@@ -42600,19 +42773,19 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "card mb-1" }, [
-            _vm._m(5),
+            _vm._m(4),
             _vm._v(" "),
             this.association[0].telephone == null
               ? _c(
                   "ul",
                   { staticClass: "list-group list-group-flush text-left" },
                   [
-                    _vm._m(6),
+                    _vm._m(5),
                     _vm._v(" "),
-                    _vm._m(7),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _vm._v("Veillez remplir Votre adresse")
@@ -42623,7 +42796,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("a", { attrs: { href: "", target: "_blank" } }),
                       _vm._v(
-                        "\n\n                            Veillez remplir l'adresse de votre site web\n                        "
+                        "\n\n              Veillez remplir l'adresse de votre site web\n            "
                       )
                     ])
                   ]
@@ -42635,36 +42808,36 @@ var render = function() {
                     _c("li", { staticClass: "list-group-item" }, [
                       _c("b"),
                       _vm._v(
-                        "\n\n                            date de creation : " +
+                        "\n\n              date de creation : " +
                           _vm._s(this.association[0].dateDeCreation) +
-                          "\n                        "
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _c("b"),
                       _vm._v(
-                        "\n\n                            Telephone : " +
+                        "\n\n              Telephone : " +
                           _vm._s(this.association[0].telephone) +
-                          "\n                        "
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _c("b"),
                       _vm._v(
-                        "\n\n                            Domaine d'activite : " +
+                        "\n\n              Domaine d'activite : " +
                           _vm._s(this.association[0].domaineActivites) +
-                          "\n                        "
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _c("b"),
                       _vm._v(
-                        "\n                            Adresse : " +
+                        "\n              Adresse : " +
                           _vm._s(this.association[0].adresse) +
-                          "\n                        "
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
@@ -42684,9 +42857,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                " +
+                              "\n                " +
                                 _vm._s(this.association[0].lien) +
-                                "\n                            "
+                                "\n              "
                             )
                           ]
                         )
@@ -42716,11 +42889,7 @@ var render = function() {
                       href: "/association/edit/" + this.association[0].user_id
                     }
                   },
-                  [
-                    _vm._v(
-                      "\n                            Mise à jour\n                        "
-                    )
-                  ]
+                  [_vm._v("\n              Mise à jour\n            ")]
                 )
               ],
               1
@@ -42744,7 +42913,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                                Ajoutez une annonce\n                            "
+                          "\n                Ajoutez une annonce\n              "
                         )
                       ]
                     )
@@ -42762,11 +42931,7 @@ var render = function() {
                         staticClass: "text-dark",
                         attrs: { href: "/xamxam/create" }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Xamlel\n                            "
-                        )
-                      ]
+                      [_vm._v("\n                Xamlel\n              ")]
                     )
                   ],
                   1
@@ -42808,22 +42973,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-round",
-        staticStyle: { background: "#3563a9", color: "white" }
-      },
-      [
-        _c("i", { staticClass: "fa fa-book" }),
-        _vm._v("CV et LM\n                                ")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("form", { staticClass: "form-inline my-3" }, [
       _c("div", { staticClass: "form-row" }, [
         _c("div", { staticClass: "form-group col-md-8" }, [
@@ -42846,11 +42995,7 @@ var staticRenderFns = [
               staticStyle: { "background-color": "#3563a9", color: "#fff" },
               attrs: { type: "submit" }
             },
-            [
-              _vm._v(
-                "\n                                Recherche\n                            "
-              )
-            ]
+            [_vm._v("\n                Recherche\n              ")]
           )
         ])
       ])
@@ -42873,7 +43018,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "list-group-item" }, [
       _c("b"),
       _vm._v(
-        "\n\n                            Veillez remplir votre numero de telephone\n                        "
+        "\n\n              Veillez remplir votre numero de telephone\n            "
       )
     ])
   },
@@ -42884,7 +43029,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "list-group-item" }, [
       _c("b"),
       _vm._v(
-        "\n\n                            Veillez remplir votre domaine d'activite\n                        "
+        "\n\n              Veillez remplir votre domaine d'activite\n            "
       )
     ])
   }
@@ -56413,8 +56558,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/www/fessef-project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/www/fessef-project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/fessef-project/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/fessef-project/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

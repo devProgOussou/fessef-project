@@ -59,10 +59,10 @@ class HomeController extends Controller
             $user = User::where('id', Auth::user()->id)->get();
             $xamxams = Xamxam::paginate(5)->where('user_id', Auth::user()->id);
             $annonces = Annonce::with('user')->with('interesses')->paginate(15)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
-            $interesses = Interesse::paginate(15)->where('post_id', Auth::user()->id)->sortByDesc('created_at');
-            $annonceAll = Annonce::with('user')->get();
+            $interesses = Interesse::paginate(15)->where('post_id', Auth::user()->id);
+            $annonceAll = Annonce::with('user')->where('user_id','!=', Auth::user()->id)->get();
             $messages = Message::where('user_id', Auth::user()->id)->get();
-//            dd($interesses);
+
             return Inertia::render('Association/Dashboard', [
                 'xamxams' => $xamxams,
                 'annonceAll' => $annonceAll,

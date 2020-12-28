@@ -221,7 +221,7 @@ class AnnonceController extends Controller
     {
         $user = Etudiant::with('user')->where('user_id', $id)->get();
         $files = UploadingFile::where('user_id', $id)->get();
-
+// dd($user);
         return Inertia::render('Annonces/User/Profile', [
             'user' => $user,
             'files' => $files
