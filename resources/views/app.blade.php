@@ -87,7 +87,7 @@
                             @endphp
                             <a class="nav-link text-white" href="/Messages">
                                 <i class="fas fa-envelope"></i>
-                                Message({{ $messages }})
+                                Message <span class="badge badge-primary">{{ $messages }}</span>
                             </a>
                         </li>
 

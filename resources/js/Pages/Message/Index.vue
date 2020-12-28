@@ -38,7 +38,6 @@
           </div>
         </div>
       </div>
-      {{this.messageReceive}}
     </div>
   </div>
 </template>

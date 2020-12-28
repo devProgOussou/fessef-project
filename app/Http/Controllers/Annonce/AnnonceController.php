@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Annonce;
 
-use App\Models\User;
-use Inertia\Inertia;
+use App\Http\Controllers\Controller;
 use App\Models\Annonce;
 use App\Models\Etudiant;
 use App\Models\Interesse;
-use Illuminate\Http\Request;
 use App\Models\UploadingFile;
-use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AnnonceController extends Controller
 {
@@ -93,16 +93,22 @@ class AnnonceController extends Controller
      */
     public function showAnnonce($id)
     {
-        $nbreDeVus = Annonce::where('id', $id)->first();
-        $value = $nbreDeVus->nbreDeVus;
-        $nbreDeVus->nbreDeVus = $value + 1;
-        $nbreDeVus->save();
+        if (Auth::user()->isEtudiant == 1) {
+            $nbreDeVus = Annonce::where('id', $id)->first();
+            $value = $nbreDeVus->nbreDeVus;
+            $nbreDeVus->nbreDeVus = $value + 1;
+            $nbreDeVus->save();
 
-        $annonce = Annonce::where('id', $id)->get();
+            $annonce = Annonce::where('id', $id)->get();
 
-        return Inertia::render('Annonces/ShowAnnonce', [
-            'annonce' => $annonce,
-        ]);
+            return Inertia::render('Annonces/ShowAnnonce', [
+                'annonce' => $annonce,
+            ]);
+        } elseif (Auth::user()->isCompany == 1) {
+            return redirect()->route('home');
+        } elseif (Auth::user()->isAssociation == 1) {
+            return redirect()->route('Annonce.all');
+        }
     }
 
     /**
@@ -184,21 +190,19 @@ class AnnonceController extends Controller
                 'user_email' => Auth::user()->email,
                 'avatar' => Auth::user()->avatar,
             ]);
-            if($etudiantID->CV === null)
-            {
+            if ($etudiantID->CV === null) {
                 Interesse::where('user_id', Auth::user()->id)->update([
                     'CV' => $etudiantID->CV,
-                    'LM' => $etudiantID->LM
+                    'LM' => $etudiantID->LM,
                 ]);
             }
 
             $annonce = Annonce::find($id);
-            $value = $annonce->interet ;
+            $value = $annonce->interet;
             $annonce->interet = $value + 1;
             $annonce->save();
             return back();
-        }
-        else {
+        } else {
             return redirect()->route('Annonce.all');
         }
 
@@ -213,7 +217,7 @@ class AnnonceController extends Controller
         return Inertia::render('Annonces/Interet', [
             'annonce' => $annonce,
             'userInteresse' => $userInteresse,
-            'nbreInteresses' => $nbreInteresses
+            'nbreInteresses' => $nbreInteresses,
         ]);
     }
 
@@ -221,10 +225,10 @@ class AnnonceController extends Controller
     {
         $user = Etudiant::with('user')->where('user_id', $id)->get();
         $files = UploadingFile::where('user_id', $id)->get();
-// dd($user);
+
         return Inertia::render('Annonces/User/Profile', [
             'user' => $user,
-            'files' => $files
+            'files' => $files,
         ]);
     }
 }

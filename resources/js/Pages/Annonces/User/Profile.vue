@@ -16,28 +16,41 @@
               <p class="card-text">
                 Prénom et nom :
                 <strong
-                  >{{ this.user[0].nom }} {{ this.user[0].prenom }}</strong
+                  >{{ this.user[0].prenom }} {{ this.user[0].nom }} </strong
                 >
               </p>
               <p class="card-text">
                 <strong>E-mail: </strong>{{ this.user[0].user.email }}
               </p>
-              <p class="card-text">
+              <p class="card-text" v-if="this.user[0].telephone != null">
                 <strong>Phone: </strong>{{ this.user[0].telephone }}
               </p>
-              <p class="card-text">
+              <p class="card-text" v-else>
+                  <strong>Phone: </strong>Non défini
+              </p>
+              <p class="card-text" v-if="this.user[0].dateDeNaissance != null">
                 <strong>Date de naissance: </strong
                 >{{ this.user[0].dateDeNaissance }}
               </p>
-              <p class="card-text">
+              <p class="card-text" v-else>
+                  <strong>Date de naissance: </strong> Non défini
+              </p>
+              <p class="card-text" v-if="this.user[0].genre != null">
                 <strong>Genre: </strong>{{ this.user[0].genre }}
               </p>
-              <p class="card-text">
+              <p class="card-text" v-else>
+                <strong>Genre: </strong>Non défini
+              </p>
+              <p class="card-text" v-if="this.user[0].description != null">
                 <strong>Bio: </strong>{{ this.user[0].description }}
+              </p>
+              <p class="card-text" v-else>
+                <strong>Bio: </strong>Non défini
               </p>
             </div>
             <h6 class="card-header" style="color: blue">COMPETENCES</h6>
-            <p class="text-center">{{ this.user[0].competences }}</p>
+            <p class="text-center" v-if="this.user[0].competences != null">{{ this.user[0].competences }}</p>
+            <p class="text-center" v-else>Non défini</p>
             <button
               class="btn btn-round mb-5"
               style="background: #3563a9; color: white"
@@ -115,13 +128,13 @@
               role="tabpanel"
             >
               <span class="alert alert-danger" v-if="this.user[0].CV == null">
-                Oops aucun cv
+                Oops aucun cv ou lm a afficher
               </span>
               <embed
                 v-else
                 :src="'/uploads/files/CV/' + this.user[0].CV"
                 width="729"
-                height="500"
+                height="600"
                 type="application/pdf"
               />
             </div>
@@ -132,14 +145,14 @@
               id="pills-lm"
               role="tabpanel"
             >
-              <span class="alert alert-danger" v-if="this.user[0].LM == null">
+              <span class="alert alert-danger d-none" v-if="this.user[0].LM == null">
                 Oops aucune lm
               </span>
               <embed
                 v-else
                 :src="'/uploads/files/LM/' + this.user[0].LM"
                 width="729"
-                height="500"
+                height="600"
                 type="application/pdf"
               />
             </div>
@@ -172,7 +185,7 @@
                 </div>
                 <div class="modal-body mx-3">
                   <div class="md-form mb-4">
-                    <i class="fas fa-message"></i>
+                    <i class="fas fa-envelope"></i>
                     <textarea
                       class="form-control col-md-12"
                       required

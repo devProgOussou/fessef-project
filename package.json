@@ -25,9 +25,11 @@
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@fortawesome/fontawesome-free": "^5.15.1",
         "@inertiajs/inertia": "^0.7.0",
         "@inertiajs/inertia-vue": "^0.4.3",
         "@smartweb/vue-flash-message": "^0.6.10",
+        "moment": "^2.29.1",
         "vue-truncate-filter": "^1.1.7"
     }
 }
