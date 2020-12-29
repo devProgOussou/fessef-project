@@ -39,12 +39,11 @@
           />
           <video
             controls
-            height="400px"
             v-if="
               this.feusseul[0].extension == 'mp4' ||
               this.feusseul[0].extension == 'ogg'
             "
-            width="1000px"
+            height="500"
           >
             <source
               :src="'/uploads/videos/' + this.feusseul[0].file"
@@ -66,21 +65,25 @@
                 <p class="float-left d-inline ml-2"></p>
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-5">
                 <p class="text-center d-inline ml-2"></p>
 
                 <div id="like-section">
                   <div class="row">
-                    <span v-if="this.feusseul[0].like != null"
-                      >total like {{ this.feusseul[0].like }}</span
-                    >
-                    <span v-if="this.feusseul[0].like == null"></span>
-
-                    <inertia-link
-                      :href="'/Feusseul/like/' + this.feusseul[0].id"
-                    >
-                      <span style="color:  #3563a9;"><i class="far fa-thumbs-up"></i> J'aime</span>
-                    </inertia-link>
+                    <div class="col-md-12">
+                      <div class="ml-5">
+                        <inertia-link
+                          style="color: color: #3563a9; text-decoration: none;"
+                          :href="'/Feusseul/like/' + this.feusseul[0].id"
+                        >
+                          <i class="far fa-thumbs-up"></i> J'aime
+                          <span class="ml-2" v-if="this.feusseul[0].like != null">{{
+                            this.feusseul[0].like
+                          }}</span>
+                        </inertia-link>
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
                   </div>
                 </div>
               </div>
@@ -88,7 +91,6 @@
               <div class="col-md-2">
                 <p class="float-right d-inline total"></p>
               </div>
-
             </div>
           </div>
         </div>
@@ -117,10 +119,11 @@
               <strong>{{ item.user.name }}</strong> </small
             ><br />
             <b>{{ item.commentaires }} </b><br />
-            <span class="badge badge-secondary"> {{ item.created_at | timeformat}}</span>
+            <span class="badge badge-secondary">
+              {{ item.created_at | timeformat }}</span
+            >
 
             <div class="reply mx-0">
-
               <div class="collapse">
                 <div class="card card-body my-2">
                   <form action="" class="form-inline" method="POST">

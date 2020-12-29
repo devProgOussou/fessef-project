@@ -168,7 +168,7 @@ class FeusseulController extends Controller
 
     public function like($id)
     {
-        $userID = LikeDislike::where('user_id', Auth::user()->id)->first();
+        $userID = LikeDislike::where('user_id', Auth::user()->id)->where('id', $id)->orderByDesc('created_at')->first();
 
         if ($userID === null) {
             $feusseul = Feusseul::find($id);
@@ -216,5 +216,17 @@ class FeusseulController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         return back();
+    }
+
+    public function search(Request $request)
+    {
+        $query = Feusseul::with('user')->where('titre', 'LIKE', "%$request->search%")->get();
+        $countQuery = Feusseul::with('user')->where('titre', 'LIKE', "%$request->search%")->count();
+        // dd($countQuery);
+        return Inertia::render('Feusseul/QuerySearch',[
+            'query' => $query,
+            'countQuery' => $countQuery
+        ]);
+
     }
 }

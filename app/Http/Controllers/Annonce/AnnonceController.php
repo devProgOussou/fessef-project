@@ -201,7 +201,7 @@ class AnnonceController extends Controller
             $value = $annonce->interet;
             $annonce->interet = $value + 1;
             $annonce->save();
-            return back();
+            return redirect()->route('annonce.interesse.redirect');
         } else {
             return redirect()->route('Annonce.all');
         }
@@ -230,5 +230,10 @@ class AnnonceController extends Controller
             'user' => $user,
             'files' => $files,
         ]);
+    }
+
+    public function redirectRouteAnnonce()
+    {
+        return Inertia::render('Annonce.InteresseRedirect');
     }
 }

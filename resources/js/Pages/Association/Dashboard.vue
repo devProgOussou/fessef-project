@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FlashMessage :position="'right bottom'"></FlashMessage>
     <div class="container">
       <div class="row">
         <!-- debut du section à 6 col -->
@@ -357,154 +358,21 @@
                     v-else
                     width="40"
                   />
-                  <inertia-link :href="'/User/Profile/'+ annonce.user_id"
+                  <inertia-link
+                    :href="'/User/Profile/' + annonce.user_id"
                     class="btn btn-round"
                     style="background: #3563a9; color: white"
                   >
                     <!-- <i class="fa fa-book"></i> {{ annonce.user_name }} -->
                     {{ annonce.user_name }}
                   </inertia-link>
-                  <inertia-link :href="'/User/Profile/'+ annonce.user_id"
+                  <inertia-link
+                    :href="'/User/Profile/' + annonce.user_id"
                     class="btn btn-round"
                     style="background: #3563a9; color: white"
                   >
                     <i class="fa fa-user"></i> Voir le profil
                   </inertia-link>
-                  <!-- Modal -->
-                  <!-- <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <ul
-                            class="nav nav-tabs"
-                            id="pills-tab"
-                            role="tablist"
-                          >
-                            <li class="nav-item" role="presentation">
-                              <a
-                                :href="'#pills-cv'"
-                                aria-controls="pills-cv"
-                                aria-selected="false"
-                                class="nav-link text-primary"
-                                data-toggle="pill"
-                                id="pills-cv-tab"
-                                role="tab"
-                              >
-                                <svg
-                                  class="bi bi-book"
-                                  fill="currentColor"
-                                  height="2em"
-                                  viewBox="0 0 16 16"
-                                  width="2em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
-                                    fill-rule="evenodd"
-                                  />
-                                </svg>
-                              </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                              <a
-                                :href="'#pills-lm'"
-                                aria-controls="pills-lm"
-                                aria-selected="false"
-                                class="nav-link text-primary"
-                                data-toggle="pill"
-                                id="pills-lm-tab"
-                                role="tab"
-                              >
-                                <svg
-                                  class="bi bi-bookmark-check"
-                                  fill="currentColor"
-                                  height="2em"
-                                  viewBox="0 0 16 16"
-                                  width="2em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
-                                    fill-rule="evenodd"
-                                  />
-                                  <path
-                                    d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"
-                                    fill-rule="evenodd"
-                                  />
-                                </svg>
-                              </a>
-                            </li>
-                          </ul>
-                          <div
-                            aria-labelledby="pills-cv-tab"
-                            class="tab-pane fade show active"
-                            id="pills-cv"
-                            role="tabpanel"
-                          >
-                            <div v-if="annonce.CV != null">
-                              <embed
-                                :src="'uploads/files/CV/' + annonce.CV"
-                                width="470"
-                                height="500"
-                                type="application/pdf"
-                              />
-                            </div>
-                            <div v-else class="mt-5">
-                              <span class="alert alert-danger"
-                                >Aucun curriculum vitae</span
-                              >
-                            </div>
-                          </div>
-                          <div
-                            aria-labelledby="pills-lm-tab"
-                            class="tab-pane fade show active"
-                            id="pills-lm"
-                            role="tabpanel"
-                          >
-                            <div v-if="annonce.LM != null">
-                              <embed
-                                :src="'uploads/files/LM/' + annonce.LM"
-                                width="470"
-                                height="500"
-                                type="application/pdf"
-                              />
-                            </div>
-                            <div v-else>
-                              <span class="alert alert-danger"
-                                >Aucune lettre de motivation</span
-                              >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                          >
-                            Fermer
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -516,13 +384,14 @@
         <!-- Debut du section à 3 col  -->
         <div class="col-md-4">
           <!-- Debut Du Formulaire De Recherche -->
-          <form class="form-inline my-3">
+          <form @submit.prevent="handleSearch" class="form-inline my-3">
             <div class="form-row">
               <div class="form-group col-md-8">
                 <input
                   class="form-control"
                   id=""
                   name="search"
+                  v-model="search.search"
                   placeholder="Recherche Profiles"
                   type="search"
                 />
@@ -613,14 +482,185 @@
           <div class="card">
             <ul class="list-group list-group-flush text-center">
               <li class="list-group-item">
-                <inertia-link :href="'/Annonce/Create'" class="text-dark">
+                <!-- /Annonce/Create -->
+                <a
+                  :href="''"
+                  type="button"
+                  class="text-dark"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
                   Ajoutez une annonce
-                </inertia-link>
+                </a>
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5
+                          class="offset-4 modal-title"
+                          style="color: #3563a9"
+                          id="exampleModalLabel"
+                        >
+                          Creer une annonce
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-10 offset-1 mt-2 mb-5">
+                            <form @submit.prevent="handleSubmit">
+                              <div class="form-group">
+                                <label for="titre">titre</label>
+                                <input
+                                  class="form-control"
+                                  id="titre"
+                                  name="titre"
+                                  type="text"
+                                  v-model="form.titre"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <file-input
+                                  id="image"
+                                  label="image"
+                                  v-model="form.image"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="contenu">Contenu</label>
+                                <textarea
+                                  class="form-control"
+                                  id="contenu"
+                                  name="contenu"
+                                  rows="3"
+                                  v-model="form.contenu"
+                                ></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  name="description"
+                                  rows="3"
+                                  v-model="form.description"
+                                ></textarea>
+                              </div>
+                              <button
+                                type="submit"
+                                class="btn btn-outline-primary offset-1 btn-round col-md-5"
+                              >
+                                Submit
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
               <li class="list-group-item">
-                <inertia-link :href="'/xamxam/create'" class="text-dark">
+                <a
+                  :href="''"
+                  class="text-dark"
+                  data-toggle="modal"
+                  data-target="#exampleModal1"
+                >
                   Xamlel
-                </inertia-link>
+                </a>
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal1"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5
+                          class="offset-4 modal-title"
+                          style="color: #3563a9"
+                          id="exampleModalLabel"
+                        >
+                          Creer xamlel
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="col-md-10 offset-1 mt-2 mb-5">
+                          <form @submit.prevent="handleSubmitXamlel">
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="TITRE"
+                                v-model="xamlel.titre"
+                                required
+                              />
+                            </div>
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="TAGS"
+                                v-model="xamlel.tags"
+                                required
+                              />
+                            </div>
+                            <div class="form-group">
+                              <file-input
+                                v-model="xamlel.image"
+                                label="image *"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <textarea
+                                class="form-control col-md-12"
+                                rows="5"
+                                v-model="xamlel.contenu"
+                                required
+                                placeholder="CONTENU"
+                              ></textarea>
+                            </div>
+                            <button
+                              type="submit"
+                              class="btn btn-round btn-outline-primary col-md-5 offset-1"
+                            >
+                              Submit
+                            </button>
+                            <br />
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -634,9 +674,12 @@
 </template>
 
 <script>
+import FileInput from "../../Shared/FileInput";
 export default {
   name: "Dashboard",
-  components: {},
+  components: {
+    FileInput,
+  },
   props: [
     "association",
     "user",
@@ -645,6 +688,69 @@ export default {
     "annonceAll",
     "interesses",
   ],
+  data() {
+    return {
+      form: {
+        titre: null,
+        description: null,
+        contenu: null,
+        image: null,
+      },
+      xamlel: {
+        titre: null,
+        image: null,
+        tags: null,
+        contenu: null,
+      },
+      search: {
+        search: null,
+      },
+    };
+  },
+  methods: {
+    handleSubmit() {
+      const data = new FormData();
+      data.append("titre", this.form.titre);
+      data.append("description", this.form.description);
+      data.append("contenu", this.form.contenu);
+      data.append("image", this.form.image);
+
+      this.$inertia.post("/Annonce/Store", data, {
+        onSuccess: () => {
+          this.flashMessage.info({
+            message: "Votre annonce a ete poste avec success!",
+            time: 5000,
+          });
+        },
+      });
+    },
+    handleSubmitXamlel() {
+      const data = new FormData();
+      data.append("titre", this.xamlel.titre);
+      data.append("tags", this.xamlel.tags);
+      data.append("image", this.xamlel.image);
+      data.append("contenu", this.xamlel.contenu);
+
+      this.$inertia.post("/xamxam", data, {
+        onSuccess: () => {
+          this.sending = false;
+          this.flashMessage.info({
+            message: "Votre xamlel a ete poste avec success!",
+            time: 5000,
+          });
+        },
+      });
+    },
+    handleSearch() {
+      const search = new FormData();
+
+      search.append("search", this.search.search);
+
+      this.$inertia.post("/searchProfile", search, {
+        onSuccess: () => {},
+      });
+    },
+  },
 };
 </script>
 

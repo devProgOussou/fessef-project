@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HomeController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Xamxam\XamxamController;
 use App\Http\Controllers\Annonce\AnnonceController;
 use App\Http\Controllers\Message\MessageController;
@@ -75,6 +76,7 @@ Route::delete('/Annonce/Delete/{id}', [AnnonceController::class, 'destroy'])->mi
 Route::get('/Annonce/{id}', [AnnonceController::class, 'showAnnonce'])->middleware('auth')->name('Annonce.showAnnonce');
 Route::post('/Annonce/interesse/{id}', [AnnonceController::class, 'interesses'])->middleware('auth')->name('Annonce.interesse');
 Route::get('/Annonce/user/show/{id}', [AnnonceController::class, 'displayAnnonce'])->middleware('auth')->name('Annonce.displayAnnonce');
+Route::get('/interesseRedirect', [AnnonceController::class, 'redirectRouteAnnonce'])->middleware('auth')->name('annonce.interesse.redirect');
 
 //ROUTE FOR ETUDIANT PROFILE
 Route::get('/etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('etudiant.edit');
@@ -82,6 +84,7 @@ Route::get('/etudiant/update/{id}', [EtudiantController::class, 'update'])->midd
 Route::post('/etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('etudiant.updated');
 Route::get('/Etudiant/editAvatar/{id}', [EtudiantController::class, 'editAvatar'])->middleware('auth')->name('Etudiant.editAvatar');
 Route::post('/Etudiant/UpdateAvatar/{id}', [EtudiantController::class, 'updateAvatar'])->middleware('auth')->name('Etudiant.updateAvatar');
+Route::post('/searchProfile', [EtudiantController::class, 'searchProfile'])->middleware('auth')->name('Manage.searchProfil');
 //Route::get('/Etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('Etudiant.edit');
 //Route::post('/Etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('Etudiant.update');
 
@@ -95,6 +98,7 @@ Route::get('/Feusseuls', [FeusseulController::class, 'displayAll'])->middleware(
 Route::post('/Feusseul/Update/{id}', [FeusseulController::class, 'update'])->middleware('auth')->name('Feusseul.update');
 Route::get('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->middleware('auth')->name('Feusseul.delete');
 Route::post('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->middleware('auth')->name('Feusseul.deleted');
+Route::post('/Feusseul/Search', [FeusseulController::class, 'search'])->middleware('auth')->name('feusseul.search');
 
 
 //ROUTE FOR FEUSSEUL LIKE/DISLIKE/COMMENTS

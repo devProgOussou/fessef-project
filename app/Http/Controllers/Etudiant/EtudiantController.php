@@ -258,4 +258,16 @@ class EtudiantController extends Controller
             return back();
         }
     }
+
+    public function searchProfile(Request $request)
+    {
+
+        $searchingProfile = User::with('etudiant')->where("name", "like", "%$request->search%")->where('isEtudiant', 1)->get();
+        $queryCount = User::with('etudiant')->where("name", "like", "%$request->search%")->where('isEtudiant', 1)->count();
+
+        return Inertia::render('Etudiant/QueryFind', [
+            'searchingProfile' => $searchingProfile,
+            'queryCount' => $queryCount
+        ]);
+    }
 }

@@ -80,7 +80,7 @@ class HomeController extends Controller
             $user = User::where('id', Auth::user()->id)->get();
             $feusseuls = Feusseul::where('user_id', Auth::user()->id)->get();
 
-            $annonces = Annonce::paginate(3)->sortByDesc('created_at');
+            $annonces = Annonce::paginate(10)->sortByDesc('created_at');
             return Inertia::render('Etudiant/Dashboard', [
                 'etudiant' => $etudiant,
                 'user' => $user,
