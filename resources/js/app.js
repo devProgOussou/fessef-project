@@ -12,8 +12,8 @@ import Dashboard from '../js/Pages/Association/Dashboard';
 import ShowAll from '../js/Pages/Feusseul/ShowAll';
 import moment from 'moment';
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 var VueTruncate = require('vue-truncate-filter')
-
 Vue.filter('timeformat',(arg)=>{
     return moment(arg).startOf('minutes').fromNow();
 })

@@ -79,7 +79,7 @@
                   />
                 </div>
                 <button
-                id="buttonSearch"
+                  id="buttonSearch"
                   class="btn btn-round btn-danger col-md-5 offset-4"
                   type="submit"
                 >
@@ -90,7 +90,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5 mt-4" v-if="this.feusseuls[0] != null">
+        <div class="col-md-5 mt-4">
           <!-- Button trigger modal -->
           <button
             type="button"
@@ -168,7 +168,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" v-if="this.feusseuls[0] != null">
             <div class="col-md-12">
               <div
                 class="card mb-3 mt-4"
@@ -220,9 +220,9 @@
                     height="40"
                     width="40"
                   />
-                  <small class="text-muted ml-1">{{
-                    feusseul.user.name
-                  }} || {{ feusseul.titre }}</small>
+                  <small class="text-muted ml-1"
+                    >{{ feusseul.user.name }} || {{ feusseul.titre }}</small
+                  >
                 </div>
                 <img
                   :src="'uploads/' + feusseul.file"
@@ -274,14 +274,7 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-5 mt-4" v-else>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card mb-3 mt-4">Rien a affcher</div>
-            </div>
-          </div>
         </div>
 
         <div class="col-md-3 mt-5">

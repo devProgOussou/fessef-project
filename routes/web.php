@@ -57,6 +57,9 @@ Route::get('/Entreprise/editAvatar/{id}',[EntrepriseController::class, 'editAvat
 Route::post('/Entreprise/updateAvatar/{id}', [EntrepriseController::class, 'updateAvatar'])->middleware('auth')->name('Entreprise.updateAvatar');
 Route::get('/entreprise/edit/{id}', [EntrepriseController::class, 'edit'])->middleware('auth')->name('Entreprise.edit');
 Route::post('/entreprise/update/{id}', [EntrepriseController::class, 'update'])->middleware('auth')->name('Entreprise.update');
+// pour profil entreprise et detail annonce
+Route::get('/entreprise/profil/{id}', [EntrepriseController::class, 'profil'])->middleware('auth')->name('Entreprise.Profil');
+Route::get('/entreprise/showannonce/{id}', [EntrepriseController::class, 'show'])->middleware('auth')->name('Entreprise.annonce.show');
 
 
 //ROUTE FOR ALL USERS
@@ -76,6 +79,8 @@ Route::delete('/Annonce/Delete/{id}', [AnnonceController::class, 'destroy'])->mi
 Route::get('/Annonce/{id}', [AnnonceController::class, 'showAnnonce'])->middleware('auth')->name('Annonce.showAnnonce');
 Route::post('/Annonce/interesse/{id}', [AnnonceController::class, 'interesses'])->middleware('auth')->name('Annonce.interesse');
 Route::get('/Annonce/user/show/{id}', [AnnonceController::class, 'displayAnnonce'])->middleware('auth')->name('Annonce.displayAnnonce');
+Route::post('/AnnonceSearch', [AnnonceController::class, 'searchAnnonce'])->middleware('auth')->name('Entreprise.searchAnnonce');
+Route::get('/AnnonceSearch', [AnnonceController::class, 'searchAnnonce'])->middleware('auth')->name('Entreprise.find');
 Route::get('/interesseRedirect', [AnnonceController::class, 'redirectRouteAnnonce'])->middleware('auth')->name('annonce.interesse.redirect');
 
 //ROUTE FOR ETUDIANT PROFILE
@@ -85,6 +90,8 @@ Route::post('/etudiant/update/{id}', [EtudiantController::class, 'update'])->mid
 Route::get('/Etudiant/editAvatar/{id}', [EtudiantController::class, 'editAvatar'])->middleware('auth')->name('Etudiant.editAvatar');
 Route::post('/Etudiant/UpdateAvatar/{id}', [EtudiantController::class, 'updateAvatar'])->middleware('auth')->name('Etudiant.updateAvatar');
 Route::post('/searchProfile', [EtudiantController::class, 'searchProfile'])->middleware('auth')->name('Manage.searchProfil');
+Route::get('/searchProfile', [EtudiantController::class, 'searchProfile'])->middleware('auth')->name('Manage.findProfil');
+
 //Route::get('/Etudiant/edit/{id}', [EtudiantController::class, 'edit'])->middleware('auth')->name('Etudiant.edit');
 //Route::post('/Etudiant/update/{id}', [EtudiantController::class, 'update'])->middleware('auth')->name('Etudiant.update');
 
@@ -99,6 +106,8 @@ Route::post('/Feusseul/Update/{id}', [FeusseulController::class, 'update'])->mid
 Route::get('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->middleware('auth')->name('Feusseul.delete');
 Route::post('/Feusseul/Delete/{id}', [FeusseulController::class, 'destroy'])->middleware('auth')->name('Feusseul.deleted');
 Route::post('/Feusseul/Search', [FeusseulController::class, 'search'])->middleware('auth')->name('feusseul.search');
+Route::get('/Feusseul/Search', [FeusseulController::class, 'search'])->middleware('auth')->name('feusseul.find');
+
 
 
 //ROUTE FOR FEUSSEUL LIKE/DISLIKE/COMMENTS
@@ -122,3 +131,8 @@ Route::get('/Message/{id}', [MessageController::class, 'read'])->middleware('aut
 Route::get('/Message/Show/{id}', [MessageController::class, 'show'])->middleware('auth')->name('Message.show');
 Route::post('/Message/Send', [MessageController::class, 'store'])->middleware('auth')->name('Message.store');
 Route::post('/Message/SendUser', [MessageController::class, 'contact'])->middleware('auth')->name('Message.contact');
+Route::post('/Message/Update/{id}', [MessageController::class, 'updatestatut'])->middleware('auth')->name('Message.updatestatut');
+Route::get('/Message/Update/{id}', [MessageController::class, 'updatestatut'])->middleware('auth')->name('Message.updatestatut');
+// pour profil entreprise et detail annonce
+Route::get('/entreprise/profil/{id}', [EntrepriseController::class, 'profil'])->middleware('auth')->name('Entreprise.Profil');
+Route::get('/entreprise/showannonce/{id}', [EntrepriseController::class, 'show'])->middleware('auth')->name('Entreprise.annonce.show');

@@ -1,50 +1,122 @@
 <template>
-  <div class="container">
-    <div class="messaging">
-      <div class="inbox_msg">
-        <div class="inbox_people">
-          <div class="headind_srch">
-            <div class="recent_heading">
-              <h4>Recent</h4>
-            </div>
-          </div>
-          <div class="inbox_chat">
-            <div class="chat_list" v-for="item in messageReceive" :key="item.id">
-              <div class="chat_people">
-                <inertia-link :href="'/Message/Show/' + item.sender_id">
-                  <div class="chat_img">
-                    <img
-                      v-if="item.avatar != null"
-                      :src="'uploads/avatar' + item.avatar"
-                      alt="sunil"
-                    />
-                    <img
-                      v-else
-                      :src="'uploads/avatar/avatar.png'"
-                      alt="sunil"
-                    />
-                  </div>
-                  <div class="chat_ib">
-                    <h5>
-                      {{ item.user.name }} <span class="chat_date">Dec 18</span>
-                    </h5>
-                    <!-- <p>
-                      {{ item.messages }}
-                    </p> -->
-                  </div>
-                </inertia-link>
-              </div>
+  <div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+          <div class="card shadow-sm mt-4">
+            <div class="card-body">
+              <h4 class="card-title text-center text-dark">Message(s)</h4>
             </div>
           </div>
         </div>
+
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Debut Liste des messages -->
+
+        <div class="col-lg-6 col-md-6 col-sm-9 offset-1">
+          <div class="col-md-2">
+            <h3>Discussion</h3>
+          </div>
+          <div class="card d-none d-sm-block mb-3 mt-4" id="div1">
+            <div
+              class="row no-gutters border-bottom"
+              v-for="item in users"
+              :key="item.id"
+            >
+              <div class="col-md-4 text-center bg-danger">
+                <inertia-link :href="'/Message/Show/' + item.sender_id">
+                  <img
+                    v-if="item.avatar != null"
+                    :src="'uploads/avatar' + item.avatar"
+                    alt="sunil"
+                    class="card-img shadow-sm"
+                    style="
+                      border-radius: 50%;
+                      height: 70px;
+                      width: 70px;
+                      margin-top: 35px;
+                    "
+                  />
+                  <img
+                    v-else
+                    :src="'uploads/avatar/avatar.png'"
+                    alt="sunil"
+                    class="card-img shadow-sm"
+                    style="
+                      border-radius: 50%;
+                      height: 70px;
+                      width: 70px;
+                      margin-top: 35px;
+                    "
+                  />
+                </inertia-link>
+              </div>
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a class="text-dark"> {{ item.user.name }} </a>
+                  </h5>
+                  <p class="card-text">{{ item.messages }}</p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      {{ item.created_at | timeformat }}
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin du card Senders  -->
+        </div>
+        <!-- Fin de la Liste des messages -->
+
+        <!-- Debut Liste des messages -->
+
+        <div class="col-lg-3 col-md-3 col-sm-6">
+          <div class="col-md-2"><H3>Recent</H3></div>
+          <!-- Debut du card Senders -->
+          <div class="card d-none d-sm-block mt-4">
+            <ul
+              v-for="item in messreceiver"
+              :key="item.id"
+              class="list-group list-group-flush text-left"
+            >
+              <li class="list-group-item">
+                Envoyé par
+                <inertia-link :href="'/Message/Show/' + item.sender_id">
+                  <b> : {{ item.user.name }} </b>
+                </inertia-link>
+
+                <p class="card-text">
+                  <small class="text-muted">
+                    {{ item.created_at | timeformat }}
+                  </small>
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- Fin du card Senders  -->
+        </div>
+        <!-- Fin de la Liste des messages -->
       </div>
     </div>
   </div>
 </template>
+<!--  -->
+
+
 
 <script>
 export default {
-  props: ["messageReceive"],
+  props: ["messageReceive", "users", "messsender", "messreceiver"],
 };
 </script>
 

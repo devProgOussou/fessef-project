@@ -236,4 +236,13 @@ class AnnonceController extends Controller
     {
         return Inertia::render('Annonce.InteresseRedirect');
     }
+
+    public function searchAnnonce(Request $request)
+    {
+        // dd($request->search);
+        $query = Annonce::with('user')->where("titre", "like", "%$request->search%")->get();
+        $queryCount = Annonce::with('user')->where("titre", "like", "%$request->search%")->count();
+
+        dd($query);
+    }
 }

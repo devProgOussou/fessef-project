@@ -1,72 +1,189 @@
 <template>
-  <div class="container">
+  <div >
     <FlashMessage :position="'right bottom'"></FlashMessage>
-    <div class="messaging">
-      <div class="inbox_msg">
-        <div class="mesgs">
-          <div class="msg_history">
-            <div
-              class="incoming_msg"
-              v-for="itemReceive in messageReceive"
-              :key="itemReceive.id"
-            >
-              <div class="incoming_msg_img">
+    
+
+
+
+
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2 "></div>
+
+        <div class="col-md-8">
+
+            <div class="card shadow-sm mt-4">
+                <div class="card-body">
+                    <h4 class="card-title text-center text-dark">Message(s) </h4>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<div class="container-fluid ">
+    <div class="row">
+        <!-- Debut Liste des messages -->
+        <div class="col-lg-4 col-md-4 col-sm-6">
+
+            <div class="card d-none d-sm-block  mb-3 mt-4" id="div1">
+
+
+                <div class="row no-gutters border-bottom " v-for="item in users" :key="item.id">
+
+                    <div class="col-md-4  text-center  bg-danger ">
+                        <inertia-link :href="'/Message/Show/' + item.sender_id">
+                        <img
+                      v-if="item.avatar != null"
+                      :src="'/../uploads/avatar' + item.avatar"
+                      alt="sunil"
+                          class="card-img shadow-sm"  style="border-radius: 50%;
+                        height: 70px; width: 70px;  margin-top : 35px;"/>
+                    <img
+                      v-else
+                      :src="'/../uploads/avatar/avatar.png'"
+                      alt="sunil" class="card-img shadow-sm"  style="border-radius: 50%;
+                        height: 70px; width: 70px;  margin-top : 35px;"
+                    />
+                       </inertia-link>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title "><a  class="text-dark"> {{ item.user.name }} </a>
+                            </h5>
+                            <p class="card-text">  {{ item.messages }}</p>
+                            <p class="card-text"><small class="text-muted"> {{ item.created_at }} </small></p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!-- Fin du card Senders  -->
+
+        </div>
+        <!-- Fin de la Liste des messages -->
+
+
+
+
+        <!-- Debut de la liste -->
+        <div class="col-lg-5 col-md-5 col-sm-6 ">
+            <!-- Debut de la Liste des messages -->
+            <div class="card mt-4  mb-4 cardbottom">
+
+                <div v-for="message in messages" :key="message.id" class="card-body incoming_msg" id="madiv" >
+   
+              <div v-if="message.sender_id == userid">
+              
+                    <!-- Debut des message  -->
+                 <div class="row mb-2  p-2" id="madivv">
                 <img
-                  v-if="itemReceive.avatar != null"
+                  v-if="message.avatar != null"
                   :src="
-                    'http://localhost:8000/uploads/avatar/' + itemReceive.avatar
+                    '../http://localhost:8000/uploads/avatar/' + message.avatar
                   "
                   alt="sunil"
                 />
                 <img
                   v-else
                   :src="'http://localhost:8000/uploads/avatar/avatar.png'"
-                  alt="sunil"
+                  alt="sunil" height="20px" width="20px"
                 />
               </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>{{ itemReceive.messages }}</p>
+                <div class="received_msg">
+                <div class="received_withd_msg" >
+                  <p class="bg-success"  style=" color:white;border-radius: 25px; padding : 10px; ">{{ message.messages }}</p>
                   <!-- <span class="time_date"> 11:01 AM | June 9</span> -->
                 </div>
               </div>
-            </div>
-            <div
-              class="outgoing_msg"
-              v-for="itemSend in messageSend"
-              :key="itemSend.id"
+               </div>
+              <div
+              class=" outgoing_msg" 
+              v-else
             >
               <div class="sent_msg">
-                <p>{{ itemSend.messages }}</p>
+                <p class="bg-danger" style="border-radius: 25px; padding : 10px; "
+                            id="contenuee ">{{ message.messages }}</p>
                 <!-- <span class="time_date"> 11:01 AM | June 9</span> -->
               </div>
             </div>
-          </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <form @submit.prevent="handleSubmit">
-                <input
-                  type="text"
-                  class="write_msg"
-                  required
-                  v-model="form.messages"
-                  placeholder="Type a message"
-                />
-                <button class="offset-9 btn btn-sm btn-info" type="submit">
-                  Envoyer
-                </button>
-              </form>
+                    
+
+                    <!-- Fin des messages -->
+                </div>
+
+                <div class="card-footer text-center dflex mt-4">
+                    <form @submit.prevent="handleSubmit"  class="form-inline ">
+
+                        
+                        <div class="form-group text-center " id="text">
+                            <input class="form-control" required
+                  v-model="form.messages" width="30" name="message" placeholder="Message..." cols="62"
+                                rows="1" />
+                        </div>
+                        <button type="submit" class="btn btn-danger ml-2">
+                            <i class="fa fa-paper-plane " aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+
             </div>
-          </div>
+            <!-- Fin de la Listes -->
+
         </div>
-      </div>
+        <!-- Fin de la liste -->
+
+        <!-- Debut Liste des messages -->
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <!-- Debut du card Senders -->
+            <div class="card d-none d-sm-block mt-4">
+
+
+                <form @submit.prevent="handleUpdate">
+                 <ul v-for="item in messreceiver" :key="item.id" class="list-group list-group-flush text-left">
+                    <li  class="list-group-item"> Envoyé par
+                        <inertia-link :href="'/Message/Show/' + item.sender_id">
+                            <b>
+                                :  {{ item.user.name }} <inertia-link :href="'/Message/Update/'+item.id" style="text-decoration:none" class="btn btn-danger btn-sm">
+                                    Supprimer
+                                </inertia-link> 
+
+                            </b>
+                        </inertia-link>
+                        
+                        <p class="card-text">
+                            <small class="text-muted">
+                                {{ item.created_at }}
+                            </small>
+                        </p>
+                    </li>
+                </ul>
+          </form>
+
+            </div>
+            <!-- Fin du card Senders  -->
+
+        </div>
+        <!-- Fin de la Liste des messages -->
+
     </div>
+</div>
+    
+     
   </div>
 </template>
 
 <script>
 export default {
-  props: ["messageSend", "messageReceive"],
+  props: ["messageSend", "messageReceive",'messages','userid','users',"messsender","messreceiver"],
   data() {
     return {
       form: {
@@ -78,9 +195,10 @@ export default {
     };
   },
   mounted: function () {
-    this.sender_id = this.messageReceive[0].receiver_id;
-    this.receiver_id = this.messageReceive[0].sender_id;
-    this.messageID = this.messageReceive[0].id;
+    this.sender_id = this.messages[0].sender_id;
+    this.receiver_id = this.messages[0].receiver_id;
+    this.messageID = this.messages[0].id;
+    console.log(messages);
   },
   methods: {
     handleSubmit() {
@@ -97,7 +215,11 @@ export default {
         },
       });
     },
+    handleUpdate() {
+      this.$inertia.post('/Message/Update/'+this.messages[0].id);
+    },
   },
+
 };
 </script>
 
@@ -241,7 +363,7 @@ img {
 }
 
 .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0;
@@ -251,7 +373,7 @@ img {
 }
 .outgoing_msg {
   overflow: hidden;
-  margin: 26px 0 26px;
+  
 }
 .sent_msg {
   float: right;

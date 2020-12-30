@@ -41,16 +41,18 @@ class HomeController extends Controller
         {
             $entreprise = Entreprise::where('user_id', Auth::user()->id)->get();
             $xamxams = Xamxam::paginate(5)->where('user_id', Auth::user()->id);
-            $annonces = Annonce::with('interesses')->paginate(5)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
+            $annonces = Annonce::with('user')->with('interesses')->paginate(12)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
+            $otherAnnonce = Annonce::paginate(5)->where('user_id', '!=', Auth::user()->id);
             $messages = Message::where('user_id', Auth::user()->id)->get();
             $user = User::where('id', Auth::user()->id)->get();
 
+            // dd($annonces);
             return Inertia::render('Entreprise/Dashboard', [
                 'xamxams' => $xamxams,
                 'annonces' => $annonces,
-                'messages' => $messages,
                 'entreprise' => $entreprise,
-                'user' => $user
+                'user' => $user,
+                'otherAnnonce' => $otherAnnonce
             ]);
         }
         elseif(Auth::user()->isAssociation == 1 && Auth::user()->isActive == 1)
@@ -61,13 +63,11 @@ class HomeController extends Controller
             $annonces = Annonce::with('user')->with('interesses')->paginate(15)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
             $interesses = Interesse::paginate(15)->where('post_id', Auth::user()->id);
             $annonceAll = Annonce::with('user')->where('user_id','!=', Auth::user()->id)->get();
-            $messages = Message::where('user_id', Auth::user()->id)->get();
 
             return Inertia::render('Association/Dashboard', [
                 'xamxams' => $xamxams,
                 'annonceAll' => $annonceAll,
                 'annonces' => $annonces,
-                'messages' => $messages,
                 'association' => $association,
                 'user' => $user,
                 'interesses' => $interesses

@@ -2,147 +2,130 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <div class="card box-shadow">
-            <img
-              v-if="this.user[0].avatar != null"
-              :src="'/uploads/avatar/' + this.user[0].avatar"
-              alt=""
-              style="width: 100%"
-            />
-            <img
-              v-else
-              src="/uploads/avatar/avatar.png"
-              alt=""
-              style="width: 100%"
-            />
-            <inertia-link
-              :href="'/Entreprise/editAvatar/' + this.entreprise[0].user_id"
-            >
-              <button class="btn btn-sm btn-dark">modifier avatar</button>
-            </inertia-link>
-            <h1>{{ this.entreprise[0].NomEntreprise }}</h1>
-            <strong>secteur</strong>
-            <p class="title">{{ this.entreprise[0].domaineActivites }}</p>
-            <inertia-link :href="this.entreprise[0].lien">{{
-              this.entreprise[0].lien
-            }}</inertia-link>
-            <strong>adresse</strong>
-            <p>{{ this.entreprise[0].adresse }}</p>
-            <strong>telephone</strong>
-            <p>{{ this.entreprise[0].telephone }}</p>
-            <div style="margin: 24px 0"></div>
-            <p>
-              <inertia-link
-                :href="'/entreprise/edit/' + this.entreprise[0].user_id"
-              >
-                Modifier profil
-              </inertia-link>
-            </p>
-          </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+          <br />
+
+          On vous souhaite bon recherche @{{ this.entreprise[0].NomEntreprise }}
+
+          <h2>Annonce</h2>
         </div>
-        <div class="col-md-4">
-          <h1>Last xamxam poster</h1>
-          <div :key="xamxam.id" class="card mb-3" v-for="xamxam in xamxams">
-            <img
-              :src="'uploads/' + xamxam.image"
-              alt=""
-              class="card-img-top"
-              height="180px"
-              width="733px"
-            />
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 mt-4">
+          <div class="mb-2">
+            <form @submit.prevent="handleSearch">
+              <input
+                class="form-control mb-1"
+                type="search"
+                placeholder="Faites vos recherches"
+                aria-label="Search"
+                v-model="search.search"
+                name="search"
+              />
+              <button class="btn btn-danger" type="submit">
+                Faites vos recherches
+              </button>
+            </form>
+          </div>
+
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ xamxam.titre }}</h5>
-              <h5 class="card-title">{{ xamxam.tags }}</h5>
-              <p class="card-text">{{ xamxam.contenu | truncate(27) }}</p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </p>
+              <h5 class="card-title text-center">Derniers Annonces</h5>
+            </div>
+          </div>
+
+          <div class="card mt-1">
+            <div class="card-body">
+              <a class="text-dark" href="">
+                <h6 class="card-title text-center"></h6>
+              </a>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <h1>Last annonce poster</h1>
-          <div :key="annonce.id" class="card mb-3" v-for="annonce in annonces">
-            <img
-              :src="'uploads/' + annonce.image"
-              alt=""
-              class="card-img-top"
-              height="180px"
-              width="733px"
-            />
+
+        <!--Section Etiquettes-->
+        <!-- <div v-if="this.annonces != null"> -->
+        <div class="col" v-for="annonce in annonces" :key="annonce.id">
+          <h6>Etiquettes:</h6>
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ annonce.titre }}</h5>
-              <p class="card-title">{{ annonce.contenu | truncate(27) }}</p>
-              <h5 class="card-text">
-                {{ annonce.description | truncate(27) }}
-              </h5>
-              <p class="card-text">
-                <inertia-link
-                  :href="'/Annonce/user/show/' + annonce.id"
-                  class="text-muted"
-                  >Voir...</inertia-link
-                >
-              </p>
+              <img
+                :src="'/uploads/' + annonce.image"
+                width="400"
+                height="300"
+              />
+              <div id="center" style="text-align: center">
+                <h6 class="mt-1">{{ annonce.titre }}</h6>
+                <p>{{ annonce.description }}</p>
+                <p style="color: lightgrey">
+                  {{ annonce.created_at | timeformat }}
+                </p>
+              </div>
+              <hr />
+              <div id="tags">
+                <button class="btn-danger">#IA</button>
+                <button class="btn-danger">#BLOCKCHAIN</button>
+                <button class="btn-danger">#DATA SCIENCE</button>
+              </div>
+
+              <div id="card-hd">
+                <br />
+                <h6 class="card-header">
+                  {{ annonce.user.name }}
+                  <p style="text-align: end" v-if="annonce.interet != null">
+                    {{ annonce.interet }}
+                  </p>
+                  <p style="text-align: end" v-else>0</p>
+                </h6>
+              </div>
             </div>
           </div>
         </div>
+        <!-- </div> -->
+
+        <!-- <pagination
+          :data="annonces"
+          @pagination-change-page="getResults"
+        ></pagination> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logout from "../../Shared/Logout";
-
 export default {
-  name: "Dashboard",
-  components: {
-    Logout,
+  props: ["annonces", "entreprise", "otherAnnonce"],
+  data() {
+    return {
+      //   page: 10,
+      search: {
+        search: null,
+      },
+    };
   },
-  props: ["entreprise", "user", "xamxams", "annonces"],
+  mounted() {
+    // Fetch initial results
+    // this.getResults();
+  },
+  methods: {
+    // getResults(page = 1) {
+    //   this.annonces;
+    // },
+    handleSearch() {
+      const search = new FormData();
+
+      search.append("search", this.search.search);
+
+      this.$inertia.post("/AnnonceSearch", search);
+    },
+  },
 };
 </script>
 
-<style scoped>
-h1 {
-  margin-left: 20px;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin-left: 20px;
-  text-align: center;
-  font-family: arial, cursive;
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover,
-a:hover {
-  opacity: 0.7;
-}
+<style>
 </style>

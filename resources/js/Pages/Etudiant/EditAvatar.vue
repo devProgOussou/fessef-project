@@ -50,11 +50,11 @@
               <h6 class="card-subtitle mb-2 text-muted"></h6>
 
               <p class="card-text">
-                  Prénom et nom :
-                  <strong
+                Prénom et nom :
+                <strong
                   >{{ this.etudiant[0].nom }}
-                      {{ this.etudiant[0].prenom }}</strong
-                  >
+                  {{ this.etudiant[0].prenom }}</strong
+                >
               </p>
               <p class="card-text">
                 <strong>E-mail: </strong>{{ this.user[0].email }}

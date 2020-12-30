@@ -169,8 +169,8 @@ class EtudiantController extends Controller
     {
 
         $request->validate([
-            'CV' => 'required|mimes:docx,pdf|max:2048',
-            'LM' => 'required|mimes:docx,pdf|max:2048',
+            'CV' => 'required|mimes:pdf|max:2048',
+            'LM' => 'required|mimes:pdf|max:2048',
         ]);
 
         $interesses = Interesse::where('user_id', Auth::user()->id)->first();
@@ -262,9 +262,9 @@ class EtudiantController extends Controller
     public function searchProfile(Request $request)
     {
 
-        $searchingProfile = User::with('etudiant')->where("name", "like", "%$request->search%")->where('isEtudiant', 1)->get();
-        $queryCount = User::with('etudiant')->where("name", "like", "%$request->search%")->where('isEtudiant', 1)->count();
-
+        $searchingProfile = Etudiant::with('user')->where("prenom", "like", "%$request->search%")->get();
+        $queryCount = Etudiant::with('user')->where("prenom", "like", "%$request->search%")->count();
+        // dd($searchingProfile);
         return Inertia::render('Etudiant/QueryFind', [
             'searchingProfile' => $searchingProfile,
             'queryCount' => $queryCount

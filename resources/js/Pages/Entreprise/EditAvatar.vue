@@ -4,26 +4,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card mr-2 ml-4 mb-3 mt-4  shadow-sm">
                     <img v-if="this.user[0].avatar != null" :src="'/uploads/avatar/'+this.user[0].avatar" alt="" style="width:100%">
-                    <img v-else src="/uploads/avatar/avatar.png" alt="" style="width:100%">
-                    <inertia-link :href="'/Entreprise/editAvatar/'+this.entreprise[0].user_id">
-                        <button class="btn btn-sm btn-dark">modifier avatar</button>
-                    </inertia-link>
-                    <h1>{{ this.entreprise[0].NomEntreprise }}</h1>
-                    <strong>secteur</strong>
-                    <p class="title">{{this.entreprise[0].domaineActivites}}</p>
-                    <inertia-link :href="this.entreprise[0].lien">{{this.entreprise[0].lien}}</inertia-link>
-                    <strong>adresse</strong>
-                    <p>{{this.entreprise[0].adresse}}</p>
-                    <div style="margin: 24px 0;">
-
-                    </div>
-                    <p>
-                        <inertia-link :href="'/association/edit/'+this.entreprise[0].user_id">
-                            Modifier profil
+                        <img v-else src="/uploads/avatar/avatar.png" alt="" style="width:100%">
+                         <inertia-link :href="'/Entreprise/editAvatar/'+this.entreprise[0].user_id">
+                            <button class="btn btn-primary mt-1" style="margin-left:80px;">modifier avatar</button>
                         </inertia-link>
-                    </p>
+                    <h6 class="card-header" style="color: blue;text-align: center;">PROFIL INFOS</h6>
+                    <div class="card-body mt-4 text-center" >
+                    
+                        <!-- <h5 class="card-title"></h5> -->
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        
+                        <p class="card-text"><strong>Nom: </strong>{{ this.entreprise[0].NomEntreprise }}</p>
+                        <p class="card-text"><strong>Domaine: </strong>{{this.entreprise[0].domaineActivites}}</p>
+                        <p class="card-text"><strong>Lien: </strong>{{this.entreprise[0].lien}}</p>
+                        <p class="card-text"><strong>Adresse: </strong>{{this.entreprise[0].adresse}}</p>
+                        <p class="card-text"><strong>Téléphone: </strong>{{this.entreprise[0].telephone}}</p>
+                        <!-- <p class="card-text"><strong>Bio:</strong></p> -->
+                        <div class="text-center">
+                            <inertia-link :href="'/association/edit/'+this.entreprise[0].user_id" class="btn btn-sm"
+                                style="background-color: #3563a9; color:#fff;">
+                                Mise à jour
+                            </inertia-link>
+                        </div>
+                       
+                    </div>
+                    <!-- <h6 class="card-header" style="color: blue;">COMPETENCES</h6> -->
                 </div>
             </div>
             <div class="col-md-8">
@@ -39,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm">Modifier</button>
+                    <button class="btn btn-success btn-sm btn-block">Modifier</button>
                 </form>
             </div>
         </div>
@@ -88,82 +95,6 @@
 </script>
 
 <style scoped>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    input[type=text], select, textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
-    }
-
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    .container {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px;
-    }
-    h1 {
-
-        margin-left: 20px;
-    }
-
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        margin-left: 20px;
-        text-align: center;
-        font-family: arial, cursive;
-    }
-
-    .title {
-        color: grey;
-        font-size: 18px;
-    }
-
-    button {
-        border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: #000;
-        text-align: center;
-        cursor: pointer;
-        width: 100%;
-        font-size: 18px;
-    }
-
-    a {
-        text-decoration: none;
-        font-size: 22px;
-        color: black;
-    }
-
-    button:hover, a:hover {
-        opacity: 0.7;
-    }
+ 
 
 </style>

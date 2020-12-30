@@ -95,9 +95,10 @@
         <div class="col-md-5 mt-4" v-if="this.feusseuls[0] != null">
           <div class="row">
             <div class="col-md-12">
-              <div class="card mb-3 mt-4"
-              v-for="feusseul in feusseuls"
-              :key="feusseul.id"
+              <div
+                class="card mb-3 mt-4"
+                v-for="feusseul in feusseuls"
+                :key="feusseul.id"
               >
                 <div class="card-header" style="height: 55px; padding: 5px">
                   <!-- <img
@@ -113,7 +114,6 @@
                     class="rounded-circle border border-warning d-inline"
                     height="40px"
                     src="/uploads/avatar/avatar.png"
-
                     width="40px"
                   />
                   <!-- <p class="ml-5" style="margin-top: -2em;">{{ this.user[0].name}}</p> -->

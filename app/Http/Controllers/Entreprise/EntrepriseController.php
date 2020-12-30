@@ -153,4 +153,14 @@ class EntrepriseController extends Controller
             return back();
         }
     }
+
+    public function profil($id)
+    {
+        $entreprise = Entreprise::where('user_id', $id)->get();
+        $user = User::where('id', $id)->get();
+        return Inertia::render('Entreprise/Profil', [
+            'entreprise' => $entreprise,
+            'user' => $user
+        ]);
+    }
 }

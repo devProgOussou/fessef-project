@@ -99,40 +99,38 @@
                                     Annonce
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->isCompany == 1 || Auth::user()->isAssociation == 1)
+                                    @if (Auth::user()->isCompany == 1)
                                         <a class="dropdown-item" href="/Annonce/Create">poster annonce</a>
-                                        <a class="dropdown-item" href="/Annonce">mes annonces</a>
+                                        {{-- <a class="dropdown-item" href="/Annonce">mes annonces</a> --}}
                                     @endif
                                     <a class="dropdown-item" href="/Annonces">Toutes les annonces</a>
                                 </div>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link text-white" href="/xamxams">
                                     <i class="fas fa-school"></i>
                                     Xamxam
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->isCompany == 1 || Auth::user()->isAssociation == 1)
                                         <a class="dropdown-item" href="/xamxam/create"> Poster xam xam</a>
                                         <a class="dropdown-item" href="/xamxam">mes xam xam</a>
                                     @endif
                                     <a class="dropdown-item" href="/xamxams">Tous les xam xams</a>
-                                </div>
+                                </div> --}}
                             </li>
 
                             <li class="nav-item dropdown text-white">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link text-white" href="/Feusseuls">
                                     <i class="fas fa-plus"></i>
                                     Actualites
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Feusseul/create"> Poster actualites</a>
                                     <a class="dropdown-item" href="/Feusseul">mes actualites</a>
                                     <a class="dropdown-item" href="/Feusseuls">Tous les actualites</a>
-                                </div>
+                                </div> --}}
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown text-white" class="nav-link dropdown-toggle text-white" href="#"

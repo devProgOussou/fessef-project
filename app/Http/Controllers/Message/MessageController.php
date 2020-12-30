@@ -19,12 +19,17 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messageSend = Message::with('user')->where('sender_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
-        $messageReceive = Message::with('user')->where('receiver_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
+        $userid = Auth::user()->id;
+        $messsend = Message::with('user')->where('sender_id', Auth::user()->id)->get();
+
+        $messreceiver = Message::with('user')->where('receiver_id', Auth::user()->id)->get();
+        $users = Message::with('user')->where('receiver_id', Auth::user()->id)->where('user_id', '!=', Auth::user()->id)->get();
 
         return Inertia::render('Message/Index', [
-            'messageSend' => $messageSend,
-            'messageReceive' => $messageReceive,
+            'users' => $users,
+            'messsender' => $messsend,
+            'messreceiver' => $messreceiver,
+            'userid' => $userid,
         ]);
     }
 
@@ -46,7 +51,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
         Message::create([
             'sender_id' => $request->sender_id,
             'receiver_id' => $request->receiver_id,
@@ -64,22 +69,21 @@ class MessageController extends Controller
      */
     public function show(Message $message, $id)
     {
-        $messageRead = Message::where('sender_id', $id)->first();
-        if ($messageRead !== null)
-        {
-            if ($messageRead->isRead == 0)
-            {
-                $messageRead->isRead = 1;
-                $messageRead->save();
-            }
-        }
+        $messsend = Message::with('user')->where('sender_id', Auth::user()->id)->get();
 
-        $messageSend = Message::with('user')->where('sender_id', Auth::user()->id)->where('receiver_id', $id)->orderBy('created_at', 'asc')->distinct()->get();
-        $messageReceive = Message::with('user')->where('receiver_id', Auth::user()->id)->where('sender_id', $id)->orderBy('created_at', 'asc')->distinct()->get();
+        $messreceiver = Message::with('user')->where('receiver_id', Auth::user()->id)->where('statut', 1)->get();
+        Message::where('sender_id', $id)->update(['isRead' => 1]);
+
+        $userid = Auth::user()->id;
+        $messages = Message::with('user')->where('statut', 1)->get();
+        $users = Message::with('user')->where('user_id', '!=', Auth::user()->id)->get();
 
         return Inertia::render('Message/Show', [
-            'messageSend' => $messageSend,
-            'messageReceive' => $messageReceive,
+            'messages' => $messages,
+            'userid' => $userid,
+            'users' => $users,
+            'messsender' => $messsend,
+            'messreceiver' => $messreceiver,
         ]);
         return back();
     }
@@ -113,9 +117,15 @@ class MessageController extends Controller
      * @param Message $message
      * @return Response
      */
-    public function destroy(Message $message)
+    public function updatestatut(Message $message, $id)
     {
-        //
+        Message::where('id', $id)->update(['statut' => 0]);
+        return back();
+    }
+    public function destroy(Message $message, $id)
+    {
+        Message::where('id', $id)->delete();
+        return back();
     }
 
     public function contact(Request $request)
