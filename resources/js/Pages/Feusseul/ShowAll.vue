@@ -74,7 +74,7 @@
                     id="search"
                     name="search"
                     type="text"
-                    placeholder="chercher"
+                    placeholder="chercher feusseul(actualite)"
                     v-model="search.search"
                   />
                 </div>

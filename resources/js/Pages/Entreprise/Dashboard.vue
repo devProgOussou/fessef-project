@@ -6,8 +6,8 @@
         <div class="col-md-5">
           <br />
 
-          On vous souhaite bon recherche @{{ this.entreprise[0].NomEntreprise }}
-
+          On vous souhaite bon recherche <inertia-link :href="'/entreprise/profil/'+this.entreprise[0].user_id">@{{ this.entreprise[0].NomEntreprise }}</inertia-link>
+        
           <h2>Annonce</h2>
         </div>
         <div class="col-md-4"></div>

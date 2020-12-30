@@ -243,6 +243,6 @@ class AnnonceController extends Controller
         $query = Annonce::with('user')->where("titre", "like", "%$request->search%")->get();
         $queryCount = Annonce::with('user')->where("titre", "like", "%$request->search%")->count();
 
-        dd($query);
+        dd($queryCount);
     }
 }

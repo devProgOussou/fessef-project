@@ -42,7 +42,7 @@
               <!-- debut du card resultat du recherche -->
               <div class="row">
                 <div
-                  class="col-md-4"
+                  class="col-md-5"
                   v-for="profil in searchingProfile"
                   :key="profil.id"
                 >

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Entreprise;
 
-use App\Http\Controllers\Controller;
-use App\Models\Association;
-use App\Models\Entreprise;
 use App\Models\User;
+use Inertia\Inertia;
+use App\Models\Xamxam;
+use App\Models\Annonce;
+use App\Models\Interesse;
+use App\Models\Entreprise;
+use App\Models\Association;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Inertia\Inertia;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EntrepriseController extends Controller
 {
@@ -70,7 +74,7 @@ class EntrepriseController extends Controller
         $user = User::where('id', $id)->get();
         return Inertia::render('Entreprise/Edit', [
             'entreprise' => $entreprise,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -95,16 +99,15 @@ class EntrepriseController extends Controller
                 'telephone' => $request->input('telephone'),
                 'lien' => $request->input('lien'),
                 'domaineActivites' => $request->input('domaineActivites'),
-                'description' => $request->input('description')
+                'description' => $request->input('description'),
             ]);
 
             User::where('id', $id)->update([
                 'name' => $request->input('NomEntreprise'),
-                'avatar' => $filename
+                'avatar' => $filename,
             ]);
             return back();
-        }
-        else {
+        } else {
             return back();
         }
     }
@@ -132,7 +135,7 @@ class EntrepriseController extends Controller
         $entreprise = Entreprise::where('user_id', $id)->get();
         return Inertia::render('Entreprise/EditAvatar', [
             'user' => $user,
-            'entreprise' => $entreprise
+            'entreprise' => $entreprise,
         ]);
     }
 
@@ -148,19 +151,29 @@ class EntrepriseController extends Controller
                 'avatar' => $filename,
             ]);
             return back();
-        }
-        else {
+        } else {
             return back();
         }
     }
 
     public function profil($id)
     {
+
         $entreprise = Entreprise::where('user_id', $id)->get();
         $user = User::where('id', $id)->get();
+        $xamxams = Xamxam::paginate(5)->where('user_id', $id);
+        $annonces = Annonce::with('user')->with('interesses')->paginate(15)->where('user_id', Auth::user()->id)->sortByDesc('created_at');
+        $interesses = Interesse::paginate(15)->where('post_id', $id);
+        $annonceAll = Annonce::with('user')->where('user_id', '!=', $id)->get();
+
         return Inertia::render('Entreprise/Profil', [
+            'xamxams' => $xamxams,
+            'annonceAll' => $annonceAll,
+            'annonces' => $annonces,
             'entreprise' => $entreprise,
-            'user' => $user
+            'user' => $user,
+            'interesses' => $interesses,
         ]);
+
     }
 }
