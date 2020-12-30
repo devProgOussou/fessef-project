@@ -37,14 +37,14 @@
     <title>Bienvenue a FESSEF</title>
     <style>
         body {
-            background-color: lightgrey;
+
         }
     </style>
 </head>
 
 <body>
 
-
+<div class="container-fluid">
 <!-- Debut Carousel images -->
 <div id="carouselExampleCaptions " class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -54,21 +54,21 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{{asset('images/fessef.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('images/fessef4.jpg')}}"   class="d-block w-100" alt="">
             <div class="carousel-caption ">
                 <h5>Lorem ipsum <span>fessef</span></h5>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{asset('images/fessef.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('images/fessef4.jpg')}}"  class="d-block w-100" alt="">
             <div class="carousel-caption ">
                 <h5>Lorem ipsum <span>fessef</span></h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{asset('images/fessef.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('images/fessef4.jpg')}}"  class="d-block w-100" alt="">
             <div class="carousel-caption ">
                 <h5>Lorem ipsum <span>fessef</span></h5>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -113,8 +113,8 @@
                         <div class="device">
                             <div class="screen">
                                 <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                <img src="{{asset('images/th.png')}}" class="img-fluid ml-4" alt="" height="300"
-                                     width="300">
+                                <img src="{{asset('images/iphone.png')}}" class="img-fluid ml-5" alt="" height="400"
+                                     width="500">
                             </div>
                             <div class="button">
                                 <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -189,7 +189,7 @@
 <div class="container" id="utilisateurs">
     <div class="row ">
         <!-- debut du 1 er div -->
-        <div class="col-md-6 text-center ">
+        <div class="col-md-6 text-center " style="background-color:#FEFEE0 ;">
             <h3 class="" style="margin-top: 20%;">Etudiant</h3>
             <p class="text-justify">
                 ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita nostrum minima,
@@ -206,7 +206,7 @@
         <!-- debut du 2 div -->
         <img class="col-md-6 d-none d-sm-block" src="{{asset('images/fessef.jpg')}}" class="img-fluid" alt=""
              style="height: 400px;object-fit:cover;width: 100%; padding : 0px; margin:0px">
-        <div class="col-md-6 text-center ">
+        <div class="col-md-6 text-center " style="background-color:#FEFEE0 ;">
             <h3 class="" style="margin-top: 20%;">Entreprise</h3>
             <p class="text-justify">
                 ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita nostrum minima,
@@ -218,7 +218,7 @@
         </div>
         <!-- fin du 2 div -->
         <!-- debut du 3 div -->
-        <div class="col-md-6 text-center ">
+        <div class="col-md-6 text-center " style="background-color:#FEFEE0 ;">
             <h3 class="" style="margin-top: 20%;">Association</h3>
             <p class="text-justify">
                 ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita nostrum minima,
@@ -339,12 +339,12 @@
                     <div class="row" style="margin-top: 50px;">
                         <img class="col-md-6 d-none d-sm-block img-fluid" src="{{asset('images/fessef.jpg')}}"
                              alt="" style="height: 200px;object-fit:cover; width: 100%; border-radius:5px;">
-                        <img class="col-md-6 d-none d-sm-block img-fluid" src="{{asset('images/fessef].jpg')}}"
+                        <img class="col-md-6 d-none d-sm-block img-fluid" src="{{asset('images/fessef.jpg')}}"
                              alt="" style="height: 200px; width: 100%; object-fit:cover; border-radius:5px;">
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img class=" img-fluid " src="{{url('asset/img/pexels-christina-morillo-1181421.jpg')}}"
+                    <img class=" img-fluid " src="{{asset('images/fessef1.jpg')}}"
                          alt="" style="height: 300px;object-fit:cover; width: 90%; border-radius:5px;">
                 </div>
                 <div class="col-md-6 mt-4">
@@ -369,13 +369,13 @@
             </h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="background-colo:#CECECE;" >
         <div class="col-md-4 text-center">
             <div class="overlay" style="background-color:white;height: 170px;">
                 <h4>Etudiants</h4>
                 <p>
                     <small>
-                        Offrez le meilleur à ceux que vous aimez et partagez des moments
+                        Offrez le meilleur � ceux que vous aimez et partagez des moments
                         fabuleux Avec Vos Amis Etudiants woowww !!!
                     </small>
                 </p>
@@ -384,7 +384,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <img src="{{asset('images/pexels-christina-morillo-1181421.jpg')}}" style="height:17px;width: 400px"
+            <img src="{{asset('images/fessef.jpg')}}" style="height:170px;width: 400px"
                  alt="">
         </div>
     </div>
@@ -440,11 +440,11 @@
                          style="width:100px; height:100px; padding:10px;">
                 </div>
                 <div class="col-md-3">
-                    <img class="" src="{{asset('images/volk-white.png')}}"
+                    <img class="" src="{{asset('images/volkeno.png')}}"
                          style="width:100px; height:100px; padding:10px;">
                 </div>
                 <div class="col-md-3">
-                    <img class="" src="{{asset('images/Logo-bakeli.png')}}"
+                    <img class="" src="{{asset('images/bakeli.png')}}"
                          style="width:100px; height:100px; padding:10px;">
                 </div>
                 <div class="col-md-3">
@@ -465,14 +465,12 @@
   background-color:#444444;
   color: white;">
     <div class="row footer">
-        <div class="col-md-4">
-            <h3>Fessef<span class="rouge">.</span></h3>
-            <div class="copyright">Copyright © Tous droits réservés.</div>
+        <div class="col-md-4" >
+            <h3 style="margin-top: 40px;">Fessef<span class="rouge">.</span></h3>
+            <div class="copyright">Copyright � Tous droits r�serv�s.</div>
         </div>
         <div class="col-md-5 col-sm-8 ">
             <div class="icon" style="justify-content: center;">
-
-
                 <a style="margin-top: 45px; color: white; font-size: 30px;" class="btn  btn-social mx-2"
                    href="https://web.facebook.com/fessef.fr/?_rdc=1&_rdr" target="_blank">
                     <i class="fab fa-facebook-f"></i>
@@ -486,6 +484,10 @@
                 <a style="margin-top: 45px; color: white; font-size: 30px;" class="btn  btn-social mx-2"
                    href="https://twitter.com/fesseffrance?lang=fr" target="_blank">
                     <i class="fab fa-twitter"></i>
+                </a>
+                <a style="margin-top: 45px; color: white; font-size: 30px;" class="btn  btn-social mx-2"
+                   target="_blank">
+                    <i class="fab fa-linkedin"></i>
                 </a>
 
 
@@ -529,6 +531,6 @@
     })
 </script>
 <!-- Mes scripts -->
-
+</div>
 </body>
 </html>

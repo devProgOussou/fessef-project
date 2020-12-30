@@ -1,23 +1,52 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-                <inertia-link class="m-5" href="/xamxam">
-                    <button class="btn btn-primary">Voir</button>
-                </inertia-link>
-                <div class="col-md-10 offset-1 ml-3 m-5">
-                        <img :src="'/uploads/'+this.xamxam[0].image" alt="" height="500px" width="1000px">
-                    <p class="text-center">
-                        <strong>{{ this.xamxam[0].titre }}</strong>
-                    </p>
-                    <p>
+
+    <div class="container-fluid ">
+        <div class="row my-2">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8 m-4">
+
+                <div class="card " id="">
+
+                    <img  :src="'/uploads/'+this.xamxam[0].image" class="card-img-top img-fluid card-infoImgg" alt="...">
+
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><a class="text-dark" href="">
+                                <strong>{{ this.xamxam[0].titre }}</strong>
+                            </a></h5>
+                        <p class="text-center text-muted">{{ this.xamxam[0].created_at|timeformat }} </p>
+                        <p class="card-text">
                         {{ this.xamxam[0].contenu }}
+                        </p>
+                        <p>
+                        <small> Tag : {{ this.xamxam[0].tags }}</small>
                     </p>
-                    <p>
-                        <small>{{ this.xamxam[0].tags }}</small>
-                    </p>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+
+                        <p class="float-left d-inline  ml-2">
+                            <b>
+
+                            </b>
+                        </p>
+                        <p class="text-center d-inline ml-2">
+                            <a class="text-muted" href=" # ">
+
+                            </a>
+                        </p>
+                        <p class="float-right d-inline mr-2">
+                            <a class="text-primary" href="#">
+
+                            </a>
+                        </p>
+                    </div>
+
                 </div>
+
             </div>
+
+            <div class="col-md-2"></div>
         </div>
     </div>
 </template>

@@ -3,9 +3,9 @@
         <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">
-                <inertia-link class="m-5" href="/xamxam">
+                <!--<inertia-link class="m-5" href="/xamxam">
                     <button class="btn btn-primary">Voir</button>
-                </inertia-link>
+                </inertia-link>-->
                 <div class="col-md-8 mt-5" style="margin-top: 7rem">
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">

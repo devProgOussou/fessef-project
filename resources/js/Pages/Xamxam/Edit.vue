@@ -1,8 +1,8 @@
 <template>
     <div>
-        <inertia-link class="m-5" href="/xamxam">
+       <!-- <inertia-link class="m-5" href="/xamxam">
             <button class="btn btn-primary">Voir</button>
-        </inertia-link>
+        </inertia-link>-->
         <FlashMessage :position="'right bottom'"></FlashMessage>
         <div class="container">
             <div class="row">

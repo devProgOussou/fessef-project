@@ -2,12 +2,12 @@
     <div>
         <div class="container">
             <div class="row">
-                <inertia-link class="m-5" href="/xamxam/create">
+               <!-- <inertia-link class="m-5" href="/xamxam/create">
                     <button class="btn btn-dark">Creer</button>
                 </inertia-link>
                 <inertia-link class="m-5" href="/xamxam">
                     <button class="btn btn-primary">Voir</button>
-                </inertia-link>
+                </inertia-link>-->
                 <div class="col-md-12">
                     <table class="table table-dark">
                         <tr>
@@ -22,16 +22,16 @@
                             <td>{{ xamxam.id }}</td>
                             <td>{{ xamxam.titre }}</td>
                             <td>{{ xamxam.tags | truncate(20) }}</td>
-                            <td><img :src="'http://mkeita.defarsci.com/fessef/public/uploads/'+xamxam.image" height="200px" width="255px"></td>
+                            <td><img :src="'/uploads/' + xamxam.image" height="200px" width="255px"></td>
                             <td>{{ xamxam.contenu | truncate(27) }}</td>
                             <td>
-                                <inertia-link :href="'http://mkeita.defarsci.com/fessef/public/xamxam/show/'+xamxam.id">
+                                <inertia-link :href="'xamxam/show/'+xamxam.id">
                                     <button class="btn btn-info btn-sm btn-round">Afficher</button>
                                 </inertia-link>
-                                <inertia-link :href="'http://mkeita.defarsci.com/fessef/public/xamxam/edit/'+xamxam.id">
+                                <inertia-link :href="'xamxam/edit/'+xamxam.id">
                                     <button class="btn btn-sm btn-warning btn-round">Editer</button>
                                 </inertia-link>
-                                <inertia-link :href="'http://mkeita.defarsci.com/fessef/public/xamxam/destroy/'+xamxam.id">
+                                <inertia-link :href="'xamxam/destroy/'+xamxam.id">
                                     <button class="btn btn-sm btn-danger btn-round">Supprimer</button>
                                 </inertia-link>
                             </td>

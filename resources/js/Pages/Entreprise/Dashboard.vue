@@ -121,7 +121,7 @@ export default {
 
       search.append("search", this.search.search);
 
-      this.$inertia.post("/AnnonceSearch", search);
+      this.$inertia.post("/searchProfile", search);
     },
   },
 };
